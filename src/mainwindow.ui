@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>669</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Food Database</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Ressources.qrc">
+    <normaloff>:/icon/Ressources/Icons/fastfood-24px.svg</normaloff>:/icon/Ressources/Icons/fastfood-24px.svg</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox_Recipes">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>780</width>
+      <height>611</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>Rezepte</string>
+    </property>
+    <widget class="QWidget" name="horizontalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>19</y>
+       <width>761</width>
+       <height>581</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QTableView" name="tableView_Recipes">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::DoubleClicked</set>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="horizontalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+         <bool>false</bool>
+        </attribute>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QPushButton" name="pushButton_New">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Neu</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_RemoveRecipe">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Löschen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_Export">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Export</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_Database">
+    <property name="title">
+     <string>Datenbank</string>
+    </property>
+    <addaction name="action_CreateDatabase"/>
+    <addaction name="action_OpenDatabase"/>
+    <addaction name="action_CloseDatabase"/>
+    <addaction name="action_WriteDatabase"/>
+   </widget>
+   <widget class="QMenu" name="menu_Recipe">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>Rezept</string>
+    </property>
+    <addaction name="action_New"/>
+    <addaction name="action_Export"/>
+   </widget>
+   <widget class="QMenu" name="menu_About">
+    <property name="title">
+     <string>Über</string>
+    </property>
+    <addaction name="action_About"/>
+    <addaction name="action_AboutQt"/>
+   </widget>
+   <widget class="QMenu" name="menu_Language">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>Sprache</string>
+    </property>
+    <addaction name="actionDeutsch"/>
+    <addaction name="actionEnglish"/>
+   </widget>
+   <addaction name="menu_Database"/>
+   <addaction name="menu_Recipe"/>
+   <addaction name="menu_Language"/>
+   <addaction name="menu_About"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_AboutQt">
+   <property name="text">
+    <string>Über Qt...</string>
+   </property>
+  </action>
+  <action name="action_OpenDatabase">
+   <property name="text">
+    <string>Öffnen...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_CloseDatabase">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Schließen...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="action_About">
+   <property name="text">
+    <string>Über Food Database...</string>
+   </property>
+  </action>
+  <action name="action_CreateDatabase">
+   <property name="text">
+    <string>Neu...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_New">
+   <property name="text">
+    <string>Neu...</string>
+   </property>
+  </action>
+  <action name="actionDeutsch">
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/languages/Ressources/Languages/German.png</normaloff>:/languages/Ressources/Languages/German.png</iconset>
+   </property>
+   <property name="text">
+    <string>Deutsch</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/languages/Ressources/Languages/Englisch (UK).png</normaloff>:/languages/Ressources/Languages/Englisch (UK).png</iconset>
+   </property>
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="action_Export">
+   <property name="text">
+    <string>Export...</string>
+   </property>
+   <property name="toolTip">
+    <string>Export the selected recipe.</string>
+   </property>
+  </action>
+  <action name="action_WriteDatabase">
+   <property name="text">
+    <string>Speichern...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="Ressources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
