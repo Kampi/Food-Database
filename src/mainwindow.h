@@ -18,10 +18,8 @@
 
 /*
  *  ToDo:
- *      - Add multi language support
  *      - Change column width in ingredient model
  *      - Implement column resize after editing for create recipe window
- *      - Implement JSON export
  *      - Delegate for category in create recipe window?
  *      - Implement sorting for recipes?
  */
@@ -37,19 +35,22 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+    protected slots:
+        void languageChange(bool checked);
+
     protected:
         void changeEvent(QEvent* event) override;
         void closeEvent(QCloseEvent* event) override;
         void keyPressEvent(QKeyEvent* event) override;
 
-    public:
-        MainWindow(QWidget* parent = nullptr);
-        ~MainWindow();
-
     public slots:
         void on_CreateRecipeDialog_finished(int result);
         void on_EditRecipeDialog_finished(int result);
         void on_tableView_Recipes_doubleClicked(const QModelIndex& index);
+
+    public:
+        MainWindow(QWidget* parent = nullptr);
+        ~MainWindow();
 
     private slots:
         void on_action_CreateDatabase_triggered();
@@ -71,6 +72,7 @@ class MainWindow : public QMainWindow
 
         QList<Recipe> _mRecipes;
         QLabel _mDatabaseState;
+        QTranslator _mTranslator;
 
         RecipesModel* _mRecipesModel;
 
@@ -88,5 +90,7 @@ class MainWindow : public QMainWindow
         void _writeRecipesToDatabase(void);
         void _updateStatusbar(void);
         void _exportRecipe(void);
+        void _setLanguageMenu(void);
+        void _switchLanguage(QString Language);
 };
 #endif // MAINWINDOW_H

@@ -7,13 +7,16 @@
 
 class RecipesModel : public QAbstractTableModel
 {
-    enum RecipesModel_Table
-    {
-        RECIPESMODEL_TABLE_NAME,
-        RECIPESMODEL_TABLE_PERSONS,
-        RECIPESMODEL_TABLE_COOKINGTIME,
-        RECIPESMODEL_TABLE_CATEGORY
-    };
+    Q_OBJECT
+
+    public:
+        enum RecipesModel_Table
+        {
+            RECIPESMODEL_TABLE_NAME,
+            RECIPESMODEL_TABLE_PERSONS,
+            RECIPESMODEL_TABLE_COOKINGTIME,
+            RECIPESMODEL_TABLE_CATEGORY
+        };
 
     public:
         RecipesModel(QList<Recipe>& Recipes, QObject* parent = nullptr);

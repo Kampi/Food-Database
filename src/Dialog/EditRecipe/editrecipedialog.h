@@ -2,10 +2,12 @@
 #define EDITRECIPEDIALOG_H
 
 #include <QDialog>
+#include <QMessageBox>
 #include <QAbstractButton>
 
 #include "recipe.h"
 #include "ingredientmodel.h"
+#include "comboboxdelegate.h"
 
 namespace Ui
 {
@@ -21,7 +23,7 @@ class EditRecipeDialog : public QDialog
         ~EditRecipeDialog();
 
     private slots:
-        void on_buttonBox_clicked(QAbstractButton* button);
+        void on_buttonBox_Close_clicked(QAbstractButton* button);
         void on_lineEdit_Name_textChanged(const QString& arg1);
         void on_lineEdit_Category_textChanged(const QString& arg1);
         void on_lineEdit_Note_textEdited(const QString& arg1);
@@ -40,6 +42,7 @@ class EditRecipeDialog : public QDialog
         Ui::EditRecipeDialog* _mUi;
 
         IngredientModel* _mIngredientsModel;
+        ComboBoxDelegate _mComboBoxDelegate;
 
         QList<Ingredient> _mNewIngredients;
         Recipe& _mOldRecipe;

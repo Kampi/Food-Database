@@ -13,17 +13,20 @@ CreateRecipeDialog::CreateRecipeDialog(QList<Recipe>& Recipes, QWidget* parent) 
     _mUi->tableView_Ingredients->setModel(_mIngredientsModel);
     _mUi->tableView_Ingredients->horizontalHeader()->setStretchLastSection(true);
     _mUi->tableView_Ingredients->horizontalHeader()->setSectionsClickable(false);
-    //_mUi->tableView_Ingredients->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    //_mUi->tableView_Ing5redients->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_SECTION, &_mComboBoxDelegate);
 
-    _mUi->buttonBox->button(QDialogButtonBox::Save)->setText(tr("Speichern"));
-    _mUi->buttonBox->button(QDialogButtonBox::Discard)->setText(tr("Verwerfen"));
+    _mUi->spinBox_Timer1->setSuffix(" " + tr("Seconds"));
+    _mUi->spinBox_Timer2->setSuffix(" " + tr("Seconds"));
+    _mUi->spinBox_CookingTime->setSuffix(" " + tr("Minutes"));
 
-    _mUi->spinBox_CookingTime->setSuffix(" " + tr("Minuten"));
+    _mUi->buttonBox_Close->button(QDialogButtonBox::Save)->setText(tr("Save"));
+    _mUi->buttonBox_Close->button(QDialogButtonBox::Discard)->setText(tr("Discard"));
 
     // Fill the table with some dummy values
     for(uint i = 0; i < 3; i++)
     {
-        this->_addIngredient(QString("Ingredient %1").arg(i), "Empty note", i, "Some unit", 1.25 * i, "Some section");
+        this->_addIngredient(QString(tr("Ingredient")).append(QString(" %1").arg(i)), tr("Empty note"), i, tr("Some unit"), 1.25 * i, tr("Some section"));
     }
 }
 
@@ -49,11 +52,15 @@ void CreateRecipeDialog::on_pushButton_RemoveIngredients_clicked()
             _mIngredientsModel->removeRows(select->currentIndex().row(), 1);
         }
     }
+    else
+    {
+        QMessageBox::information(this, tr("Information"), tr("Please select at least one ingredient!"), QMessageBox::Ok);
+    }
 }
 
-void CreateRecipeDialog::on_buttonBox_clicked(QAbstractButton* button)
+void CreateRecipeDialog::on_buttonBox_Close_clicked(QAbstractButton* button)
 {
-    if(button == _mUi->buttonBox->button(QDialogButtonBox::Save))
+    if(button == _mUi->buttonBox_Close->button(QDialogButtonBox::Save))
     {
         _mRecipes.push_back(Recipe(
                                 _mUi->lineEdit_Name->text(),
@@ -72,7 +79,7 @@ void CreateRecipeDialog::on_buttonBox_clicked(QAbstractButton* button)
 
         this->accept();
     }
-    else if(button == _mUi->buttonBox->button(QDialogButtonBox::Discard))
+    else if(button == _mUi->buttonBox_Close->button(QDialogButtonBox::Discard))
     {
         this->reject();
     }

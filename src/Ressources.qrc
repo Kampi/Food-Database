@@ -1,12 +1,11 @@
 <RCC>
-    <qresource prefix="/icon">
+    <qresource prefix="/Icon">
         <file>Ressources/Icons/fastfood-24px.svg</file>
         <file>Ressources/Icons/icons8-add-property-64.png</file>
         <file>Ressources/Icons/icons8-remove-property-64.png</file>
     </qresource>
-    <qresource prefix="/languages">
-        <file>Ressources/Languages/Englisch (USA).png</file>
-        <file>Ressources/Languages/German.png</file>
-        <file>Ressources/Languages/Englisch (UK).png</file>
+    <qresource prefix="/Icons/Languages">
+        <file>Ressources/Icons/Languages/de_DE.png</file>
+        <file>Ressources/Icons/Languages/en_US.png</file>
     </qresource>
 </RCC>

@@ -39,11 +39,14 @@ EditRecipeDialog::EditRecipeDialog(Recipe& OldRecipe, QWidget* parent) : QDialog
     _mUi->tableView_Ingredients->setModel(_mIngredientsModel);
     _mUi->tableView_Ingredients->horizontalHeader()->setStretchLastSection(true);
     _mUi->tableView_Ingredients->horizontalHeader()->setSectionsClickable(false);
+    _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_SECTION, &_mComboBoxDelegate);
 
-    _mUi->buttonBox->button(QDialogButtonBox::Save)->setText(tr("Speichern"));
-    _mUi->buttonBox->button(QDialogButtonBox::Discard)->setText(tr("Verwerfen"));
+    _mUi->spinBox_Timer1->setSuffix(" " + tr("Seconds"));
+    _mUi->spinBox_Timer2->setSuffix(" " + tr("Seconds"));
+    _mUi->spinBox_CookingTime->setSuffix(" " + tr("Minutes"));
 
-    _mUi->spinBox_CookingTime->setSuffix(" " + tr("Minuten"));
+    _mUi->buttonBox_Close->button(QDialogButtonBox::Save)->setText(tr("Save"));
+    _mUi->buttonBox_Close->button(QDialogButtonBox::Discard)->setText(tr("Discard"));
 }
 
 EditRecipeDialog::~EditRecipeDialog()
@@ -52,9 +55,9 @@ EditRecipeDialog::~EditRecipeDialog()
     delete _mUi;
 }
 
-void EditRecipeDialog::on_buttonBox_clicked(QAbstractButton* button)
+void EditRecipeDialog::on_buttonBox_Close_clicked(QAbstractButton* button)
 {
-    if(button == _mUi->buttonBox->button(QDialogButtonBox::Save))
+    if(button == _mUi->buttonBox_Close->button(QDialogButtonBox::Save))
     {
         // Overwrite the old values
         _mNewRecipe.setIngredients(_mNewIngredients);
@@ -62,7 +65,7 @@ void EditRecipeDialog::on_buttonBox_clicked(QAbstractButton* button)
 
         this->accept();
     }
-    else if(button == _mUi->buttonBox->button(QDialogButtonBox::Discard))
+    else if(button == _mUi->buttonBox_Close->button(QDialogButtonBox::Discard))
     {
         this->reject();
     }
@@ -145,7 +148,7 @@ void EditRecipeDialog::on_plainTextEdit_Description_textChanged()
 
 void EditRecipeDialog::on_pushButton_AddIngredients_clicked()
 {
-    _mNewIngredients.push_back(Ingredient("Name", "Note", 0, "Unit", 0, "Section"));
+    _mNewIngredients.push_back(Ingredient(tr("Name"), tr("Note"), 0, tr("Unit"), 0, tr("Section")));
     _mIngredientsModel->insertRow(_mIngredientsModel->rowCount(QModelIndex()));
     _mIngredientsModel->layoutChanged();
     _mUi->tableView_Ingredients->scrollToBottom();
@@ -161,5 +164,9 @@ void EditRecipeDialog::on_pushButton_RemoveIngredients_clicked()
         {
             _mIngredientsModel->removeRows(index.row(), 1);
         }
+    }
+    else
+    {
+        QMessageBox::information(this, tr("Information"), tr("Please select at least one ingredient!"), QMessageBox::Ok);
     }
 }

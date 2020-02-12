@@ -14,14 +14,16 @@ MainWindow::MainWindow(QWidget* parent) :   QMainWindow(parent),
     _mUi->tableView_Recipes->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     _mUi->tableView_Recipes->horizontalHeader()->setSectionsClickable(false);
 
+    this->_setLanguageMenu();
+
     _mUi->statusbar->addPermanentWidget(&_mDatabaseState);
     _mUi->statusbar->showMessage(QString("%1.%2.%3").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_BUILD));
     this->_updateStatusbar();
 
     // Create some dummy data
-    QList<Ingredient> Ingredients({Ingredient("First", "Note", 1, "kg", 1.55, "Things"), Ingredient("Second", "More", 1, "l", 1.0, "Another")});
-    _mRecipes.push_back(Recipe("First recipe", "Some note", "A link", "Short description", "", "", "Category 1", 1, 30, 0, 0, Ingredients));
-    _mRecipes.push_back(Recipe("Second recipe", "Some note", "A link", "Short description", "", "", "Category 2", 1, 10, 0, 0, Ingredients));
+    QList<Ingredient> Ingredients({Ingredient(tr("First"), tr("Note"), 1, "kg", 1.55, tr("Things")), Ingredient(tr("Second"), tr("More"), 1, "l", 1.0, tr("Other things"))});
+    _mRecipes.push_back(Recipe(tr("First recipe"), tr("Some note"), tr("Link to first recipe"), tr("Short description for recipe one."), "", "", tr("Category 1"), 1, 30, 0, 0, Ingredients));
+    _mRecipes.push_back(Recipe(tr("Second recipe"), tr("Some note"), ("Link to second recipe"), tr("Short description for recipe two."), "", "", tr("Category 2"), 1, 10, 0, 0, Ingredients));
     _mRecipesModel->layoutChanged();
     _mUi->tableView_Recipes->scrollToBottom();
 }
@@ -94,7 +96,7 @@ void MainWindow::on_action_About_triggered()
 
 void MainWindow::on_action_AboutQt_triggered()
 {
-    QApplication::aboutQt();
+    QMessageBox::aboutQt(this, tr("Über Qt"));
 }
 
 void MainWindow::on_pushButton_New_clicked()
@@ -117,6 +119,13 @@ void MainWindow::on_pushButton_RemoveRecipe_clicked()
     }
 }
 
+void MainWindow::languageChange(bool)
+{
+    QAction* Sender = qobject_cast<QAction*>(QObject::sender());
+    Sender->setChecked(true);
+    this->_switchLanguage(Sender->iconText());
+}
+
 void MainWindow::changeEvent(QEvent* event)
 {
     if(event->type())
@@ -125,12 +134,14 @@ void MainWindow::changeEvent(QEvent* event)
         {
             case QEvent::LanguageChange:
             {
-                qDebug() << "Language changed!";
+                _mUi->retranslateUi(this);
                 break;
             }
             case QEvent::LocaleChange:
             {
-                qDebug() << "Locale changed!";
+                QString Locale = QLocale::system().name();
+                Locale.truncate(Locale.lastIndexOf('_'));
+                this->_switchLanguage(Locale);
                 break;
             }
             default:
@@ -290,5 +301,34 @@ void MainWindow::_exportRecipe(void)
             qDebug() << "[Error] Unable to write JSON database!";
             QMessageBox::critical(this, tr("Fehler"), tr("Export fehlgeschlagen!"), QMessageBox::Ok);
         }
+    }    else
+    {
+        QMessageBox::information(this, tr("Information"), tr("Please select at least one recipe!"), QMessageBox::Ok);
+    }
+}
+
+void MainWindow::_setLanguageMenu(void)
+{
+    QActionGroup* actionGroup = new QActionGroup(this);
+    actionGroup->addAction(_mUi->action_German);
+    actionGroup->addAction(_mUi->action_EnglishUS);
+    actionGroup->setExclusive(true);
+
+    connect(_mUi->action_German, &QAction::triggered, this, &MainWindow::languageChange);
+    connect(_mUi->action_EnglishUS, &QAction::triggered, this, &MainWindow::languageChange);
+
+    // Use german as default language
+    _mUi->action_German->triggered(true);
+}
+
+void MainWindow::_switchLanguage(QString Language)
+{
+    QLocale::setDefault(QLocale(Language));
+
+    qApp->removeTranslator(&_mTranslator);
+
+    if(_mTranslator.load(QString(QApplication::applicationDirPath().append(QString("/Languages/FoodDatabase_%1.qm").arg(Language)))))
+    {
+        qApp->installTranslator(&_mTranslator);
     }
 }

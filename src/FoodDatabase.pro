@@ -1,12 +1,14 @@
 VERSION_MAJOR = 1
-VERSION_MINOR = 0
+VERSION_MINOR = 1
 VERSION_BUILD = 0
 
 QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++11 file_copies
+
+COPIES += languageFiles
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -32,6 +34,7 @@ INCLUDEPATH += \
     Model/ \
     Model/IngredientModel/ \
     Model/RecipesModel/ \
+    Model/ComboBoxDelegate/ \
     Dialog/ \
     Database/ \
 
@@ -40,6 +43,7 @@ SOURCES += \
     Dialog/About/aboutdialog.cpp \
     Dialog/CreateRecipe/createrecipedialog.cpp \
     Dialog/EditRecipe/editrecipedialog.cpp \
+    Model/ComboBoxDelegate/comboboxdelegate.cpp \
     Model/IngredientModel/ingredientmodel.cpp \
     Model/RecipesModel/recipesmodel.cpp \
     Recipe/Ingredient/ingredient.cpp \
@@ -53,6 +57,7 @@ HEADERS += \
     Dialog/About/aboutdialog.h \
     Dialog/CreateRecipe/createrecipedialog.h \
     Dialog/EditRecipe/editrecipedialog.h \
+    Model/ComboBoxDelegate/comboboxdelegate.h \
     Model/IngredientModel/ingredientmodel.h \
     Model/RecipesModel/recipesmodel.h \
     Recipe/Ingredient/ingredient.h \
@@ -70,14 +75,20 @@ TRANSLATIONS += \
     Languages/FoodDatabase_de_DE.ts \
     Languages/FoodDatabase_en_US.ts
 
-#Target version
+# Target version
 VERSION = $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_BUILD}
+
+# Copy language files
+languageFiles.files = $$files($$PWD/Languages/*.qm)
+CONFIG(debug, debug|release) {
+    languageFiles.path = $${OUT_PWD}/debug/Languages
+} else {
+    languageFiles.path = $${OUT_PWD}/release/Languages
+}
 
 # Deployment rules
 DEPLOY_COMMAND = windeployqt
-
 DEPLOY_OPTIONS = "--no-system-d3d-compiler --no-opengl --no-angle --no-opengl-sw"
-
 CONFIG(debug, debug|release) {
     DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/debug/$${TARGET}.exe))
     DEPLOY_OPTIONS += "--debug"

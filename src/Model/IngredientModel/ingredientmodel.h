@@ -9,15 +9,18 @@
 
 class IngredientModel : public QAbstractTableModel
 {
-    enum IngredientsModel_Table
-    {
-        INGREDIENTSMODEL_TABLE_NAME,
-        INGREDIENTSMODEL_TABLE_AMOUNT,
-        INGREDIENTSMODEL_TABLE_UNIT,
-        INGREDIENTSMODEL_TABLE_PRICE,
-        INGREDIENTSMODEL_TABLE_SECTION,
-        INGREDIENTSMODEL_TABLE_NOTE
-    };
+    Q_OBJECT
+
+    public:
+        enum IngredientsModel_Table
+        {
+            INGREDIENTSMODEL_TABLE_NAME,
+            INGREDIENTSMODEL_TABLE_AMOUNT,
+            INGREDIENTSMODEL_TABLE_UNIT,
+            INGREDIENTSMODEL_TABLE_PRICE,
+            INGREDIENTSMODEL_TABLE_SECTION,
+            INGREDIENTSMODEL_TABLE_NOTE
+        };
 
     public:
         IngredientModel(QList<Ingredient>& Ingredients, QObject* parent = nullptr);
