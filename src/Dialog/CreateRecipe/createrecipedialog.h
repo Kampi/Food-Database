@@ -2,10 +2,12 @@
 #define CREATERECIPEDIALOG_H
 
 #include <QDialog>
+#include <QMessageBox>
 #include <QAbstractButton>
 
 #include "recipe.h"
 #include "ingredientmodel.h"
+#include "comboboxdelegate.h"
 
 namespace Ui
 {
@@ -23,7 +25,7 @@ class CreateRecipeDialog : public QDialog
     private slots:
         void on_pushButton_AddIngredients_clicked();
         void on_pushButton_RemoveIngredients_clicked();
-        void on_buttonBox_clicked(QAbstractButton* button);
+        void on_buttonBox_Close_clicked(QAbstractButton* button);
         void on_spinBox_Timer1_valueChanged(int arg1);
         void on_spinBox_Timer2_valueChanged(int arg1);
 
@@ -31,6 +33,7 @@ class CreateRecipeDialog : public QDialog
         Ui::CreateRecipe* _mUi;
 
         IngredientModel* _mIngredientsModel;
+        ComboBoxDelegate _mComboBoxDelegate;
 
         QList<Ingredient> _mIngredientsList;
         QList<Recipe>& _mRecipes;

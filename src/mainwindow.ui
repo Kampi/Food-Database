@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="Ressources.qrc">
-    <normaloff>:/icon/Ressources/Icons/fastfood-24px.svg</normaloff>:/icon/Ressources/Icons/fastfood-24px.svg</iconset>
+    <normaloff>:/Icon/Ressources/Icons/fastfood-24px.svg</normaloff>:/Icon/Ressources/Icons/fastfood-24px.svg</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox_Recipes">
@@ -124,12 +124,12 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Database">
     <property name="title">
-     <string>Datenbank</string>
+     <string comment="menu_Database">Datenbank</string>
     </property>
     <addaction name="action_CreateDatabase"/>
     <addaction name="action_OpenDatabase"/>
@@ -141,7 +141,7 @@
      <bool>true</bool>
     </property>
     <property name="title">
-     <string>Rezept</string>
+     <string comment="menu_Recipe">Rezept</string>
     </property>
     <addaction name="action_New"/>
     <addaction name="action_Export"/>
@@ -155,13 +155,13 @@
    </widget>
    <widget class="QMenu" name="menu_Language">
     <property name="enabled">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="title">
      <string>Sprache</string>
     </property>
-    <addaction name="actionDeutsch"/>
-    <addaction name="actionEnglish"/>
+    <addaction name="action_German"/>
+    <addaction name="action_EnglishUS"/>
    </widget>
    <addaction name="menu_Database"/>
    <addaction name="menu_Recipe"/>
@@ -176,7 +176,7 @@
   </action>
   <action name="action_OpenDatabase">
    <property name="text">
-    <string>Öffnen...</string>
+    <string comment="action_OpenDatabase">Öffnen...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -187,7 +187,7 @@
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Schließen...</string>
+    <string comment="action_CloseDatabase">Schließen...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -200,7 +200,7 @@
   </action>
   <action name="action_CreateDatabase">
    <property name="text">
-    <string>Neu...</string>
+    <string comment="action_CreateDatabase">Neu...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -208,30 +208,45 @@
   </action>
   <action name="action_New">
    <property name="text">
-    <string>Neu...</string>
+    <string comment="action_New">Neu...</string>
    </property>
   </action>
-  <action name="actionDeutsch">
+  <action name="action_German">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/languages/Ressources/Languages/German.png</normaloff>:/languages/Ressources/Languages/German.png</iconset>
+     <normaloff>:/Icons/Languages/Ressources/Icons/Languages/de_DE.png</normaloff>:/Icons/Languages/Ressources/Icons/Languages/de_DE.png</iconset>
    </property>
    <property name="text">
     <string>Deutsch</string>
    </property>
+   <property name="iconText">
+    <string>de_DE</string>
+   </property>
   </action>
-  <action name="actionEnglish">
+  <action name="action_EnglishUS">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/languages/Ressources/Languages/Englisch (UK).png</normaloff>:/languages/Ressources/Languages/Englisch (UK).png</iconset>
+     <normaloff>:/Icons/Languages/Ressources/Icons/Languages/en_US.png</normaloff>:/Icons/Languages/Ressources/Icons/Languages/en_US.png</iconset>
    </property>
    <property name="text">
-    <string>English</string>
+    <string>English (US)</string>
+   </property>
+   <property name="iconText">
+    <string>en_US</string>
    </property>
   </action>
   <action name="action_Export">
    <property name="text">
-    <string>Export...</string>
+    <string comment="action_Export">Export...</string>
    </property>
    <property name="toolTip">
     <string>Export the selected recipe.</string>
@@ -239,7 +254,7 @@
   </action>
   <action name="action_WriteDatabase">
    <property name="text">
-    <string>Speichern...</string>
+    <string comment="action_WriteDatabase">Speichern...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>

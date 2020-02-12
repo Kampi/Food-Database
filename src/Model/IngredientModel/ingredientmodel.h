@@ -9,6 +9,8 @@
 
 class IngredientModel : public QAbstractTableModel
 {
+    Q_OBJECT
+
     enum IngredientsModel_Table
     {
         INGREDIENTSMODEL_TABLE_NAME,

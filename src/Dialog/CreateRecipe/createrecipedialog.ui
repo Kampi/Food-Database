@@ -13,10 +13,14 @@
   <property name="windowTitle">
    <string>Neues Rezept</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../Ressources.qrc">
+    <normaloff>:/Icon/Ressources/Icons/fastfood-24px.svg</normaloff>:/Icon/Ressources/Icons/fastfood-24px.svg</iconset>
+  </property>
   <property name="toolTip">
    <string/>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="buttonBox_Close">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -85,10 +89,10 @@
         <string>Name des Rezeptes.</string>
        </property>
        <property name="text">
-        <string>MyTestRecipe</string>
+        <string>My test recipe</string>
        </property>
        <property name="cursorPosition">
-        <number>0</number>
+        <number>14</number>
        </property>
       </widget>
      </item>
@@ -120,7 +124,7 @@
         <string>A category</string>
        </property>
        <property name="cursorPosition">
-        <number>1</number>
+        <number>10</number>
        </property>
       </widget>
      </item>
@@ -152,7 +156,7 @@
         <string>Some note</string>
        </property>
        <property name="cursorPosition">
-        <number>2</number>
+        <number>9</number>
        </property>
       </widget>
      </item>
@@ -181,7 +185,7 @@
         <string>Zubereitungszeit</string>
        </property>
        <property name="suffix">
-        <string> Min.</string>
+        <string/>
        </property>
        <property name="prefix">
         <string/>
@@ -216,7 +220,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Anzahl der Personen für das Rezept.</string>
+        <string>Portionsgröße des Rezeptes.</string>
        </property>
        <property name="minimum">
         <number>1</number>
@@ -251,7 +255,7 @@
         <string>http://www.myrecipe.com</string>
        </property>
        <property name="cursorPosition">
-        <number>3</number>
+        <number>23</number>
        </property>
       </widget>
      </item>
@@ -334,7 +338,7 @@
           </font>
          </property>
          <property name="suffix">
-          <string> s</string>
+          <string/>
          </property>
          <property name="minimum">
           <number>0</number>
@@ -356,7 +360,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Seconds for first timer</string>
+          <string>Timer 1 Description.</string>
          </property>
         </widget>
        </item>
@@ -392,7 +396,7 @@
           </font>
          </property>
          <property name="suffix">
-          <string> s</string>
+          <string/>
          </property>
          <property name="minimum">
           <number>0</number>
@@ -414,7 +418,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Seconds for second timer</string>
+          <string>Timer 2 Description.</string>
          </property>
         </widget>
        </item>
@@ -460,10 +464,7 @@
      <string>Anleitung zur Zubereitung.</string>
     </property>
     <property name="plainText">
-     <string>1. First step
-2. Second step
-3. Third step
-4. Enjoy</string>
+     <string>Fill me please.</string>
     </property>
    </widget>
   </widget>
@@ -528,14 +529,14 @@
           </font>
          </property>
          <property name="toolTip">
-          <string>Neue Zutat hinzufügen.</string>
+          <string>Zutat hinzufügen</string>
          </property>
          <property name="text">
           <string/>
          </property>
          <property name="icon">
           <iconset resource="../../Ressources.qrc">
-           <normaloff>:/icon/Ressources/Icons/icons8-add-property-64.png</normaloff>:/icon/Ressources/Icons/icons8-add-property-64.png</iconset>
+           <normaloff>:/Icon/Ressources/Icons/icons8-add-property-64.png</normaloff>:/Icon/Ressources/Icons/icons8-add-property-64.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -561,7 +562,7 @@
          </property>
          <property name="icon">
           <iconset resource="../../Ressources.qrc">
-           <normaloff>:/icon/Ressources/Icons/icons8-remove-property-64.png</normaloff>:/icon/Ressources/Icons/icons8-remove-property-64.png</iconset>
+           <normaloff>:/Icon/Ressources/Icons/icons8-remove-property-64.png</normaloff>:/Icon/Ressources/Icons/icons8-remove-property-64.png</iconset>
          </property>
          <property name="iconSize">
           <size>

@@ -7,6 +7,8 @@
 
 class RecipesModel : public QAbstractTableModel
 {
+    Q_OBJECT
+
     enum RecipesModel_Table
     {
         RECIPESMODEL_TABLE_NAME,

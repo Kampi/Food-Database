@@ -32,6 +32,7 @@ INCLUDEPATH += \
     Model/ \
     Model/IngredientModel/ \
     Model/RecipesModel/ \
+    Model/ComboBoxDelegate/ \
     Dialog/ \
     Database/ \
 
@@ -40,6 +41,7 @@ SOURCES += \
     Dialog/About/aboutdialog.cpp \
     Dialog/CreateRecipe/createrecipedialog.cpp \
     Dialog/EditRecipe/editrecipedialog.cpp \
+    Model/ComboBoxDelegate/comboboxdelegate.cpp \
     Model/IngredientModel/ingredientmodel.cpp \
     Model/RecipesModel/recipesmodel.cpp \
     Recipe/Ingredient/ingredient.cpp \
@@ -53,6 +55,7 @@ HEADERS += \
     Dialog/About/aboutdialog.h \
     Dialog/CreateRecipe/createrecipedialog.h \
     Dialog/EditRecipe/editrecipedialog.h \
+    Model/ComboBoxDelegate/comboboxdelegate.h \
     Model/IngredientModel/ingredientmodel.h \
     Model/RecipesModel/recipesmodel.h \
     Recipe/Ingredient/ingredient.h \
