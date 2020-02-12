@@ -711,6 +711,11 @@ p, li { white-space: pre-wrap; }
         <translation>Short description for recipe two.</translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp" line="99"/>
+        <source>Über Qt</source>
+        <translation type="unfinished">About Qt</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="186"/>
         <source>Datenbank anlegen</source>
         <translation>Create database</translation>

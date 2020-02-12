@@ -13,8 +13,8 @@ CreateRecipeDialog::CreateRecipeDialog(QList<Recipe>& Recipes, QWidget* parent) 
     _mUi->tableView_Ingredients->setModel(_mIngredientsModel);
     _mUi->tableView_Ingredients->horizontalHeader()->setStretchLastSection(true);
     _mUi->tableView_Ingredients->horizontalHeader()->setSectionsClickable(false);
-    //_mUi->tableView_Ingredients->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    _mUi->tableView_Ingredients->setItemDelegate(&_mComboBoxDelegate);
+    //_mUi->tableView_Ing5redients->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_SECTION, &_mComboBoxDelegate);
 
     _mUi->spinBox_Timer1->setSuffix(" " + tr("Seconds"));
     _mUi->spinBox_Timer2->setSuffix(" " + tr("Seconds"));

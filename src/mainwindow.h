@@ -20,7 +20,6 @@
  *  ToDo:
  *      - Change column width in ingredient model
  *      - Implement column resize after editing for create recipe window
- *      - Implement JSON export
  *      - Delegate for category in create recipe window?
  *      - Implement sorting for recipes?
  */

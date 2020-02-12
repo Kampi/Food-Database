@@ -39,7 +39,7 @@ EditRecipeDialog::EditRecipeDialog(Recipe& OldRecipe, QWidget* parent) : QDialog
     _mUi->tableView_Ingredients->setModel(_mIngredientsModel);
     _mUi->tableView_Ingredients->horizontalHeader()->setStretchLastSection(true);
     _mUi->tableView_Ingredients->horizontalHeader()->setSectionsClickable(false);
-    _mUi->tableView_Ingredients->setItemDelegate(&_mComboBoxDelegate);
+    _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_SECTION, &_mComboBoxDelegate);
 
     _mUi->spinBox_Timer1->setSuffix(" " + tr("Seconds"));
     _mUi->spinBox_Timer2->setSuffix(" " + tr("Seconds"));

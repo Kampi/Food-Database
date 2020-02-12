@@ -32,6 +32,7 @@ The Food Database support file formats for the following Android or iOS apps:
 | **Version**  | **Description**                            | **Date**   |
 |:------------:|:------------------------------------------:|:----------:|
 | 1.0          | First release                              | 10.02.2020 |
+| 1.1          | Add language support                       | 12.02.2020 |
 
 ## Maintainer
 
