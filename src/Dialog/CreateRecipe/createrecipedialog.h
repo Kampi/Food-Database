@@ -38,7 +38,7 @@ class CreateRecipeDialog : public QDialog
         QList<Ingredient> _mIngredientsList;
         QList<Recipe>& _mRecipes;
 
-        void _addIngredient(QString Name = "<Name>", QString Note = "<Note>", uint Amount = 0, QString Unit = "<Unit>", double Price = 0.0, QString Section = "<Section>");
+        void _addIngredient(QString Name = tr("<Name>"), QString Note = tr("<Note>"), uint Amount = 0, QString Unit = tr("<Unit>"), double Price = 0.0, QString Section = tr("<Section>"));
 };
 
 #endif // CREATERECIPEDIALOG_H

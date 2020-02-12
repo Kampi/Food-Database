@@ -228,6 +228,26 @@ p, li { white-space: pre-wrap; }
         <source>Please select at least one ingredient!</source>
         <translation>Bitte mindestens eine Zutat auswählen!</translation>
     </message>
+    <message>
+        <location filename="../Dialog/CreateRecipe/createrecipedialog.h" line="41"/>
+        <source>&lt;Name&gt;</source>
+        <translation>&lt;Name&gt;</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/CreateRecipe/createrecipedialog.h" line="41"/>
+        <source>&lt;Note&gt;</source>
+        <translation>&lt;Notiz&gt;</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/CreateRecipe/createrecipedialog.h" line="41"/>
+        <source>&lt;Unit&gt;</source>
+        <translation>&lt;Einheit&gt;</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/CreateRecipe/createrecipedialog.h" line="41"/>
+        <source>&lt;Section&gt;</source>
+        <translation>&lt;Abteilung&gt;</translation>
+    </message>
 </context>
 <context>
     <name>EditRecipeDialog</name>
@@ -748,6 +768,16 @@ p, li { white-space: pre-wrap; }
         <location filename="../mainwindow.cpp" line="302"/>
         <source>Export fehlgeschlagen!</source>
         <translation>Export fehlgeschlagen!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="306"/>
+        <source>Information</source>
+        <translation>Information</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="306"/>
+        <source>Please select at least one recipe!</source>
+        <translation>Bitte mindestens ein Rezept auswählen!</translation>
     </message>
 </context>
 <context>
