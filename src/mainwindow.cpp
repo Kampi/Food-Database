@@ -96,7 +96,7 @@ void MainWindow::on_action_About_triggered()
 
 void MainWindow::on_action_AboutQt_triggered()
 {
-    QApplication::aboutQt();
+    QMessageBox::aboutQt(this, tr("Über Qt"));
 }
 
 void MainWindow::on_pushButton_New_clicked()
