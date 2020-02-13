@@ -4,6 +4,8 @@
 CreateRecipeDialog::CreateRecipeDialog(QList<Recipe>& Recipes, QWidget* parent) :   QDialog(parent),
                                                                                     _mUi(new Ui::CreateRecipe),
                                                                                     _mIngredientsModel(new IngredientModel(_mIngredientsList)),
+                                                                                    _mComboBoxDelegate(new ComboBoxDelegate),
+                                                                                    _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this))),
                                                                                     _mRecipes(Recipes)
 {
     _mUi->setupUi(this);
@@ -14,7 +16,9 @@ CreateRecipeDialog::CreateRecipeDialog(QList<Recipe>& Recipes, QWidget* parent) 
     _mUi->tableView_Ingredients->horizontalHeader()->setStretchLastSection(true);
     _mUi->tableView_Ingredients->horizontalHeader()->setSectionsClickable(false);
     //_mUi->tableView_Ing5redients->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_SECTION, &_mComboBoxDelegate);
+    _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_SECTION, _mComboBoxDelegate);
+    _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_AMOUNT, _mNumbersOnlyDelegate);
+    _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_PRICE, _mNumbersOnlyDelegate);
 
     _mUi->spinBox_Timer1->setSuffix(" " + tr("Seconds"));
     _mUi->spinBox_Timer2->setSuffix(" " + tr("Seconds"));
@@ -32,6 +36,8 @@ CreateRecipeDialog::CreateRecipeDialog(QList<Recipe>& Recipes, QWidget* parent) 
 
 CreateRecipeDialog::~CreateRecipeDialog()
 {
+    delete _mComboBoxDelegate;
+    delete _mNumbersOnlyDelegate;
     delete _mIngredientsModel;
     delete _mUi;
 }

@@ -36,7 +36,7 @@ QVariant IngredientModel::data(const QModelIndex& index, int role) const
             }
             case INGREDIENTSMODEL_TABLE_PRICE:
             {
-                return QString("%1").arg(locale.toString(_mData.at(index.row()).Price()));
+                return QString("%1 " + tr("€")).arg(locale.toString(_mData.at(index.row()).Price()));
             }
             case INGREDIENTSMODEL_TABLE_SECTION:
             {

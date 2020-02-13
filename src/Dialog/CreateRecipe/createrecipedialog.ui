@@ -544,6 +544,9 @@
            <height>32</height>
           </size>
          </property>
+         <property name="shortcut">
+          <string>Ctrl+N</string>
+         </property>
         </widget>
        </item>
        <item>
@@ -569,6 +572,9 @@
            <width>32</width>
            <height>32</height>
           </size>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+D</string>
          </property>
         </widget>
        </item>

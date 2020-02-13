@@ -35,6 +35,7 @@ INCLUDEPATH += \
     Model/IngredientModel/ \
     Model/RecipesModel/ \
     Model/ComboBoxDelegate/ \
+    Model/NumbersOnlyDelegate/ \
     Dialog/ \
     Database/ \
 
@@ -45,6 +46,7 @@ SOURCES += \
     Dialog/EditRecipe/editrecipedialog.cpp \
     Model/ComboBoxDelegate/comboboxdelegate.cpp \
     Model/IngredientModel/ingredientmodel.cpp \
+    Model/NumbersOnlyDelegate/numbersonlydelegate.cpp \
     Model/RecipesModel/recipesmodel.cpp \
     Recipe/Ingredient/ingredient.cpp \
     Recipe/RecipeExport/recipeexport.cpp \
@@ -59,6 +61,7 @@ HEADERS += \
     Dialog/EditRecipe/editrecipedialog.h \
     Model/ComboBoxDelegate/comboboxdelegate.h \
     Model/IngredientModel/ingredientmodel.h \
+    Model/NumbersOnlyDelegate/numbersonlydelegate.h \
     Model/RecipesModel/recipesmodel.h \
     Recipe/Ingredient/ingredient.h \
     Recipe/RecipeExport/recipeexport.h \

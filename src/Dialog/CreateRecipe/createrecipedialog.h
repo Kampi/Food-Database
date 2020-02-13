@@ -8,6 +8,7 @@
 #include "recipe.h"
 #include "ingredientmodel.h"
 #include "comboboxdelegate.h"
+#include "numbersonlydelegate.h"
 
 namespace Ui
 {
@@ -33,7 +34,8 @@ class CreateRecipeDialog : public QDialog
         Ui::CreateRecipe* _mUi;
 
         IngredientModel* _mIngredientsModel;
-        ComboBoxDelegate _mComboBoxDelegate;
+        ComboBoxDelegate* _mComboBoxDelegate;
+        NumbersOnlyDelegate* _mNumbersOnlyDelegate;
 
         QList<Ingredient> _mIngredientsList;
         QList<Recipe>& _mRecipes;

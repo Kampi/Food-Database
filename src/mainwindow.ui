@@ -84,6 +84,9 @@
           <property name="text">
            <string>Neu</string>
           </property>
+          <property name="shortcut">
+           <string/>
+          </property>
          </widget>
         </item>
         <item>
@@ -133,8 +136,8 @@
     </property>
     <addaction name="action_CreateDatabase"/>
     <addaction name="action_OpenDatabase"/>
-    <addaction name="action_CloseDatabase"/>
     <addaction name="action_WriteDatabase"/>
+    <addaction name="action_CloseDatabase"/>
    </widget>
    <widget class="QMenu" name="menu_Recipe">
     <property name="enabled">
