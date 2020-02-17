@@ -22,6 +22,7 @@
  *      - Implement column resize after editing for create recipe window
  *      - Delegate for category in create recipe window?
  *      - Implement sorting for recipes?
+ *      - Add Category list
  */
 
 QT_BEGIN_NAMESPACE
@@ -62,7 +63,6 @@ class MainWindow : public QMainWindow
         void on_action_About_triggered();
         void on_action_AboutQt_triggered();
 
-
         void on_pushButton_New_clicked();
         void on_pushButton_Export_clicked();
         void on_pushButton_RemoveRecipe_clicked();
@@ -72,7 +72,10 @@ class MainWindow : public QMainWindow
 
         QList<Recipe> _mRecipes;
         QLabel _mDatabaseState;
+        QLabel _mStatusLabel;
         QTranslator _mTranslator;
+        QStringList _mIngredientsCategorie;
+        QString _mStatus;
 
         RecipesModel* _mRecipesModel;
 

@@ -2,7 +2,6 @@
 
 RecipeExport::RecipeExport()
 {
-
 }
 
 bool RecipeExport::Export(QString FileName, QList<Recipe> Recipes)
