@@ -10,6 +10,7 @@
 #include "About/aboutdialog.h"
 #include "EditRecipe/editrecipedialog.h"
 #include "CreateRecipe/createrecipedialog.h"
+#include "SettingsDialog/settingsdialog.h"
 
 #include "recipe.h"
 #include "database.h"
@@ -60,6 +61,7 @@ class MainWindow : public QMainWindow
         void on_action_WriteDatabase_triggered();
         void on_action_New_triggered();
         void on_action_Export_triggered();
+        void on_action_Settings_triggered();
         void on_action_About_triggered();
         void on_action_AboutQt_triggered();
 
@@ -84,6 +86,8 @@ class MainWindow : public QMainWindow
 
         bool _mIsEdited;
 
+        void _saveSettings(void);
+        void _loadSettings(void);
         void _createRecipe(void);
         void _editRecipe(int Recipe);
         void _createDatabase(void);

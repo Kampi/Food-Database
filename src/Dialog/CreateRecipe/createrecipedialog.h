@@ -20,7 +20,7 @@ class CreateRecipeDialog : public QDialog
     Q_OBJECT
 
     public:
-        explicit CreateRecipeDialog(QList<Recipe>& Recipes, QWidget* parent = nullptr);
+        explicit CreateRecipeDialog(QStringList& Categories, QList<Recipe>& Recipes, QWidget* parent = nullptr);
         ~CreateRecipeDialog();
 
     private slots:

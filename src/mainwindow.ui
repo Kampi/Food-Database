@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="Ressources.qrc">
-    <normaloff>:/Icon/Ressources/Icons/fastfood-24px.svg</normaloff>:/Icon/Ressources/Icons/fastfood-24px.svg</iconset>
+    <normaloff>:/Icon/Ressources/Icons/fastfood-24px.ico</normaloff>:/Icon/Ressources/Icons/fastfood-24px.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox_Recipes">
@@ -139,15 +139,17 @@
     <addaction name="action_WriteDatabase"/>
     <addaction name="action_CloseDatabase"/>
    </widget>
-   <widget class="QMenu" name="menu_Recipe">
+   <widget class="QMenu" name="menu_Edit">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="title">
-     <string comment="menu_Recipe">Rezept</string>
+     <string comment="menu_Recipe">Bearbeiten</string>
     </property>
     <addaction name="action_New"/>
     <addaction name="action_Export"/>
+    <addaction name="separator"/>
+    <addaction name="action_Settings"/>
    </widget>
    <widget class="QMenu" name="menu_About">
     <property name="title">
@@ -167,7 +169,7 @@
     <addaction name="action_EnglishUS"/>
    </widget>
    <addaction name="menu_Database"/>
-   <addaction name="menu_Recipe"/>
+   <addaction name="menu_Edit"/>
    <addaction name="menu_Language"/>
    <addaction name="menu_About"/>
   </widget>
@@ -261,6 +263,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_Settings">
+   <property name="text">
+    <string>Einstellungen</string>
    </property>
   </action>
  </widget>

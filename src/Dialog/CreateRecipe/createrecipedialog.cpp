@@ -1,12 +1,12 @@
 #include "createrecipedialog.h"
 #include "ui_createrecipedialog.h"
 
-CreateRecipeDialog::CreateRecipeDialog(QList<Recipe>& Recipes, QWidget* parent) :   QDialog(parent),
-                                                                                    _mUi(new Ui::CreateRecipe),
-                                                                                    _mIngredientsModel(new IngredientModel(_mIngredientsList)),
-                                                                                    _mComboBoxDelegate(new ComboBoxDelegate),
-                                                                                    _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this))),
-                                                                                    _mRecipes(Recipes)
+CreateRecipeDialog::CreateRecipeDialog(QStringList& Categories, QList<Recipe>& Recipes, QWidget* parent) : QDialog(parent),
+                                                                                                            _mUi(new Ui::CreateRecipe),
+                                                                                                            _mIngredientsModel(new IngredientModel(_mIngredientsList)),
+                                                                                                            _mComboBoxDelegate(new ComboBoxDelegate(Categories, this)),
+                                                                                                            _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this))),
+                                                                                                            _mRecipes(Recipes)
 {
     _mUi->setupUi(this);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -20,17 +20,17 @@ CreateRecipeDialog::CreateRecipeDialog(QList<Recipe>& Recipes, QWidget* parent) 
     _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_AMOUNT, _mNumbersOnlyDelegate);
     _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_PRICE, _mNumbersOnlyDelegate);
 
-    _mUi->spinBox_Timer1->setSuffix(" " + tr("Seconds"));
-    _mUi->spinBox_Timer2->setSuffix(" " + tr("Seconds"));
-    _mUi->spinBox_CookingTime->setSuffix(" " + tr("Minutes"));
+    _mUi->spinBox_Timer1->setSuffix(" " + tr("Sekunden"));
+    _mUi->spinBox_Timer2->setSuffix(" " + tr("Sekunden"));
+    _mUi->spinBox_CookingTime->setSuffix(" " + tr("Minuten"));
 
-    _mUi->buttonBox_Close->button(QDialogButtonBox::Save)->setText(tr("Save"));
-    _mUi->buttonBox_Close->button(QDialogButtonBox::Discard)->setText(tr("Discard"));
+    _mUi->buttonBox_Close->button(QDialogButtonBox::Save)->setText(tr("Speichern"));
+    _mUi->buttonBox_Close->button(QDialogButtonBox::Discard)->setText(tr("Verwerfen"));
 
     // Fill the table with some dummy values
     for(uint i = 0; i < 3; i++)
     {
-        this->_addIngredient(QString(tr("Ingredient")).append(QString(" %1").arg(i)), tr("Empty note"), i, tr("Some unit"), 1.25 * i, tr("Some section"));
+        this->_addIngredient(QString(tr("Zutat")).append(QString(" %1").arg(i)), tr("Leere Notiz"), i, tr("Irgendeine Einheit"), 1.25 * i, Categories.at(i));
     }
 }
 
@@ -60,7 +60,7 @@ void CreateRecipeDialog::on_pushButton_RemoveIngredients_clicked()
     }
     else
     {
-        QMessageBox::information(this, tr("Information"), tr("Please select at least one ingredient!"), QMessageBox::Ok);
+        QMessageBox::information(this, tr("Hinweis"), tr("Bitte mindestens eine Zutat auswählen!"), QMessageBox::Ok);
     }
 }
 

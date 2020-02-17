@@ -1,13 +1,13 @@
 #include "editrecipedialog.h"
 #include "ui_editrecipedialog.h"
 
-EditRecipeDialog::EditRecipeDialog(Recipe& OldRecipe, QWidget* parent) : QDialog(parent),
-                                                                         _mUi(new Ui::EditRecipeDialog),
-                                                                         _mIngredientsModel(new IngredientModel(_mNewIngredients)),
-                                                                         _mComboBoxDelegate(new ComboBoxDelegate),
-                                                                         _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this))),
-                                                                         _mOldRecipe(OldRecipe),
-                                                                         _mNewRecipe(OldRecipe)
+EditRecipeDialog::EditRecipeDialog(QStringList& Categories, Recipe& OldRecipe, QWidget* parent) : QDialog(parent),
+                                                                                                  _mUi(new Ui::EditRecipeDialog),
+                                                                                                  _mIngredientsModel(new IngredientModel(_mNewIngredients)),
+                                                                                                  _mComboBoxDelegate(new ComboBoxDelegate(Categories, this)),
+                                                                                                  _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this))),
+                                                                                                  _mOldRecipe(OldRecipe),
+                                                                                                  _mNewRecipe(OldRecipe)
 {
     _mUi->setupUi(this);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -45,12 +45,12 @@ EditRecipeDialog::EditRecipeDialog(Recipe& OldRecipe, QWidget* parent) : QDialog
     _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_AMOUNT, _mNumbersOnlyDelegate);
     _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_PRICE, _mNumbersOnlyDelegate);
 
-    _mUi->spinBox_Timer1->setSuffix(" " + tr("Seconds"));
-    _mUi->spinBox_Timer2->setSuffix(" " + tr("Seconds"));
-    _mUi->spinBox_CookingTime->setSuffix(" " + tr("Minutes"));
+    _mUi->spinBox_Timer1->setSuffix(" " + tr("Sekunden"));
+    _mUi->spinBox_Timer2->setSuffix(" " + tr("Sekunden"));
+    _mUi->spinBox_CookingTime->setSuffix(" " + tr("Minuten"));
 
-    _mUi->buttonBox_Close->button(QDialogButtonBox::Save)->setText(tr("Save"));
-    _mUi->buttonBox_Close->button(QDialogButtonBox::Discard)->setText(tr("Discard"));
+    _mUi->buttonBox_Close->button(QDialogButtonBox::Save)->setText(tr("Speichern"));
+    _mUi->buttonBox_Close->button(QDialogButtonBox::Discard)->setText(tr("Verwerfen"));
 }
 
 EditRecipeDialog::~EditRecipeDialog()
@@ -154,7 +154,7 @@ void EditRecipeDialog::on_plainTextEdit_Description_textChanged()
 
 void EditRecipeDialog::on_pushButton_AddIngredients_clicked()
 {
-    _mNewIngredients.push_back(Ingredient(tr("Name"), tr("Note"), 0, tr("Unit"), 0, tr("Section")));
+    _mNewIngredients.push_back(Ingredient(tr("Name"), tr("Notiz"), 0, tr("Einheit"), 0, tr("Abteilung")));
     _mIngredientsModel->insertRow(_mIngredientsModel->rowCount(QModelIndex()));
     _mIngredientsModel->layoutChanged();
     _mUi->tableView_Ingredients->scrollToBottom();
@@ -173,6 +173,6 @@ void EditRecipeDialog::on_pushButton_RemoveIngredients_clicked()
     }
     else
     {
-        QMessageBox::information(this, tr("Information"), tr("Please select at least one ingredient!"), QMessageBox::Ok);
+        QMessageBox::information(this, tr("Hinweis"), tr("Bitte mindestens eine Zutat auswählen!"), QMessageBox::Ok);
     }
 }

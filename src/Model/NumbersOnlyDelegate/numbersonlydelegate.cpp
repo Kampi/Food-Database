@@ -8,14 +8,14 @@ NumbersOnlyDelegate::NumbersOnlyDelegate(QValidator* Validator, QObject* parent)
 
 QWidget* NumbersOnlyDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    QWidget* editor = QStyledItemDelegate::createEditor(parent, option, index);
-    QLineEdit* lineEditEditor = qobject_cast<QLineEdit*>(editor);
-    if(lineEditEditor)
+    QWidget* Editor = QStyledItemDelegate::createEditor(parent, option, index);
+    QLineEdit* LineEdit = qobject_cast<QLineEdit*>(Editor);
+    if(LineEdit)
     {
-        lineEditEditor->setValidator(_mValidator);
+        LineEdit->setValidator(_mValidator);
     }
 
-     return editor;
+     return Editor;
 }
 
 void NumbersOnlyDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const

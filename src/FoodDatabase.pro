@@ -44,6 +44,7 @@ SOURCES += \
     Dialog/About/aboutdialog.cpp \
     Dialog/CreateRecipe/createrecipedialog.cpp \
     Dialog/EditRecipe/editrecipedialog.cpp \
+    Dialog/SettingsDialog/settingsdialog.cpp \
     Model/ComboBoxDelegate/comboboxdelegate.cpp \
     Model/IngredientModel/ingredientmodel.cpp \
     Model/NumbersOnlyDelegate/numbersonlydelegate.cpp \
@@ -59,6 +60,7 @@ HEADERS += \
     Dialog/About/aboutdialog.h \
     Dialog/CreateRecipe/createrecipedialog.h \
     Dialog/EditRecipe/editrecipedialog.h \
+    Dialog/SettingsDialog/settingsdialog.h \
     Model/ComboBoxDelegate/comboboxdelegate.h \
     Model/IngredientModel/ingredientmodel.h \
     Model/NumbersOnlyDelegate/numbersonlydelegate.h \
@@ -72,6 +74,7 @@ FORMS += \
     Dialog/About/aboutdialog.ui \
     Dialog/CreateRecipe/createrecipedialog.ui \
     Dialog/EditRecipe/editrecipedialog.ui \
+    Dialog/SettingsDialog/settingsdialog.ui \
     mainwindow.ui
 
 TRANSLATIONS += \
@@ -81,22 +84,32 @@ TRANSLATIONS += \
 # Target version
 VERSION = $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_BUILD}
 
+# Set the application icon
+win32:RC_ICONS += Ressources/Icons/fastfood-24px.ico
+
+# Set the build directories
+CONFIG(debug, debug|release) {
+    DESTDIR = debug
+} else {
+    DESTDIR = ../packages/com.kampis-elektroecke.FoodDatabase/data
+}
+
 # Copy language files
 languageFiles.files = $$files($$PWD/Languages/*.qm)
 CONFIG(debug, debug|release) {
     languageFiles.path = $${OUT_PWD}/debug/Languages
 } else {
-    languageFiles.path = $${OUT_PWD}/release/Languages
+    languageFiles.path = $${DESTDIR}/Languages
 }
 
 # Deployment rules
 DEPLOY_COMMAND = windeployqt
 DEPLOY_OPTIONS = "--no-system-d3d-compiler --no-opengl --no-angle --no-opengl-sw"
 CONFIG(debug, debug|release) {
-    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/debug/$${TARGET}.exe))
+    DEPLOY_TARGET = $$shell_quote($$shell_path($${DESTDIR}/$${TARGET}.exe))
     DEPLOY_OPTIONS += "--debug"
 } else {
-    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/release/$${TARGET}.exe))
+    DEPLOY_TARGET = $$shell_quote($$shell_path($${DESTDIR}/$${TARGET}.exe))
     DEPLOY_OPTIONS += "--release"
 }
 

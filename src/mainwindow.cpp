@@ -8,24 +8,23 @@ MainWindow::MainWindow(QWidget* parent) :   QMainWindow(parent),
                                             _mIsEdited(false)
 {
     _mUi->setupUi(this);
+
     this->setWindowFlags(this->windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
+    this->_updateStatusbar();
+    this->_loadSettings();
+    this->_setLanguageMenu();
 
     _mUi->tableView_Recipes->setModel(_mRecipesModel);
     _mUi->tableView_Recipes->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     _mUi->tableView_Recipes->horizontalHeader()->setSectionsClickable(false);
 
-    this->_setLanguageMenu();
-
     _mUi->statusbar->addWidget(&_mStatusLabel);
     _mUi->statusbar->addPermanentWidget(&_mDatabaseState);
-    this->_updateStatusbar();
-
-    _mIngredientsCategorie = QStringList() << tr("1") << tr("2") << tr("3") << tr("4") << tr("5");
 
     // Create some dummy data
-    QList<Ingredient> Ingredients({Ingredient(tr("First"), tr("Note"), 1, "kg", 1.55, _mIngredientsCategorie.at(0)), Ingredient(tr("Second"), tr("More"), 1, "l", 1.0, _mIngredientsCategorie.at(1))});
-    _mRecipes.push_back(Recipe(tr("First recipe"), tr("Some note"), tr("Link to first recipe"), tr("Short description for recipe one."), "", "", tr("Category 1"), 1, 30, 0, 0, Ingredients));
-    _mRecipes.push_back(Recipe(tr("Second recipe"), tr("Some note"), ("Link to second recipe"), tr("Short description for recipe two."), "", "", tr("Category 2"), 1, 10, 0, 0, Ingredients));
+    QList<Ingredient> Ingredients({Ingredient(tr("Erste"), tr("Notiz"), 1, "kg", 1.55, _mIngredientsCategorie.at(0)), Ingredient(tr("Zweite"), tr("Mehr"), 1, "l", 1.0, _mIngredientsCategorie.at(1))});
+    _mRecipes.push_back(Recipe(tr("Erstes Rezept"), tr("Notiz"), tr("Link zu Rezept 1"), tr("Kurze Beschreibung für Rezept 1."), "", "", tr("Kategorie 1"), 1, 30, 0, 0, Ingredients));
+    _mRecipes.push_back(Recipe(tr("Zweites Rezept"), tr("Notiz"), ("Link zu Rezept 2"), tr("Kurze Beschreibung für Rezept 2."), "", "", tr("Kategorie 2"), 1, 10, 0, 0, Ingredients));
     _mRecipesModel->layoutChanged();
     _mUi->tableView_Recipes->scrollToBottom();
 }
@@ -88,6 +87,12 @@ void MainWindow::on_action_New_triggered()
 void MainWindow::on_action_Export_triggered()
 {
     this->_exportRecipe();
+}
+
+void MainWindow::on_action_Settings_triggered()
+{
+    SettingsDialog* Dialog = new SettingsDialog(this);
+    Dialog->show();
 }
 
 void MainWindow::on_action_About_triggered()
@@ -169,6 +174,18 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
     }
 }
 
+void MainWindow::_saveSettings(void)
+{
+    QSettings Settings("Settings.ini", QSettings::IniFormat, this);
+    Settings.setValue("Ingredients/Categories", _mIngredientsCategorie);
+}
+
+void MainWindow::_loadSettings(void)
+{
+    QSettings Settings("Settings.ini", QSettings::IniFormat, this);
+    _mIngredientsCategorie = Settings.value("Ingredients/Categories").toStringList();
+}
+
 void MainWindow::_createRecipe(void)
 {
     CreateRecipeDialog* _mCreateDialog = new CreateRecipeDialog(_mIngredientsCategorie, _mRecipes, this);
@@ -178,47 +195,53 @@ void MainWindow::_createRecipe(void)
 
 void MainWindow::_editRecipe(int Recipe)
 {
-    EditRecipeDialog* _mEditDialog = new EditRecipeDialog(_mIngredientsCategorie, _mRecipes[Recipe], this);
-    connect(_mEditDialog, &QDialog::finished, this, &MainWindow::on_EditRecipeDialog_finished);
-    _mEditDialog->show();
+    EditRecipeDialog* Dialog = new EditRecipeDialog(_mIngredientsCategorie, _mRecipes[Recipe], this);
+    connect(Dialog, &QDialog::finished, this, &MainWindow::on_EditRecipeDialog_finished);
+    Dialog->show();
 }
 
 void MainWindow::_createDatabase(void)
 {
     QString Path = QFileDialog::getSaveFileName(this, tr("Datenbank anlegen"), tr("Rezepte"), ("SQLite (*.sqlite3)"));
-    if(_mDatabase.Create(Path))
+    if(Path.length() > 0)
     {
-        _mIsEdited = true;
-        _mUi->action_CloseDatabase->setEnabled(true);
-        _mUi->action_OpenDatabase->setEnabled(false);
-        _mStatus = Path;
-    }
-    else
-    {
-        qDebug() << "[Error] Unable to create database: " << _mDatabase.GetLastError();
-        QMessageBox::critical(this, tr("Fehler"), tr("Datenbank kann nicht erzeugt werden!"), QMessageBox::Ok);
-    }
+        if(_mDatabase.Create(Path))
+        {
+            _mIsEdited = true;
+            _mUi->action_CloseDatabase->setEnabled(true);
+            _mUi->action_OpenDatabase->setEnabled(false);
+            _mStatus = Path;
+        }
+        else
+        {
+            qDebug() << "[Error] Unable to create database: " << _mDatabase.GetLastError();
+            QMessageBox::critical(this, tr("Fehler"), tr("Datenbank kann nicht erzeugt werden!"), QMessageBox::Ok);
+        }
 
-    this->_updateStatusbar();
+        this->_updateStatusbar();
+    }
 }
 
 void MainWindow::_openDatabase(void)
 {
     QString Path = QFileDialog::getOpenFileName(this, tr("Datenbank öffnen"), tr("Rezepte"), ("SQLite (*.sqlite3)"));
-    if(_mDatabase.Open(Path))
+    if(Path.length() > 0)
     {
-        _mUi->action_CloseDatabase->setEnabled(true);
-        _mUi->action_OpenDatabase->setEnabled(false);
-        _mStatus = Path;
-        _readRecipesFromDatabase();
-    }
-    else
-    {
-        qDebug() << "[Error] Unable to open database: " << _mDatabase.GetLastError();
-        QMessageBox::critical(this, tr("Fehler"), tr("Datenbank kann nicht geöffnet werden!"), QMessageBox::Ok);
-    }
+        if(_mDatabase.Open(Path))
+        {
+            _mUi->action_CloseDatabase->setEnabled(true);
+            _mUi->action_OpenDatabase->setEnabled(false);
+            _mStatus = Path;
+            _readRecipesFromDatabase();
+        }
+        else
+        {
+            qDebug() << "[Error] Unable to open database: " << _mDatabase.GetLastError();
+            QMessageBox::critical(this, tr("Fehler"), tr("Datenbank kann nicht geöffnet werden!"), QMessageBox::Ok);
+        }
 
-    this->_updateStatusbar();
+        this->_updateStatusbar();
+    }
 }
 
 void MainWindow::_closeDatabase(void)
@@ -313,7 +336,7 @@ void MainWindow::_exportRecipe(void)
         }
     }    else
     {
-        QMessageBox::information(this, tr("Information"), tr("Please select at least one recipe!"), QMessageBox::Ok);
+        QMessageBox::information(this, tr("Hinweis"), tr("Bitte mindens ein Rezept auswählen!"), QMessageBox::Ok);
     }
 }
 

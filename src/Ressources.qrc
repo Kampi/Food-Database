@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/Icon">
-        <file>Ressources/Icons/fastfood-24px.svg</file>
         <file>Ressources/Icons/icons8-add-property-64.png</file>
         <file>Ressources/Icons/icons8-remove-property-64.png</file>
+        <file>Ressources/Icons/fastfood-24px.ico</file>
     </qresource>
     <qresource prefix="/Icons/Languages">
         <file>Ressources/Icons/Languages/de_DE.png</file>

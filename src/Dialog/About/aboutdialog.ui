@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../Ressources.qrc">
-    <normaloff>:/Icon/Ressources/Icons/fastfood-24px.svg</normaloff>:/Icon/Ressources/Icons/fastfood-24px.svg</iconset>
+    <normaloff>:/Icon/Ressources/Icons/fastfood-24px.ico</normaloff>:/Icon/Ressources/Icons/fastfood-24px.ico</iconset>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
