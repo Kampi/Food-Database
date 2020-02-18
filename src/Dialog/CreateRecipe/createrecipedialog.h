@@ -20,7 +20,7 @@ class CreateRecipeDialog : public QDialog
     Q_OBJECT
 
     public:
-        explicit CreateRecipeDialog(QStringList& Categories, QList<Recipe>& Recipes, QWidget* parent = nullptr);
+        explicit CreateRecipeDialog(QStringList& RecipeCategories, QStringList& IngredientCategories, QList<Recipe>& Recipes, QWidget* parent = nullptr);
         ~CreateRecipeDialog();
 
     private slots:
@@ -33,12 +33,13 @@ class CreateRecipeDialog : public QDialog
     private:
         Ui::CreateRecipe* _mUi;
 
+        QList<Ingredient> _mIngredientsList;
+        QList<Recipe>& _mRecipes;
+        QStringList _mRecipeCategories;
+
         IngredientModel* _mIngredientsModel;
         ComboBoxDelegate* _mComboBoxDelegate;
         NumbersOnlyDelegate* _mNumbersOnlyDelegate;
-
-        QList<Ingredient> _mIngredientsList;
-        QList<Recipe>& _mRecipes;
 
         void _addIngredient(QString Name = tr("<Name>"), QString Note = tr("<Note>"), uint Amount = 0, QString Unit = tr("<Unit>"), double Price = 0.0, QString Section = tr("<Section>"));
 };

@@ -1,16 +1,19 @@
 #include "createrecipedialog.h"
 #include "ui_createrecipedialog.h"
 
-CreateRecipeDialog::CreateRecipeDialog(QStringList& Categories, QList<Recipe>& Recipes, QWidget* parent) : QDialog(parent),
-                                                                                                            _mUi(new Ui::CreateRecipe),
-                                                                                                            _mIngredientsModel(new IngredientModel(_mIngredientsList)),
-                                                                                                            _mComboBoxDelegate(new ComboBoxDelegate(Categories, this)),
-                                                                                                            _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this))),
-                                                                                                            _mRecipes(Recipes)
+CreateRecipeDialog::CreateRecipeDialog(QStringList& RecipeCategories, QStringList& IngredientCategories, QList<Recipe>& Recipes, QWidget* parent) : QDialog(parent),
+                                                                                                                                                    _mUi(new Ui::CreateRecipe),
+                                                                                                                                                    _mRecipes(Recipes),
+                                                                                                                                                    _mRecipeCategories(RecipeCategories),
+                                                                                                                                                    _mIngredientsModel(new IngredientModel(_mIngredientsList)),
+                                                                                                                                                    _mComboBoxDelegate(new ComboBoxDelegate(IngredientCategories, this)),
+                                                                                                                                                    _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this)))
 {
     _mUi->setupUi(this);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     this->setWindowFlags(this->windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
+
+    _mUi->comboBox_Category->addItems(RecipeCategories);
 
     _mUi->tableView_Ingredients->setModel(_mIngredientsModel);
     _mUi->tableView_Ingredients->horizontalHeader()->setStretchLastSection(true);
@@ -30,7 +33,7 @@ CreateRecipeDialog::CreateRecipeDialog(QStringList& Categories, QList<Recipe>& R
     // Fill the table with some dummy values
     for(uint i = 0; i < 3; i++)
     {
-        this->_addIngredient(QString(tr("Zutat")).append(QString(" %1").arg(i)), tr("Leere Notiz"), i, tr("Irgendeine Einheit"), 1.25 * i, Categories.at(i));
+        this->_addIngredient(QString(tr("Zutat")).append(QString(" %1").arg(i)), tr("Leere Notiz"), i, tr("Irgendeine Einheit"), 1.25 * i, IngredientCategories.at(i));
     }
 }
 
@@ -75,7 +78,7 @@ void CreateRecipeDialog::on_buttonBox_Close_clicked(QAbstractButton* button)
                                 _mUi->plainTextEdit_Description->toPlainText(),
                                 _mUi->lineEdit_Timer1->text(),
                                 _mUi->lineEdit_Timer2->text(),
-                                _mUi->lineEdit_Category->text(),
+                                _mUi->comboBox_Category->currentText(),
                                 uint(_mUi->spinBox_Persons->value()),
                                 uint(_mUi->spinBox_CookingTime->value()),
                                 uint(_mUi->spinBox_Timer1->value()),

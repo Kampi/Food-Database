@@ -87,22 +87,6 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_Category">
-       <property name="font">
-        <font>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string>Zusätzliche Notizen.</string>
-       </property>
-       <property name="text">
-        <string>A category</string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_Note">
        <property name="font">
@@ -225,6 +209,16 @@
        </property>
        <property name="text">
         <string>http://www.myrecipe.com</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboBox_Category">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
        </property>
       </widget>
      </item>
@@ -553,7 +547,6 @@
  </widget>
  <tabstops>
   <tabstop>lineEdit_Name</tabstop>
-  <tabstop>lineEdit_Category</tabstop>
   <tabstop>lineEdit_Note</tabstop>
   <tabstop>lineEdit_Link</tabstop>
   <tabstop>spinBox_Persons</tabstop>

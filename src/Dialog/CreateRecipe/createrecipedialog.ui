@@ -60,7 +60,7 @@
       <x>10</x>
       <y>20</y>
       <width>331</width>
-      <height>152</height>
+      <height>178</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -109,25 +109,6 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_Category">
-       <property name="font">
-        <font>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string>Zusätzliche Notizen.</string>
-       </property>
-       <property name="text">
-        <string>A category</string>
-       </property>
-       <property name="cursorPosition">
-        <number>10</number>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_Note">
        <property name="font">
@@ -157,6 +138,67 @@
        </property>
        <property name="cursorPosition">
         <number>9</number>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_Link">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Link:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="lineEdit_Link">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Link zu dem Rezept.</string>
+       </property>
+       <property name="text">
+        <string>http://www.myrecipe.com</string>
+       </property>
+       <property name="cursorPosition">
+        <number>23</number>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_Persons">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Personen:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QSpinBox" name="spinBox_Persons">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>Portionsgröße des Rezeptes.</string>
+       </property>
+       <property name="minimum">
+        <number>1</number>
        </property>
       </widget>
      </item>
@@ -198,64 +240,13 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_Persons">
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboBox_Category">
        <property name="font">
         <font>
          <weight>50</weight>
          <bold>false</bold>
         </font>
-       </property>
-       <property name="text">
-        <string>Personen:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QSpinBox" name="spinBox_Persons">
-       <property name="font">
-        <font>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string>Portionsgröße des Rezeptes.</string>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_Link">
-       <property name="font">
-        <font>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Link:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit_Link">
-       <property name="font">
-        <font>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string>Link zu dem Rezept.</string>
-       </property>
-       <property name="text">
-        <string>http://www.myrecipe.com</string>
-       </property>
-       <property name="cursorPosition">
-        <number>23</number>
        </property>
       </widget>
      </item>
@@ -263,7 +254,6 @@
     <zorder>label_Name</zorder>
     <zorder>lineEdit_Name</zorder>
     <zorder>label_Category</zorder>
-    <zorder>lineEdit_Category</zorder>
     <zorder>label_Note</zorder>
     <zorder>label_CookingTime</zorder>
     <zorder>spinBox_CookingTime</zorder>
@@ -272,6 +262,7 @@
     <zorder>label_Link</zorder>
     <zorder>lineEdit_Link</zorder>
     <zorder>lineEdit_Note</zorder>
+    <zorder>comboBox_Category</zorder>
    </widget>
   </widget>
   <widget class="QGroupBox" name="groupBox_Timer">
@@ -586,7 +577,6 @@
  </widget>
  <tabstops>
   <tabstop>lineEdit_Name</tabstop>
-  <tabstop>lineEdit_Category</tabstop>
   <tabstop>lineEdit_Note</tabstop>
   <tabstop>lineEdit_Link</tabstop>
   <tabstop>spinBox_Persons</tabstop>

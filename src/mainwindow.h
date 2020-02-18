@@ -46,8 +46,8 @@ class MainWindow : public QMainWindow
         void keyPressEvent(QKeyEvent* event) override;
 
     public slots:
-        void on_CreateRecipeDialog_finished(int result);
-        void on_EditRecipeDialog_finished(int result);
+        void on_dialog_CreateRecipe_finished(int result);
+        void on_dialog_EditRecipe_finished(int result);
         void on_tableView_Recipes_doubleClicked(const QModelIndex& index);
 
     public:
@@ -76,8 +76,10 @@ class MainWindow : public QMainWindow
         QLabel _mDatabaseState;
         QLabel _mStatusLabel;
         QTranslator _mTranslator;
-        QStringList _mIngredientsCategorie;
+        QStringList _mIngredientsCategories;
+        QStringList _mRecipesCategories;
         QString _mStatus;
+        QSettings _mSettings;
 
         RecipesModel* _mRecipesModel;
 

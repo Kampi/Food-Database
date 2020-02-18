@@ -1,13 +1,14 @@
 #include "editrecipedialog.h"
 #include "ui_editrecipedialog.h"
 
-EditRecipeDialog::EditRecipeDialog(QStringList& Categories, Recipe& OldRecipe, QWidget* parent) : QDialog(parent),
-                                                                                                  _mUi(new Ui::EditRecipeDialog),
-                                                                                                  _mIngredientsModel(new IngredientModel(_mNewIngredients)),
-                                                                                                  _mComboBoxDelegate(new ComboBoxDelegate(Categories, this)),
-                                                                                                  _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this))),
-                                                                                                  _mOldRecipe(OldRecipe),
-                                                                                                  _mNewRecipe(OldRecipe)
+EditRecipeDialog::EditRecipeDialog(QStringList& RecipeCategories, QStringList& IngredientCategories, Recipe& OldRecipe, QWidget* parent) : QDialog(parent),
+                                                                                                                                           _mUi(new Ui::EditRecipeDialog),
+                                                                                                                                           _mRecipeCategories(RecipeCategories),
+                                                                                                                                           _mIngredientsModel(new IngredientModel(_mNewIngredients)),
+                                                                                                                                           _mComboBoxDelegate(new ComboBoxDelegate(IngredientCategories, this)),
+                                                                                                                                           _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this))),
+                                                                                                                                           _mOldRecipe(OldRecipe),
+                                                                                                                                           _mNewRecipe(OldRecipe)
 {
     _mUi->setupUi(this);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -24,7 +25,8 @@ EditRecipeDialog::EditRecipeDialog(QStringList& Categories, Recipe& OldRecipe, Q
     _mUi->lineEdit_Timer2->setText(_mOldRecipe.Timer2Name());
     _mUi->spinBox_Timer2->setValue(int(_mOldRecipe.Timer2Value()));
     _mUi->plainTextEdit_Description->setPlainText(_mOldRecipe.Description());
-    _mUi->lineEdit_Category->setText(_mOldRecipe.Category());
+    _mUi->comboBox_Category->addItems(RecipeCategories);
+    _mUi->comboBox_Category->setCurrentText(_mOldRecipe.Category());
 
     if(_mOldRecipe.Timer1Value() == 0)
     {
@@ -82,7 +84,7 @@ void EditRecipeDialog::on_lineEdit_Name_textChanged(const QString& arg1)
     _mNewRecipe.setName(arg1);
 }
 
-void EditRecipeDialog::on_lineEdit_Category_textChanged(const QString& arg1)
+void EditRecipeDialog::on_comboBox_Category_currentIndexChanged(const QString& arg1)
 {
     _mNewRecipe.setCategory(arg1);
 }
