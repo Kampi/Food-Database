@@ -20,7 +20,7 @@ class EditRecipeDialog : public QDialog
     Q_OBJECT
 
     public:
-        explicit EditRecipeDialog(QStringList& RecipeCategories, QStringList& IngredientCategories, Recipe& OldRecipe, QWidget* parent = nullptr);
+        explicit EditRecipeDialog(QList<QStringList>& Categories, Recipe& OldRecipe, QWidget* parent = nullptr);
         ~EditRecipeDialog();
 
     private slots:
@@ -46,7 +46,8 @@ class EditRecipeDialog : public QDialog
         QStringList _mRecipeCategories;
 
         IngredientModel* _mIngredientsModel;
-        ComboBoxDelegate* _mComboBoxDelegate;
+        ComboBoxDelegate* _mSectionsComboBox;
+        ComboBoxDelegate* _mUnitComboBox;
         NumbersOnlyDelegate* _mNumbersOnlyDelegate;
         Recipe& _mOldRecipe;
         Recipe _mNewRecipe;

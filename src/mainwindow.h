@@ -76,8 +76,7 @@ class MainWindow : public QMainWindow
         QLabel _mDatabaseState;
         QLabel _mStatusLabel;
         QTranslator _mTranslator;
-        QStringList _mIngredientsCategories;
-        QStringList _mRecipesCategories;
+        QList<QStringList> _mCategories;
         QString _mStatus;
         QSettings _mSettings;
 

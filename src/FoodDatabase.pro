@@ -1,5 +1,5 @@
 VERSION_MAJOR = 1
-VERSION_MINOR = 1
+VERSION_MINOR = 2
 VERSION_BUILD = 0
 
 QT       += core gui sql
@@ -8,7 +8,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11 file_copies
 
-COPIES += languageFiles
+COPIES += languageFiles settingsFile
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -100,6 +100,14 @@ CONFIG(debug, debug|release) {
     languageFiles.path = $${OUT_PWD}/debug/Languages
 } else {
     languageFiles.path = $${DESTDIR}/Languages
+}
+
+# Copy Settings files
+settingsFile.files = $$shell_quote(Settings.ini)
+CONFIG(debug, debug|release) {
+    settingsFile.path = $${OUT_PWD}/debug
+} else {
+    settingsFile.path = $${DESTDIR}
 }
 
 # Deployment rules

@@ -1,22 +1,35 @@
 #include "comboboxdelegate.h"
 
-ComboBoxDelegate::ComboBoxDelegate(QObject* parent) : QStyledItemDelegate(parent)
+ComboBoxDelegate::ComboBoxDelegate(QStringList  Categories, QObject* parent) : QStyledItemDelegate(parent),
+                                                                               _mCategories(Categories)
 {
 }
 
 QWidget* ComboBoxDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    return QStyledItemDelegate::createEditor(parent, option, index);
+    QComboBox* ComboBox = new QComboBox(parent);
+    ComboBox->addItems(_mCategories);
+
+    return ComboBox;
 }
 
 void ComboBoxDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
-    QStyledItemDelegate::setEditorData(editor, index);
+    QComboBox* ComboBox = qobject_cast<QComboBox*>(editor);
+    const QString CurrentText = index.data(Qt::EditRole).toString();
+    const int Index = ComboBox->findText(CurrentText);
+    if(Index >= 0)
+    {
+       ComboBox->setCurrentIndex(Index);
+    }
+
+   // QStyledItemDelegate::setEditorData(editor, index);
 }
 
 void ComboBoxDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    QStyledItemDelegate::setModelData(editor, model, index);
+    QComboBox* ComboBox = qobject_cast<QComboBox*>(editor);
+    model->setData(index, ComboBox->currentText(), Qt::EditRole);
 }
 
 void ComboBoxDelegate::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const

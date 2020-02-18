@@ -1,14 +1,15 @@
 #include "editrecipedialog.h"
 #include "ui_editrecipedialog.h"
 
-EditRecipeDialog::EditRecipeDialog(QStringList& RecipeCategories, QStringList& IngredientCategories, Recipe& OldRecipe, QWidget* parent) : QDialog(parent),
-                                                                                                                                           _mUi(new Ui::EditRecipeDialog),
-                                                                                                                                           _mRecipeCategories(RecipeCategories),
-                                                                                                                                           _mIngredientsModel(new IngredientModel(_mNewIngredients)),
-                                                                                                                                           _mComboBoxDelegate(new ComboBoxDelegate(IngredientCategories, this)),
-                                                                                                                                           _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this))),
-                                                                                                                                           _mOldRecipe(OldRecipe),
-                                                                                                                                           _mNewRecipe(OldRecipe)
+EditRecipeDialog::EditRecipeDialog(QList<QStringList>& Categories, Recipe& OldRecipe, QWidget* parent) : QDialog(parent),
+                                                                                                         _mUi(new Ui::EditRecipeDialog),
+                                                                                                         _mRecipeCategories(Categories.at(1)),
+                                                                                                         _mIngredientsModel(new IngredientModel(_mNewIngredients)),
+                                                                                                         _mSectionsComboBox(new ComboBoxDelegate(Categories.at(0), this)),
+                                                                                                         _mUnitComboBox(new ComboBoxDelegate(Categories.at(2), this)),
+                                                                                                         _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this))),
+                                                                                                         _mOldRecipe(OldRecipe),
+                                                                                                         _mNewRecipe(OldRecipe)
 {
     _mUi->setupUi(this);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -25,7 +26,7 @@ EditRecipeDialog::EditRecipeDialog(QStringList& RecipeCategories, QStringList& I
     _mUi->lineEdit_Timer2->setText(_mOldRecipe.Timer2Name());
     _mUi->spinBox_Timer2->setValue(int(_mOldRecipe.Timer2Value()));
     _mUi->plainTextEdit_Description->setPlainText(_mOldRecipe.Description());
-    _mUi->comboBox_Category->addItems(RecipeCategories);
+    _mUi->comboBox_Category->addItems(Categories.at(1));
     _mUi->comboBox_Category->setCurrentText(_mOldRecipe.Category());
 
     if(_mOldRecipe.Timer1Value() == 0)
@@ -43,7 +44,8 @@ EditRecipeDialog::EditRecipeDialog(QStringList& RecipeCategories, QStringList& I
     _mUi->tableView_Ingredients->setModel(_mIngredientsModel);
     _mUi->tableView_Ingredients->horizontalHeader()->setStretchLastSection(true);
     _mUi->tableView_Ingredients->horizontalHeader()->setSectionsClickable(false);
-    _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_SECTION, _mComboBoxDelegate);
+    _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_SECTION, _mSectionsComboBox);
+    _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_UNIT, _mUnitComboBox);
     _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_AMOUNT, _mNumbersOnlyDelegate);
     _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_PRICE, _mNumbersOnlyDelegate);
 
@@ -57,7 +59,7 @@ EditRecipeDialog::EditRecipeDialog(QStringList& RecipeCategories, QStringList& I
 
 EditRecipeDialog::~EditRecipeDialog()
 {
-    delete _mComboBoxDelegate;
+    delete _mSectionsComboBox;
     delete _mNumbersOnlyDelegate;
     delete _mIngredientsModel;
     delete _mUi;
