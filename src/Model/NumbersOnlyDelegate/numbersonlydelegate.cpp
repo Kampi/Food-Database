@@ -15,7 +15,7 @@ QWidget* NumbersOnlyDelegate::createEditor(QWidget* parent, const QStyleOptionVi
         LineEdit->setValidator(_mValidator);
     }
 
-     return Editor;
+    return Editor;
 }
 
 void NumbersOnlyDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const

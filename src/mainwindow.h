@@ -1,16 +1,17 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QMap>
 #include <QLabel>
 #include <QDebug>
+#include <QKeyEvent>
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QMessageBox>
 
-#include "About/aboutdialog.h"
-#include "EditRecipe/editrecipedialog.h"
-#include "CreateRecipe/createrecipedialog.h"
-#include "SettingsDialog/settingsdialog.h"
+#include "aboutdialog.h"
+#include "recipedialog.h"
+#include "settingsdialog.h"
 
 #include "recipe.h"
 #include "database.h"
@@ -21,9 +22,10 @@
  *  ToDo:
  *      - Change column width in ingredient model
  *      - Implement column resize after editing for create recipe window
- *      - Delegate for category in create recipe window?
  *      - Implement sorting for recipes?
  *      - Add Category list
+ *      - Sort categories
+ *      - Add hour/minutes/seconds format to time spinboxes
  */
 
 QT_BEGIN_NAMESPACE
@@ -48,6 +50,7 @@ class MainWindow : public QMainWindow
     public slots:
         void on_dialog_CreateRecipe_finished(int result);
         void on_dialog_EditRecipe_finished(int result);
+        void on_dialog_Settings_finished(int result);
         void on_tableView_Recipes_doubleClicked(const QModelIndex& index);
 
     public:
@@ -64,7 +67,6 @@ class MainWindow : public QMainWindow
         void on_action_Settings_triggered();
         void on_action_About_triggered();
         void on_action_AboutQt_triggered();
-
         void on_pushButton_New_clicked();
         void on_pushButton_Export_clicked();
         void on_pushButton_RemoveRecipe_clicked();
@@ -76,7 +78,7 @@ class MainWindow : public QMainWindow
         QLabel _mDatabaseState;
         QLabel _mStatusLabel;
         QTranslator _mTranslator;
-        QList<QStringList> _mCategories;
+        QMap<QString, QStringList> _mCategories;
         QString _mStatus;
         QSettings _mSettings;
 
@@ -90,7 +92,7 @@ class MainWindow : public QMainWindow
         void _saveSettings(void);
         void _loadSettings(void);
         void _createRecipe(void);
-        void _editRecipe(int Recipe);
+        void _editRecipe(int Index);
         void _createDatabase(void);
         void _openDatabase(void);
         void _closeDatabase(void);

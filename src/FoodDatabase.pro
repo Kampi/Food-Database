@@ -37,13 +37,16 @@ INCLUDEPATH += \
     Model/ComboBoxDelegate/ \
     Model/NumbersOnlyDelegate/ \
     Dialog/ \
+    Dialog/AboutDialog \
+    Dialog/RecipeDialog \
+    Dialog/SettingsDialog \
     Database/ \
+    Widget/CategoryList \
 
 SOURCES += \
     Database/database.cpp \
-    Dialog/About/aboutdialog.cpp \
-    Dialog/CreateRecipe/createrecipedialog.cpp \
-    Dialog/EditRecipe/editrecipedialog.cpp \
+    Dialog/AboutDialog/aboutdialog.cpp \
+    Dialog/RecipeDialog/recipedialog.cpp \
     Dialog/SettingsDialog/settingsdialog.cpp \
     Model/ComboBoxDelegate/comboboxdelegate.cpp \
     Model/IngredientModel/ingredientmodel.cpp \
@@ -52,14 +55,14 @@ SOURCES += \
     Recipe/Ingredient/ingredient.cpp \
     Recipe/RecipeExport/recipeexport.cpp \
     Recipe/recipe.cpp \
+    Widget/CategoryList/categorylist.cpp \
     main.cpp \
     mainwindow.cpp \
 
 HEADERS += \
     Database/database.h \
-    Dialog/About/aboutdialog.h \
-    Dialog/CreateRecipe/createrecipedialog.h \
-    Dialog/EditRecipe/editrecipedialog.h \
+    Dialog/AboutDialog/aboutdialog.h \
+    Dialog/RecipeDialog/recipedialog.h \
     Dialog/SettingsDialog/settingsdialog.h \
     Model/ComboBoxDelegate/comboboxdelegate.h \
     Model/IngredientModel/ingredientmodel.h \
@@ -68,13 +71,14 @@ HEADERS += \
     Recipe/Ingredient/ingredient.h \
     Recipe/RecipeExport/recipeexport.h \
     Recipe/recipe.h \
+    Widget/CategoryList/categorylist.h \
     mainwindow.h
 
 FORMS += \
-    Dialog/About/aboutdialog.ui \
-    Dialog/CreateRecipe/createrecipedialog.ui \
-    Dialog/EditRecipe/editrecipedialog.ui \
+    Dialog/AboutDialog/aboutdialog.ui \
+    Dialog/RecipeDialog/recipedialog.ui \
     Dialog/SettingsDialog/settingsdialog.ui \
+    Widget/CategoryList/categorylist.ui \
     mainwindow.ui
 
 TRANSLATIONS += \

@@ -1,6 +1,7 @@
 #include "recipesmodel.h"
 
-RecipesModel::RecipesModel(QList<Recipe>& Recipes, QObject* parent) : QAbstractTableModel(parent), _mData(Recipes)
+RecipesModel::RecipesModel(QList<Recipe>& Recipes, QObject* parent) : QAbstractTableModel(parent),
+                                                                      _mData(Recipes)
 {
 }
 
@@ -48,6 +49,8 @@ QVariant RecipesModel::data(const QModelIndex& index, int role) const
 
 bool RecipesModel::setData(const QModelIndex& index, const QVariant&, int role)
 {
+    bool Result = true;
+
     if(role == Qt::EditRole)
     {
         QLocale locale = QLocale().system();
@@ -55,7 +58,7 @@ bool RecipesModel::setData(const QModelIndex& index, const QVariant&, int role)
 
     emit QAbstractItemModel::dataChanged(index, index);
 
-    return true;
+    return Result;
 }
 
 QVariant RecipesModel::headerData(int section, Qt::Orientation orientation, int role) const

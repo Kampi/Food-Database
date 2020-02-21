@@ -1,8 +1,9 @@
-#ifndef EDITRECIPEDIALOG_H
-#define EDITRECIPEDIALOG_H
+#ifndef RECIPEDIALOG_H
+#define RECIPEDIALOG_H
 
 #include <QDialog>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QAbstractButton>
 
 #include "recipe.h"
@@ -12,21 +13,27 @@
 
 namespace Ui
 {
-    class EditRecipeDialog;
+    class RecipeDialog;
 }
 
-class EditRecipeDialog : public QDialog
+class RecipeDialog : public QDialog
 {
     Q_OBJECT
 
+    signals:
+        void RecipeChanged(int Result);
+
     public:
-        explicit EditRecipeDialog(QList<QStringList>& Categories, Recipe& OldRecipe, QWidget* parent = nullptr);
-        ~EditRecipeDialog();
+        explicit RecipeDialog(QMap<QString, QStringList> Categories, Recipe NewRecipe, QWidget* parent = nullptr);
+        ~RecipeDialog();
+
+        Recipe recipe() const;
 
     private slots:
-        void on_buttonBox_Close_clicked(QAbstractButton* button);
+        void on_pushButton_AddIngredients_clicked();
+        void on_pushButton_RemoveIngredients_clicked();
         void on_lineEdit_Name_textChanged(const QString& arg1);
-        void on_comboBox_Category_currentIndexChanged(const QString& arg1);
+        void on_comboBox_Category_currentTextChanged(const QString& arg1);
         void on_lineEdit_Note_textEdited(const QString& arg1);
         void on_lineEdit_Link_textEdited(const QString& arg1);
         void on_spinBox_Persons_valueChanged(int arg1);
@@ -36,21 +43,18 @@ class EditRecipeDialog : public QDialog
         void on_spinBox_Timer2_valueChanged(int arg1);
         void on_lineEdit_Timer2_textEdited(const QString& arg1);
         void on_plainTextEdit_Description_textChanged();
-        void on_pushButton_AddIngredients_clicked();
-        void on_pushButton_RemoveIngredients_clicked();
+        void on_buttonBox_Close_clicked(QAbstractButton* button);
 
     private:
-        Ui::EditRecipeDialog* _mUi;
+        Ui::RecipeDialog* _mUi;
 
-        QList<Ingredient> _mNewIngredients;
-        QStringList _mRecipeCategories;
+        QList<Ingredient> _mIngredients;
 
+        Recipe _mRecipe;
         IngredientModel* _mIngredientsModel;
         ComboBoxDelegate* _mSectionsComboBox;
         ComboBoxDelegate* _mUnitComboBox;
         NumbersOnlyDelegate* _mNumbersOnlyDelegate;
-        Recipe& _mOldRecipe;
-        Recipe _mNewRecipe;
 };
 
-#endif // EDITRECIPEDIALOG_H
+#endif // RECIPEDIALOG_H

@@ -1,13 +1,16 @@
 #ifndef RECIPE_H
 #define RECIPE_H
 
+#include <QDebug>
 #include <QList>
 
-#include "Ingredient/ingredient.h"
+#include "ingredient.h"
 
 class Recipe
 {
     public:
+        Recipe();
+        Recipe(const Recipe& obj);
         Recipe(QString Name, QString Note, QString Link, QString Description, QString Timer1Name, QString Timer2Name, QString Category, uint Persons, uint CookingTime, uint Timer1Value, uint Timer2Value, QList<Ingredient> Ingredients);
 
         void Export(void);
@@ -49,7 +52,7 @@ class Recipe
         void setIngredients(const QList<Ingredient>& Ingredients);
 
         friend QDebug operator<<(QDebug Stream, const Recipe& Recipe);
-        friend QDataStream& operator<<(QDataStream& Stream, const Recipe& Recipe);
+        friend QTextStream& operator<<(QTextStream& Stream, const Recipe& Recipe);
 
     private:
         QString _mName;

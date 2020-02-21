@@ -5,7 +5,7 @@ ComboBoxDelegate::ComboBoxDelegate(QStringList  Categories, QObject* parent) : Q
 {
 }
 
-QWidget* ComboBoxDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
+QWidget* ComboBoxDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem&, const QModelIndex&) const
 {
     QComboBox* ComboBox = new QComboBox(parent);
     ComboBox->addItems(_mCategories);
@@ -16,14 +16,12 @@ QWidget* ComboBoxDelegate::createEditor(QWidget* parent, const QStyleOptionViewI
 void ComboBoxDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
     QComboBox* ComboBox = qobject_cast<QComboBox*>(editor);
-    const QString CurrentText = index.data(Qt::EditRole).toString();
-    const int Index = ComboBox->findText(CurrentText);
+    QString CurrentText = index.data(Qt::EditRole).toString();
+    int Index = ComboBox->findText(CurrentText);
     if(Index >= 0)
     {
        ComboBox->setCurrentIndex(Index);
     }
-
-   // QStyledItemDelegate::setEditorData(editor, index);
 }
 
 void ComboBoxDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const

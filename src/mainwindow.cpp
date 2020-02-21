@@ -21,10 +21,10 @@ MainWindow::MainWindow(QWidget* parent) :   QMainWindow(parent),
     _mUi->statusbar->addWidget(&_mStatusLabel);
     _mUi->statusbar->addPermanentWidget(&_mDatabaseState);
 
-    // Create some dummy data
-    QList<Ingredient> Ingredients({Ingredient(tr("Erste"), tr("Notiz"), 1, "kg", 1.55, _mCategories.at(0).at(0)), Ingredient(tr("Zweite"), tr("Mehr"), 1, "l", 1.0, _mCategories.at(0).at(1))});
-    _mRecipes.push_back(Recipe(tr("Erstes Rezept"), tr("Notiz"), tr("Link zu Rezept 1"), tr("Kurze Beschreibung für Rezept 1."), "", "", _mCategories.at(1).at(0), 1, 30, 0, 0, Ingredients));
-    _mRecipes.push_back(Recipe(tr("Zweites Rezept"), tr("Notiz"), ("Link zu Rezept 2"), tr("Kurze Beschreibung für Rezept 2."), "", "", _mCategories.at(1).at(1), 1, 10, 0, 0, Ingredients));
+    // Create some dummy recipes
+    QList<Ingredient> Ingredients({Ingredient(tr("Erste"), tr("Notiz"), 1, "kg", 1.55, _mCategories.value(tr("Zutaten")).at(0)), Ingredient(tr("Zweite"), tr("Mehr"), 1, "l", 1.0, _mCategories.value(tr("Zutaten")).at(1))});
+    _mRecipes.push_back(Recipe(tr("Erstes Rezept"), tr("Notiz"), tr("Link zu Rezept 1"), tr("Kurze Beschreibung für Rezept 1."), tr("Beschreibung erste Stoppuhr"), tr("Beschreibung zweite Stoppuhr"), _mCategories.value(tr("Rezepte")).at(0), 1, 30, 10, 20, Ingredients));
+    _mRecipes.push_back(Recipe(tr("Zweites Rezept"), tr("Notiz"), ("Link zu Rezept 2"), tr("Kurze Beschreibung für Rezept 2."), tr("Beschreibung erste Stoppuhr"), tr("Beschreibung zweite Stoppuhr"), _mCategories.value(tr("Rezepte")).at(1), 1, 10, 30, 40, Ingredients));
     _mRecipesModel->layoutChanged();
     _mUi->tableView_Recipes->scrollToBottom();
 }
@@ -39,10 +39,12 @@ void MainWindow::on_dialog_CreateRecipe_finished(int result)
 {
     if(result == 1)
     {
-        _mIsEdited = true;
+        RecipeDialog* Dialog = qobject_cast<RecipeDialog*>(sender());
+        _mRecipes.push_back(Dialog->recipe());
         _mRecipesModel->insertRow(_mRecipesModel->rowCount(QModelIndex()));
         _mRecipesModel->layoutChanged();
         _mUi->tableView_Recipes->scrollToBottom();
+        _mIsEdited = true;
     }
 }
 
@@ -50,7 +52,18 @@ void MainWindow::on_dialog_EditRecipe_finished(int result)
 {
     if(result == 1)
     {
+        RecipeDialog* Dialog = qobject_cast<RecipeDialog*>(sender());
+        _mRecipes.replace(_mUi->tableView_Recipes->currentIndex().row(), Dialog->recipe());
         _mIsEdited = true;
+    }
+}
+
+void MainWindow::on_dialog_Settings_finished(int result)
+{
+    if(result == 1)
+    {
+        SettingsDialog* Dialog = qobject_cast<SettingsDialog*>(sender());
+        _mCategories = Dialog->categories();
     }
 }
 
@@ -92,6 +105,7 @@ void MainWindow::on_action_Export_triggered()
 void MainWindow::on_action_Settings_triggered()
 {
     SettingsDialog* Dialog = new SettingsDialog(_mCategories, this);
+    connect(Dialog, &QDialog::finished, this, &MainWindow::on_dialog_Settings_finished);
     Dialog->show();
 }
 
@@ -128,9 +142,9 @@ void MainWindow::on_pushButton_RemoveRecipe_clicked()
 
 void MainWindow::languageChange(bool)
 {
-    QAction* Sender = qobject_cast<QAction*>(QObject::sender());
-    Sender->setChecked(true);
-    this->_switchLanguage(Sender->iconText());
+    QAction* Action = qobject_cast<QAction*>(sender());
+    Action->setChecked(true);
+    this->_switchLanguage(Action->iconText());
 }
 
 void MainWindow::changeEvent(QEvent* event)
@@ -164,6 +178,7 @@ void MainWindow::changeEvent(QEvent* event)
 void MainWindow::closeEvent(QCloseEvent*)
 {
     this->_closeDatabase();
+    this->_saveSettings();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
@@ -177,31 +192,43 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 void MainWindow::_saveSettings(void)
 {
     QSettings Settings(QApplication::applicationDirPath() + "/Settings.ini", QSettings::IniFormat, this);
-    Settings.setValue("Ingredients/Categories", _mCategories.at(0));
-    Settings.setValue("Recipes/Categories", _mCategories.at(1));
-    Settings.setValue("Units/Categories", _mCategories.at(2));
+    Settings.setValue("Recipes/Categories", _mCategories.value(tr("Rezepte")));
+    Settings.setValue("Ingredients/Categories", _mCategories.value(tr("Zutaten")));
+    Settings.setValue("Units/Categories", _mCategories.value(tr("Einheiten")));
 }
 
 void MainWindow::_loadSettings(void)
 {
     QSettings _mSettings(QApplication::applicationDirPath() + "/Settings.ini", QSettings::IniFormat, this);
-    _mCategories.push_back(_mSettings.value("Ingredients/Categories").toStringList());
-    _mCategories.push_back(_mSettings.value("Recipes/Categories").toStringList());
-    _mCategories.push_back(_mSettings.value("Units/Categories").toStringList());
+    _mCategories.insert(tr("Rezepte"), _mSettings.value("Recipes/Categories").toStringList());
+    _mCategories.insert(tr("Zutaten"), _mSettings.value("Ingredients/Categories").toStringList());
+    _mCategories.insert(tr("Einheiten"), _mSettings.value("Units/Categories").toStringList());
 }
 
 void MainWindow::_createRecipe(void)
 {
-    CreateRecipeDialog* CreateRecipe = new CreateRecipeDialog(_mCategories, _mRecipes, this);
-    connect(CreateRecipe, &QDialog::finished, this, &MainWindow::on_dialog_CreateRecipe_finished);
-    CreateRecipe->show();
+    // Generate some dummy ingredients
+    QList<Ingredient> Ingredients;
+    for(uint i = 0; i < 3; i++)
+    {
+        Ingredients.push_back(Ingredient(QString(tr("Zutat")).append(QString(" %1").arg(i)), tr("Leere Notiz"), i, _mCategories.value(tr("Einheiten")).at(i), 1.25 * i, _mCategories.value(tr("Rezepte")).at(i)));
+    }
+
+    // Generate a dummy recipe
+    Recipe* Template = new Recipe(tr("Neues Rezept"), tr("Leere Notiz"), tr("Leerer Link"), tr("Leere Beschreibung"), tr("Stoppuhr 1"), tr("Stoppuhr 2"), _mCategories.value(tr("Rezepte")).at(1), 1, 10, 20, 30, Ingredients);
+
+    RecipeDialog* Dialog = new RecipeDialog(_mCategories, *Template, this);
+    Dialog->setWindowTitle(tr("Neues Rezept"));
+    connect(Dialog, &QDialog::finished, this, &MainWindow::on_dialog_CreateRecipe_finished);
+    Dialog->show();
 }
 
-void MainWindow::_editRecipe(int Recipe)
+void MainWindow::_editRecipe(int Index)
 {
-    EditRecipeDialog* EditRecipe = new EditRecipeDialog(_mCategories, _mRecipes[Recipe], this);
-    connect(EditRecipe, &QDialog::finished, this, &MainWindow::on_dialog_EditRecipe_finished);
-    EditRecipe->show();
+    RecipeDialog* Dialog = new RecipeDialog(_mCategories, _mRecipes.at(Index), this);
+    Dialog->setWindowTitle(tr("Rezept bearbeiten"));
+    connect(Dialog, &QDialog::finished, this, &MainWindow::on_dialog_EditRecipe_finished);
+    Dialog->show();
 }
 
 void MainWindow::_createDatabase(void)

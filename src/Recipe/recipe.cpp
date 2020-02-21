@@ -1,5 +1,24 @@
 #include "recipe.h"
 
+Recipe::Recipe()
+{
+}
+
+Recipe::Recipe(const Recipe& obj) : _mName(obj.Name()),
+                                    _mNote(obj.Note()),
+                                    _mLink(obj.Link()),
+                                    _mDescription(obj.Description()),
+                                    _mTimer1Name(obj.Timer1Name()),
+                                    _mTimer2Name(obj.Timer2Name()),
+                                    _mCategory(obj.Category()),
+                                    _mPersons(obj.Persons()),
+                                    _mCookingTime(obj.CookingTime()),
+                                    _mTimer1Value(obj.Timer1Value()),
+                                    _mTimer2Value(obj.Timer2Value()),
+                                    _mIngredients(obj.Ingredients())
+{
+}
+
 Recipe::Recipe(QString Name, QString Note, QString Link, QString Description, QString Timer1Name, QString Timer2Name, QString Category, uint Persons, uint CookingTime, uint Timer1Value, uint Timer2Value, QList<Ingredient> Ingredients) :  _mName(Name),
                                                                                                                                                                                                                                               _mNote(Note),
                                                                                                                                                                                                                                               _mLink(Link),
@@ -155,7 +174,22 @@ QDebug operator<<(QDebug Stream, const Recipe& Recipe)
     return Stream;
 }
 
-QDataStream& operator<<(QDataStream& Stream, const Recipe& Recipe)
+QTextStream& operator<<(QTextStream& Stream, const Recipe& Recipe)
 {
-    return Stream << Recipe._mName;
+    Stream << "Name: " << Recipe._mName << endl;
+    Stream << "Note: " << Recipe._mNote << endl;
+    Stream << "Link: " << Recipe._mLink << endl;
+    Stream << "Persons: " << Recipe._mPersons << endl;
+    Stream << "Cooking description: " << Recipe._mDescription << endl;
+    Stream << "Cooking time: " << Recipe._mCookingTime << endl;
+    Stream << "Timer 1: " << Recipe._mTimer1Name << " - " << Recipe._mTimer1Value << "s" << endl;
+    Stream << "Timer 2: " << Recipe._mTimer2Name << " - " << Recipe._mTimer2Value << "s" << endl;
+    Stream << "Ingredients: " << endl;
+
+    foreach(Ingredient ingredient, Recipe.Ingredients())
+    {
+        Stream << ingredient << endl;
+    }
+
+    return Stream;
 }
