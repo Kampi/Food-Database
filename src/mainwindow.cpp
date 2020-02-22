@@ -3,30 +3,36 @@
 
 MainWindow::MainWindow(QWidget* parent) :   QMainWindow(parent),
                                             _mUi(new Ui::MainWindow),
-                                            _mDatabaseState(new QLabel()),
-                                            _mRecipesModel(new RecipesModel(_mRecipes)),
+                                            _mDatabaseState(new QLabel(this)),
+                                            _mRecipesModel(new RecipesModel(_mRecipes, this)),
                                             _mIsEdited(false)
 {
     _mUi->setupUi(this);
 
     this->setWindowFlags(this->windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
-    this->_updateStatusbar();
-    this->_loadSettings();
-    this->_setLanguageMenu();
+    if(this->_loadSettings())
+    {
+        this->_updateStatusbar();
+        this->_setLanguageMenu();
 
-    _mUi->tableView_Recipes->setModel(_mRecipesModel);
-    _mUi->tableView_Recipes->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    _mUi->tableView_Recipes->horizontalHeader()->setSectionsClickable(false);
+        _mUi->tableView_Recipes->setModel(_mRecipesModel);
+        _mUi->tableView_Recipes->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+        _mUi->tableView_Recipes->horizontalHeader()->setSectionsClickable(false);
 
-    _mUi->statusbar->addWidget(&_mStatusLabel);
-    _mUi->statusbar->addPermanentWidget(&_mDatabaseState);
+        _mUi->statusbar->addWidget(&_mStatusLabel);
+        _mUi->statusbar->addPermanentWidget(&_mDatabaseState);
 
-    // Create some dummy recipes
-    QList<Ingredient> Ingredients({Ingredient(tr("Erste"), tr("Notiz"), 1, "kg", 1.55, _mCategories.value(tr("Zutaten")).at(0)), Ingredient(tr("Zweite"), tr("Mehr"), 1, "l", 1.0, _mCategories.value(tr("Zutaten")).at(1))});
-    _mRecipes.push_back(Recipe(tr("Erstes Rezept"), tr("Notiz"), tr("Link zu Rezept 1"), tr("Kurze Beschreibung für Rezept 1."), tr("Beschreibung erste Stoppuhr"), tr("Beschreibung zweite Stoppuhr"), _mCategories.value(tr("Rezepte")).at(0), 1, 30, 10, 20, Ingredients));
-    _mRecipes.push_back(Recipe(tr("Zweites Rezept"), tr("Notiz"), ("Link zu Rezept 2"), tr("Kurze Beschreibung für Rezept 2."), tr("Beschreibung erste Stoppuhr"), tr("Beschreibung zweite Stoppuhr"), _mCategories.value(tr("Rezepte")).at(1), 1, 10, 30, 40, Ingredients));
-    _mRecipesModel->layoutChanged();
-    _mUi->tableView_Recipes->scrollToBottom();
+        // Create some dummy recipes
+        QList<Ingredient> Ingredients({Ingredient(tr("Erste"), tr("Notiz"), 1, "kg", 1.55, _mCategories.value("Ingredients", QStringList("")).at(0)), Ingredient(tr("Zweite"), tr("Mehr"), 1, "l", 1.0, _mCategories.value("Ingredients", QStringList("")).at(1))});
+        _mRecipes.push_back(Recipe(tr("Erstes Rezept"), tr("Notiz"), tr("Link zu Rezept 1"), tr("Kurze Beschreibung für Rezept 1."), tr("Beschreibung erste Stoppuhr."), tr("Beschreibung zweite Stoppuhr."), _mCategories.value("Recipes", QStringList("")).at(0), 1, 30, 10, 20, Ingredients));
+        _mRecipes.push_back(Recipe(tr("Zweites Rezept"), tr("Notiz"), ("Link zu Rezept 2"), tr("Kurze Beschreibung für Rezept 2."), tr("Beschreibung erste Stoppuhr."), tr("Beschreibung zweite Stoppuhr."), _mCategories.value("Recipes", QStringList("")).at(1), 1, 10, 30, 40, Ingredients));
+        _mRecipesModel->layoutChanged();
+        _mUi->tableView_Recipes->scrollToBottom();
+    }
+    else
+    {
+        exit(-1);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -64,6 +70,7 @@ void MainWindow::on_dialog_Settings_finished(int result)
     {
         SettingsDialog* Dialog = qobject_cast<SettingsDialog*>(sender());
         _mCategories = Dialog->categories();
+        this->_saveSettings();
     }
 }
 
@@ -178,7 +185,6 @@ void MainWindow::changeEvent(QEvent* event)
 void MainWindow::closeEvent(QCloseEvent*)
 {
     this->_closeDatabase();
-    this->_saveSettings();
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
@@ -191,18 +197,51 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 
 void MainWindow::_saveSettings(void)
 {
-    QSettings Settings(QApplication::applicationDirPath() + "/Settings.ini", QSettings::IniFormat, this);
-    Settings.setValue("Recipes/Categories", _mCategories.value(tr("Rezepte")));
-    Settings.setValue("Ingredients/Categories", _mCategories.value(tr("Zutaten")));
-    Settings.setValue("Units/Categories", _mCategories.value(tr("Einheiten")));
+    qDebug() << _mCategories;
+    QSettings Settings(QApplication::applicationDirPath() + "/Settings.ini", QSettings::IniFormat);
+    Settings.setIniCodec(QTextCodec::codecForName("System"));
+    Settings.setValue("Recipes/Categories", _mCategories.value("Recipes", QStringList("")));
+    Settings.setValue("Ingredients/Categories", _mCategories.value("Ingredients", QStringList("")));
+    Settings.setValue("Units/Categories", _mCategories.value("Units", QStringList("")));
 }
 
-void MainWindow::_loadSettings(void)
+bool MainWindow::_loadSettings(void)
 {
-    QSettings _mSettings(QApplication::applicationDirPath() + "/Settings.ini", QSettings::IniFormat, this);
-    _mCategories.insert(tr("Rezepte"), _mSettings.value("Recipes/Categories").toStringList());
-    _mCategories.insert(tr("Zutaten"), _mSettings.value("Ingredients/Categories").toStringList());
-    _mCategories.insert(tr("Einheiten"), _mSettings.value("Units/Categories").toStringList());
+    QString Path = QApplication::applicationDirPath() + "/Settings.ini";
+    if(QFile(Path).exists())
+    {
+        QSettings Settings(Path, QSettings::IniFormat);
+        Settings.setIniCodec(QTextCodec::codecForName("System"));
+
+        if(Settings.allKeys().size() != 3)
+        {
+            QMessageBox::critical(this, tr("Fehler"), tr("Ungültige Einstellungen!"), QMessageBox::Ok);
+
+            return false;
+        }
+
+        _mCategories.insert("Recipes", Settings.value("Recipes/Categories").toStringList());
+        _mCategories.insert("Ingredients", Settings.value("Ingredients/Categories").toStringList());
+        _mCategories.insert("Units", Settings.value("Units/Categories").toStringList());
+
+        foreach(auto Key, _mCategories.keys())
+        {
+            if(_mCategories.value(Key).size() == 0)
+            {
+                QMessageBox::critical(this, tr("Fehler"), tr("Ungültige Einstellungen!"), QMessageBox::Ok);
+
+                return false;
+            }
+        }
+
+        return true;
+    }
+    else
+    {
+        QMessageBox::critical(this, tr("Fehler"), tr("Einstellungen nicht gefunden!"), QMessageBox::Ok);
+
+        return false;
+    }
 }
 
 void MainWindow::_createRecipe(void)
@@ -211,13 +250,13 @@ void MainWindow::_createRecipe(void)
     QList<Ingredient> Ingredients;
     for(uint i = 0; i < 3; i++)
     {
-        Ingredients.push_back(Ingredient(QString(tr("Zutat")).append(QString(" %1").arg(i)), tr("Leere Notiz"), i, _mCategories.value(tr("Einheiten")).at(i), 1.25 * i, _mCategories.value(tr("Rezepte")).at(i)));
+        Ingredients.push_back(Ingredient(QString(tr("Zutat")).append(QString(" %1").arg(i)), tr("Leere Notiz"), i, _mCategories.value("Units", QStringList("")).at(0), 1.25 * i, _mCategories.value("Ingredients", QStringList("")).at(0)));
     }
 
     // Generate a dummy recipe
-    Recipe* Template = new Recipe(tr("Neues Rezept"), tr("Leere Notiz"), tr("Leerer Link"), tr("Leere Beschreibung"), tr("Stoppuhr 1"), tr("Stoppuhr 2"), _mCategories.value(tr("Rezepte")).at(1), 1, 10, 20, 30, Ingredients);
+    Recipe Template = Recipe(tr("Neues Rezept"), tr("Leere Notiz"), tr("Leerer Link"), tr("Leere Beschreibung"), tr("Stoppuhr 1"), tr("Stoppuhr 2"), "", 1, 10, 20, 30, Ingredients);
 
-    RecipeDialog* Dialog = new RecipeDialog(_mCategories, *Template, this);
+    RecipeDialog* Dialog = new RecipeDialog(_mCategories, _mRecipes.at(0), this);
     Dialog->setWindowTitle(tr("Neues Rezept"));
     connect(Dialog, &QDialog::finished, this, &MainWindow::on_dialog_CreateRecipe_finished);
     Dialog->show();
@@ -367,7 +406,7 @@ void MainWindow::_exportRecipe(void)
         }
     }    else
     {
-        QMessageBox::information(this, tr("Hinweis"), tr("Bitte mindens ein Rezept auswählen!"), QMessageBox::Ok);
+        QMessageBox::information(this, tr("Hinweis"), tr("Bitte mindenstens ein Rezept auswählen!"), QMessageBox::Ok);
     }
 }
 

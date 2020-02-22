@@ -4,12 +4,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../Dialog/About/aboutdialog.ui" line="14"/>
+        <location filename="../Dialog/AboutDialog/aboutdialog.ui" line="14"/>
         <source>Über Food Database</source>
         <translation>About  Food Database</translation>
     </message>
     <message>
-        <location filename="../Dialog/About/aboutdialog.ui" line="52"/>
+        <location filename="../Dialog/AboutDialog/aboutdialog.ui" line="52"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -19,461 +19,73 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>CreateRecipe</name>
+    <name>CategoryList</name>
     <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="14"/>
-        <source>Neues Rezept</source>
-        <translation>New recipe</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="55"/>
-        <source>Rezept</source>
-        <translation>Recipe</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="76"/>
-        <source>Name:</source>
-        <translation>Name:</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="89"/>
-        <source>Name des Rezeptes.</source>
-        <translation>Name of the recipe.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="92"/>
-        <source>My test recipe</source>
-        <translation>My test recipe</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="108"/>
-        <source>Kategorie:</source>
-        <translation>Category:</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="121"/>
-        <source>Zusätzliche Notizen.</source>
-        <translation>Additional notes.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="124"/>
-        <source>A category</source>
-        <translation>A category</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="140"/>
-        <source>Notiz:</source>
-        <translation>Note:</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="153"/>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="252"/>
-        <source>Link zu dem Rezept.</source>
-        <translation>Link to the recipe.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="156"/>
-        <source>Some note</source>
-        <translation>Some note</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="172"/>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="185"/>
-        <source>Zubereitungszeit</source>
-        <translation>Cooking time</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="223"/>
-        <source>Portionsgröße des Rezeptes.</source>
-        <translation>Portion size of the recipe.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="363"/>
-        <source>Timer 1 Description.</source>
-        <translation>Description for timer 1.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="421"/>
-        <source>Timer 2 Description.</source>
-        <translation>Description for timer 2.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="467"/>
-        <source>Fill me please.</source>
-        <translation>Fill me please.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="532"/>
-        <source>Zutat hinzufügen</source>
-        <translation>Add ingredient</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="210"/>
-        <source>Personen:</source>
-        <translation>Persons:</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="239"/>
-        <source>Link:</source>
-        <translation>Link:</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="255"/>
-        <source>http://www.myrecipe.com</source>
+        <location filename="../Widget/CategoryList/categorylist.ui" line="14"/>
+        <source>Form</source>
+        <translatorcomment>Title of the CategoryList QWidget</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="293"/>
-        <source>Stoppuhr</source>
-        <translation>Timer</translation>
+        <location filename="../Widget/CategoryList/categorylist.ui" line="44"/>
+        <source>Hinzufügen</source>
+        <translation>Add</translation>
     </message>
     <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="316"/>
-        <source>Timer 1</source>
-        <translation>Timer 1</translation>
+        <location filename="../Widget/CategoryList/categorylist.ui" line="51"/>
+        <source>Entfernen</source>
+        <translation>Remove</translation>
     </message>
     <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="380"/>
-        <source>Timer 2</source>
-        <translation>Timer 2</translation>
+        <location filename="../Widget/CategoryList/categorylist.cpp" line="24"/>
+        <source>OK</source>
+        <translation>OK</translation>
     </message>
     <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="446"/>
-        <source>Zubereitung</source>
-        <translation>Cooking instructions</translation>
+        <location filename="../Widget/CategoryList/categorylist.cpp" line="25"/>
+        <source>Abbrechen</source>
+        <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="464"/>
-        <source>Anleitung zur Zubereitung.</source>
-        <translation>Cooking instructions.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="487"/>
-        <source>Zutatenliste für das Rezept.</source>
-        <translation>List with ingredients for the recipe.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="490"/>
-        <source>Zutaten</source>
-        <translation>Ingredients</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.ui" line="558"/>
-        <source>Zutat entfernen</source>
-        <translation>Remove ingredient</translation>
-    </message>
-</context>
-<context>
-    <name>CreateRecipeDialog</name>
-    <message>
-        <source>Speichern</source>
-        <translation type="vanished">Save</translation>
-    </message>
-    <message>
-        <source>Verwerfen</source>
-        <translation type="vanished">Discard</translation>
-    </message>
-    <message>
-        <source>Minuten</source>
-        <translation type="vanished">Minutes</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.cpp" line="19"/>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.cpp" line="20"/>
-        <source>Seconds</source>
-        <translation>Seconds</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.cpp" line="21"/>
-        <source>Minutes</source>
-        <translation>Minutes</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.cpp" line="23"/>
-        <source>Save</source>
-        <translation>Save</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.cpp" line="24"/>
-        <source>Discard</source>
-        <translation>Discarf</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.cpp" line="29"/>
-        <source>Ingredient</source>
-        <translation>Ingredient</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.cpp" line="29"/>
-        <source>Empty note</source>
-        <translation>Empty Note</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.cpp" line="29"/>
-        <source>Some unit</source>
-        <translation>Some unit</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.cpp" line="29"/>
-        <source>Some section</source>
-        <translation>Some section</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.cpp" line="57"/>
-        <source>Information</source>
-        <translation>Information</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.cpp" line="57"/>
-        <source>Please select at least one ingredient!</source>
-        <translation>Please select at least one ingredient!</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.h" line="41"/>
-        <source>&lt;Name&gt;</source>
-        <translation>&lt;Name&gt;</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.h" line="41"/>
-        <source>&lt;Note&gt;</source>
-        <translation>&lt;Note&gt;</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.h" line="41"/>
-        <source>&lt;Unit&gt;</source>
-        <translation>&lt;Unit&gt;</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/CreateRecipe/createrecipedialog.h" line="41"/>
-        <source>&lt;Section&gt;</source>
-        <translation>&lt;Section&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>EditRecipeDialog</name>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="14"/>
-        <source>Rezept ändern</source>
-        <translation>Change recipe</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="36"/>
-        <source>Rezept</source>
-        <translation>Recipe</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="57"/>
-        <source>Name:</source>
-        <translation>Name:</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="70"/>
-        <source>Name des Rezeptes.</source>
-        <translation>Name of the recipe.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="73"/>
-        <source>My test recipe</source>
-        <translation>My test recipe</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="86"/>
-        <source>Kategorie:</source>
-        <translation>Category:</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="99"/>
-        <source>Zusätzliche Notizen.</source>
-        <translation>Additional notes.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="102"/>
-        <source>A category</source>
-        <translation>A category</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="115"/>
-        <source>Notiz:</source>
-        <translation>Note:</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="128"/>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="224"/>
-        <source>Link zu dem Rezept.</source>
-        <translation>Link to the recipe.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="131"/>
-        <source>Some note</source>
-        <translation>Some note</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="144"/>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="157"/>
-        <source>Zubereitungszeit</source>
-        <translation>Cooking time</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="182"/>
-        <source>Personen:</source>
-        <translation>Persons:</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="195"/>
-        <source>Portionsgröße des Rezeptes.</source>
-        <translation>Portion size of the recipe.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="295"/>
-        <source>Zutat hinzufügen</source>
-        <translation>Add ingredient</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="380"/>
-        <source>Fill me please.</source>
-        <translation>Fill me please.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="211"/>
-        <source>Link:</source>
-        <translation>Link:</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="227"/>
-        <source>http://www.myrecipe.com</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="250"/>
-        <source>Zutatenliste für das Rezept.</source>
-        <translation>List with ingredients for the recipe.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="253"/>
-        <source>Zutaten</source>
-        <translation>Ingredients</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="321"/>
-        <source>Zutat entfernen</source>
-        <translation>Remove ingredient</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="359"/>
-        <source>Zubereitung</source>
-        <translation>Instructions</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="377"/>
-        <source>Anleitung zur Zubereitung.</source>
-        <translation>Cooking instructions.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="416"/>
-        <source>Stoppuhr</source>
-        <translation>Timer</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="439"/>
-        <source>Timer 1</source>
-        <translation>Timer 1</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="486"/>
-        <source>Description for the first timer.</source>
-        <translation>Description for timer 1.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="544"/>
-        <source>Description for the second timer.</source>
-        <translation>Description for timer 2.</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.ui" line="503"/>
-        <source>Timer 2</source>
-        <translation>Timer 2</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.cpp" line="44"/>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.cpp" line="45"/>
-        <source>Seconds</source>
-        <translation>Seconds</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.cpp" line="46"/>
-        <source>Minutes</source>
-        <translation>Minutes</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.cpp" line="48"/>
-        <source>Save</source>
-        <translation>Save</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.cpp" line="49"/>
-        <source>Discard</source>
-        <translation>Discard</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.cpp" line="151"/>
-        <source>Name</source>
-        <translation>Name</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.cpp" line="151"/>
-        <source>Note</source>
-        <translation>Note</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.cpp" line="151"/>
-        <source>Unit</source>
-        <translation>Unit</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.cpp" line="151"/>
-        <source>Section</source>
-        <translation>Section</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.cpp" line="170"/>
-        <source>Information</source>
-        <translation>Information</translation>
-    </message>
-    <message>
-        <location filename="../Dialog/EditRecipe/editrecipedialog.cpp" line="170"/>
-        <source>Please select at least one ingredient!</source>
-        <translation>Please select at least one ingredient!</translation>
+        <location filename="../Widget/CategoryList/categorylist.cpp" line="26"/>
+        <source>Kategorie hinzufügen:</source>
+        <translation>Add category:</translation>
     </message>
 </context>
 <context>
     <name>IngredientModel</name>
     <message>
-        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="125"/>
+        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="40"/>
+        <source>€</source>
+        <translation>€</translation>
+    </message>
+    <message>
+        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="129"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="129"/>
+        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="133"/>
         <source>Menge</source>
         <translation>Amount</translation>
     </message>
     <message>
-        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="133"/>
+        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="137"/>
         <source>Einheit</source>
         <translation>Unit</translation>
     </message>
     <message>
-        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="137"/>
+        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="141"/>
         <source>Preis</source>
         <translation>Price</translation>
     </message>
     <message>
-        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="141"/>
+        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="145"/>
         <source>Kategorie</source>
         <translation>Category</translation>
     </message>
     <message>
-        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="145"/>
+        <location filename="../Model/IngredientModel/ingredientmodel.cpp" line="149"/>
         <source>Notizen</source>
         <translation>Notes</translation>
     </message>
@@ -487,9 +99,9 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../mainwindow.ui" line="37"/>
-        <location filename="../mainwindow.cpp" line="186"/>
-        <location filename="../mainwindow.cpp" line="203"/>
-        <location filename="../mainwindow.cpp" line="299"/>
+        <location filename="../mainwindow.cpp" line="275"/>
+        <location filename="../mainwindow.cpp" line="297"/>
+        <location filename="../mainwindow.cpp" line="402"/>
         <source>Rezepte</source>
         <translation>Recipes</translation>
     </message>
@@ -499,318 +111,600 @@ p, li { white-space: pre-wrap; }
         <translation>New</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="98"/>
+        <location filename="../mainwindow.ui" line="101"/>
         <source>Löschen</source>
         <translation>Remove</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="111"/>
+        <location filename="../mainwindow.ui" line="114"/>
         <source>Export</source>
         <translation>Export</translation>
     </message>
     <message>
-        <source>Rezept</source>
-        <translation type="vanished">Recipe</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="151"/>
+        <location filename="../mainwindow.ui" line="156"/>
         <source>Über</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="161"/>
+        <location filename="../mainwindow.ui" line="166"/>
         <source>Sprache</source>
         <translation>Language</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="174"/>
+        <location filename="../mainwindow.ui" line="179"/>
         <source>Über Qt...</source>
         <translation>About Qt...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="182"/>
+        <location filename="../mainwindow.ui" line="187"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="193"/>
+        <location filename="../mainwindow.ui" line="198"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="198"/>
+        <location filename="../mainwindow.ui" line="203"/>
         <source>Über Food Database...</source>
         <translation>About Food Database...</translation>
     </message>
     <message>
-        <source>Neu...</source>
-        <translation type="vanished">New...</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.ui" line="206"/>
+        <location filename="../mainwindow.ui" line="211"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="132"/>
+        <location filename="../mainwindow.ui" line="135"/>
         <source>Datenbank</source>
         <comment>menu_Database</comment>
         <translation>Database</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="144"/>
-        <source>Rezept</source>
+        <location filename="../mainwindow.ui" line="147"/>
+        <source>Bearbeiten</source>
         <comment>menu_Recipe</comment>
-        <translation>Recipe</translation>
+        <translation>Edit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="179"/>
+        <location filename="../mainwindow.ui" line="184"/>
         <source>Öffnen...</source>
         <comment>action_OpenDatabase</comment>
         <translation>Open...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="190"/>
+        <location filename="../mainwindow.ui" line="195"/>
         <source>Schließen...</source>
         <comment>action_CloseDatabase</comment>
         <translation>Close...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="203"/>
+        <location filename="../mainwindow.ui" line="208"/>
         <source>Neu...</source>
         <comment>action_CreateDatabase</comment>
         <translation>New...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="211"/>
+        <location filename="../mainwindow.ui" line="216"/>
         <source>Neu...</source>
         <comment>action_New</comment>
         <translation>New...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="226"/>
+        <location filename="../mainwindow.ui" line="231"/>
         <source>Deutsch</source>
         <translation>German</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="229"/>
+        <location filename="../mainwindow.ui" line="234"/>
         <source>de_DE</source>
         <translatorcomment>Is used by the translator. So don´t rename!</translatorcomment>
         <translation>de_DE</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="241"/>
+        <location filename="../mainwindow.ui" line="246"/>
         <source>English (US)</source>
         <translation>English (US)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="244"/>
+        <location filename="../mainwindow.ui" line="249"/>
         <source>en_US</source>
         <translatorcomment>Is used by the translator. So don´t rename!</translatorcomment>
         <translation>en_US</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="249"/>
+        <location filename="../mainwindow.ui" line="254"/>
         <source>Export...</source>
         <comment>action_Export</comment>
         <translation>Export...</translation>
     </message>
     <message>
-        <source>Export...</source>
-        <translation type="vanished">Export...</translation>
+        <location filename="../mainwindow.ui" line="270"/>
+        <source>Einstellungen</source>
+        <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="252"/>
+        <location filename="../mainwindow.ui" line="257"/>
         <source>Export the selected recipe.</source>
         <translation>Export the selected recipe.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="257"/>
+        <location filename="../mainwindow.ui" line="262"/>
         <source>Speichern...</source>
         <comment>action_WriteDatabase</comment>
         <translation>Save...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="260"/>
+        <location filename="../mainwindow.ui" line="265"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="24"/>
-        <source>First</source>
+        <location filename="../mainwindow.cpp" line="26"/>
+        <source>Erste</source>
         <translation>First</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="24"/>
-        <source>Note</source>
+        <location filename="../mainwindow.cpp" line="26"/>
+        <location filename="../mainwindow.cpp" line="27"/>
+        <location filename="../mainwindow.cpp" line="28"/>
+        <source>Notiz</source>
         <translation>Note</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="24"/>
-        <source>Things</source>
-        <translation>Things</translation>
+        <source>Zutaten</source>
+        <translation type="vanished">Ingredients</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="24"/>
-        <source>Second</source>
+        <location filename="../mainwindow.cpp" line="26"/>
+        <source>Zweite</source>
         <translation>Second</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="24"/>
-        <source>More</source>
+        <location filename="../mainwindow.cpp" line="26"/>
+        <source>Mehr</source>
         <translation>More</translation>
     </message>
     <message>
-        <source>Another things</source>
-        <translation type="vanished">Other things</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="25"/>
-        <source>First recipe</source>
+        <location filename="../mainwindow.cpp" line="27"/>
+        <source>Erstes Rezept</source>
         <translation>First recipe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="25"/>
-        <location filename="../mainwindow.cpp" line="26"/>
-        <source>Some note</source>
-        <translation>Some note</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="25"/>
-        <source>Link to first recipe</source>
+        <location filename="../mainwindow.cpp" line="27"/>
+        <source>Link zu Rezept 1</source>
         <translation>Link to the first recipe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="25"/>
-        <source>Category 1</source>
-        <translation>Category 1</translation>
+        <location filename="../mainwindow.cpp" line="27"/>
+        <source>Kurze Beschreibung für Rezept 1.</source>
+        <translation>Short description for recipe 1.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="26"/>
-        <source>Second recipe</source>
+        <location filename="../mainwindow.cpp" line="27"/>
+        <location filename="../mainwindow.cpp" line="28"/>
+        <source>Beschreibung erste Stoppuhr.</source>
+        <translation>Description for the first timer.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="27"/>
+        <location filename="../mainwindow.cpp" line="28"/>
+        <source>Beschreibung zweite Stoppuhr.</source>
+        <translation>Description of the second timer.</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="28"/>
+        <source>Zweites Rezept</source>
         <translation>Second recipe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="24"/>
-        <source>Other things</source>
-        <translation>Other things</translation>
+        <location filename="../mainwindow.cpp" line="28"/>
+        <source>Kurze Beschreibung für Rezept 2.</source>
+        <translation>Short description for recipe 2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="25"/>
-        <source>Short description for recipe one.</source>
-        <translation>Short description for recipe one.</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="26"/>
-        <source>Category 2</source>
-        <translation>Category 2</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="26"/>
-        <source>Short description for recipe two.</source>
-        <translation>Short description for recipe two.</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="99"/>
+        <location filename="../mainwindow.cpp" line="127"/>
         <source>Über Qt</source>
-        <translation type="unfinished">About Qt</translation>
+        <translation>About Qt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="186"/>
+        <source>Kategorien</source>
+        <translation type="vanished">Categories</translation>
+    </message>
+    <message>
+        <source>Einheiten</source>
+        <translation type="vanished">Units</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="253"/>
+        <source>Zutat</source>
+        <translation>Ingredient</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="253"/>
+        <location filename="../mainwindow.cpp" line="257"/>
+        <source>Leere Notiz</source>
+        <translation>Empty note</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="257"/>
+        <location filename="../mainwindow.cpp" line="260"/>
+        <source>Neues Rezept</source>
+        <translation>New recipe</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="257"/>
+        <source>Leerer Link</source>
+        <translation>Empty link</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="257"/>
+        <source>Leere Beschreibung</source>
+        <translation>Empty description</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="257"/>
+        <source>Stoppuhr 1</source>
+        <translation>Timer 1</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="257"/>
+        <source>Stoppuhr 2</source>
+        <translation>Timer 2</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="268"/>
+        <source>Rezept bearbeiten</source>
+        <translation>Edit recipe</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="275"/>
         <source>Datenbank anlegen</source>
         <translation>Create database</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="195"/>
-        <location filename="../mainwindow.cpp" line="214"/>
-        <location filename="../mainwindow.cpp" line="254"/>
-        <location filename="../mainwindow.cpp" line="265"/>
-        <location filename="../mainwindow.cpp" line="302"/>
+        <location filename="../mainwindow.cpp" line="218"/>
+        <location filename="../mainwindow.cpp" line="231"/>
+        <location filename="../mainwindow.cpp" line="241"/>
+        <location filename="../mainwindow.cpp" line="288"/>
+        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="356"/>
+        <location filename="../mainwindow.cpp" line="367"/>
+        <location filename="../mainwindow.cpp" line="405"/>
         <source>Fehler</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="195"/>
+        <location filename="../mainwindow.cpp" line="218"/>
+        <location filename="../mainwindow.cpp" line="231"/>
+        <source>Ungültige Einstellungen!</source>
+        <translation>Invalid settings!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="241"/>
+        <source>Einstellungen nicht gefunden!</source>
+        <translation>Settings not found!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="288"/>
         <source>Datenbank kann nicht erzeugt werden!</source>
         <translation>Can not create database!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="203"/>
+        <location filename="../mainwindow.cpp" line="297"/>
         <source>Datenbank öffnen</source>
         <translation>Open database</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="214"/>
+        <location filename="../mainwindow.cpp" line="310"/>
         <source>Datenbank kann nicht geöffnet werden!</source>
         <translation>Can not open database!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="224"/>
+        <location filename="../mainwindow.cpp" line="323"/>
         <source>Datenbank speichern?</source>
         <translation>Save database?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="224"/>
+        <location filename="../mainwindow.cpp" line="323"/>
         <source>Soll die Datenbank gespeichert werden?</source>
         <translation>Should the database be saved?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="254"/>
+        <location filename="../mainwindow.cpp" line="324"/>
+        <source>Ja</source>
+        <translation>Yes</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="325"/>
+        <source>Nein</source>
+        <translation>No</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="356"/>
         <source>Datenbank kann nicht gelesen werden!</source>
         <translation>Can not read database!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="265"/>
+        <location filename="../mainwindow.cpp" line="367"/>
         <source>Datenbank kann nicht geschrieben werden!</source>
         <translation>Can not write database!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="299"/>
+        <location filename="../mainwindow.cpp" line="402"/>
         <source>Speicherort wählen</source>
         <translation>Select path</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="302"/>
+        <location filename="../mainwindow.cpp" line="405"/>
         <source>Export fehlgeschlagen!</source>
         <translation>Export failed!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="306"/>
-        <source>Information</source>
+        <location filename="../mainwindow.cpp" line="409"/>
+        <source>Hinweis</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="306"/>
-        <source>Please select at least one recipe!</source>
+        <location filename="../mainwindow.cpp" line="409"/>
+        <source>Bitte mindenstens ein Rezept auswählen!</source>
         <translation>Please select at least one recipe!</translation>
+    </message>
+</context>
+<context>
+    <name>RecipeDialog</name>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translatorcomment>QDialog title</translatorcomment>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="35"/>
+        <source>Zutaten</source>
+        <translation>Ingredients</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="56"/>
+        <source>Zutatenliste</source>
+        <translation>List with ingredients</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="80"/>
+        <source>Zutat hinzufügen</source>
+        <translation>Add ingredient</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="96"/>
+        <source>Ctrl+N</source>
+        <translation>Ctrl+N</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="109"/>
+        <source>Zutat entfernen</source>
+        <translation>Remove ingredient</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="125"/>
+        <source>Ctrl+D</source>
+        <translation>Ctrl+D</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="150"/>
+        <source>Stoppuhr</source>
+        <translation>Timer</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="173"/>
+        <source>Timer 1</source>
+        <translation>Timer 1</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="198"/>
+        <source>Stoppuhr 1</source>
+        <translation>Timer 1</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="246"/>
+        <source>Timer 2</source>
+        <translation>Timer 2</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="265"/>
+        <source>Stoppuhr 2</source>
+        <translation>Timer 2</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="290"/>
+        <source>Beschreibung für Stoppuhr 2</source>
+        <translation>Description for timer 2</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="321"/>
+        <source>Zubereitung</source>
+        <translation>Cooking</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="412"/>
+        <source>Name des Rezeptes</source>
+        <translation>Name of the recipe</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="460"/>
+        <source>Notiz zu dem Rezept</source>
+        <translation>Recipe notes</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="495"/>
+        <source>Link zu dem Rezept</source>
+        <translation>Recipe link</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="530"/>
+        <source>Portionsgröße des Rezeptes</source>
+        <translation>Portion size of the recipe</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="559"/>
+        <source>Kategorie des Rezeptes</source>
+        <translation>Recipe category</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="32"/>
+        <source>Zutatenliste für das Rezept</source>
+        <translation>List with ingredients for the recipe</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="223"/>
+        <source>Beschreibung für Stoppuhr 1</source>
+        <translation>Description for timer 1</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="339"/>
+        <source>Anleitung zur Zubereitung</source>
+        <translation>Cooking instructions</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="378"/>
+        <source>Rezept</source>
+        <translation>Recipe</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="399"/>
+        <source>Name:</source>
+        <translation>Name:</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="434"/>
+        <source>Kategorie:</source>
+        <translation>Category:</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="447"/>
+        <source>Notiz:</source>
+        <translation>Note:</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="482"/>
+        <source>Link:</source>
+        <translation>Link:</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="517"/>
+        <source>Personen:</source>
+        <translation>Persons:</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="546"/>
+        <location filename="../Dialog/RecipeDialog/recipedialog.ui" line="572"/>
+        <source>Zubereitungszeit</source>
+        <translation>Cooking time</translation>
+    </message>
+    <message>
+        <source>Einheiten</source>
+        <translation type="vanished">Units</translation>
+    </message>
+    <message>
+        <source>Rezepte</source>
+        <translation type="vanished">Recipes</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="53"/>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="54"/>
+        <source>Sekunden</source>
+        <translation>Seconds</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="55"/>
+        <source>Minuten</source>
+        <translation>Minutes</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="57"/>
+        <source>Speichern</source>
+        <translation>Save</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="58"/>
+        <source>Verwerfen</source>
+        <translation>Discard</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="76"/>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="76"/>
+        <source>Notiz</source>
+        <translation>Note</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="76"/>
+        <source>Einheit</source>
+        <translation>Unit</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="76"/>
+        <source>Abteilung</source>
+        <translation>Section</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="95"/>
+        <source>Hinweis</source>
+        <translation>Information</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="95"/>
+        <source>Bitte mindestens eine Zutat auswählen!</source>
+        <translation>Please select at least one ingredient!</translation>
     </message>
 </context>
 <context>
     <name>RecipesModel</name>
     <message>
-        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="33"/>
+        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="34"/>
         <source>Minuten</source>
         <translation>Minutes</translation>
     </message>
     <message>
-        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="71"/>
+        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="74"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="75"/>
+        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="78"/>
         <source>Personen</source>
         <translation>Persons</translation>
     </message>
     <message>
-        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="79"/>
+        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="82"/>
         <source>Zubereitungszeit</source>
         <translation>Cooking time</translation>
     </message>
     <message>
-        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="83"/>
+        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="86"/>
         <source>Kategorie</source>
         <translation>Category</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <location filename="../Dialog/SettingsDialog/settingsdialog.ui" line="14"/>
+        <source>Einstellungen</source>
+        <translation>Settings</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/SettingsDialog/settingsdialog.cpp" line="27"/>
+        <source>Speichern</source>
+        <translation>Save</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/SettingsDialog/settingsdialog.cpp" line="28"/>
+        <source>Verwerfen</source>
+        <translation>Discard</translation>
     </message>
 </context>
 </TS>

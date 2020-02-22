@@ -4,15 +4,15 @@
 RecipeDialog::RecipeDialog(QMap<QString, QStringList> Categories, Recipe NewRecipe, QWidget* parent) : QDialog(parent),
                                                                                                        _mUi(new Ui::RecipeDialog),
                                                                                                        _mIngredientsModel(new IngredientModel(_mIngredients)),
-                                                                                                       _mSectionsComboBox(new ComboBoxDelegate(Categories.value(tr("Zutaten")), this)),
-                                                                                                       _mUnitComboBox(new ComboBoxDelegate(Categories.value(tr("Einheiten")), this)),
+                                                                                                       _mSectionsComboBox(new ComboBoxDelegate(Categories.value("Ingredients", QStringList("")), this)),
+                                                                                                       _mUnitComboBox(new ComboBoxDelegate(Categories.value("Units", QStringList("")), this)),
                                                                                                        _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this)))
 {
     _mUi->setupUi(this);
 
     // Fill the UI elements
     _mUi->lineEdit_Name->setText(NewRecipe.Name());
-    _mUi->comboBox_Category->addItems(Categories.value(tr("Rezepte")));
+    _mUi->comboBox_Category->addItems(Categories.value("Recipes", QStringList("")));
     int Index = _mUi->comboBox_Category->findText(NewRecipe.Category());
     if(Index != -1)
     {

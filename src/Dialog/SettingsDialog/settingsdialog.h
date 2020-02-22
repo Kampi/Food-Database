@@ -33,6 +33,7 @@ class SettingsDialog : public QDialog
         Ui::SettingsDialog* _mUi;
 
         QMap<QString, QStringList> _mNewCategories;
+        QMap<QString, QString> _mMapping;
 
         CategoryList* _mRecipeCategories;
 };

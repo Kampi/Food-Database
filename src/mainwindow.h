@@ -23,7 +23,6 @@
  *      - Change column width in ingredient model
  *      - Implement column resize after editing for create recipe window
  *      - Implement sorting for recipes?
- *      - Add Category list
  *      - Sort categories
  *      - Add hour/minutes/seconds format to time spinboxes
  */
@@ -80,7 +79,6 @@ class MainWindow : public QMainWindow
         QTranslator _mTranslator;
         QMap<QString, QStringList> _mCategories;
         QString _mStatus;
-        QSettings _mSettings;
 
         RecipesModel* _mRecipesModel;
 
@@ -90,7 +88,7 @@ class MainWindow : public QMainWindow
         bool _mIsEdited;
 
         void _saveSettings(void);
-        void _loadSettings(void);
+        bool _loadSettings(void);
         void _createRecipe(void);
         void _editRecipe(int Index);
         void _createDatabase(void);

@@ -29,7 +29,7 @@
     </font>
    </property>
    <property name="toolTip">
-    <string>Zutatenliste für das Rezept.</string>
+    <string>Zutatenliste für das Rezept</string>
    </property>
    <property name="title">
     <string>Zutaten</string>
@@ -195,7 +195,7 @@
           </font>
          </property>
          <property name="toolTip">
-          <string>Rezepttimer 1</string>
+          <string>Stoppuhr 1</string>
          </property>
          <property name="suffix">
           <string/>
@@ -220,7 +220,7 @@
           </font>
          </property>
          <property name="toolTip">
-          <string>Beschreibung für Rezepttimer 1.</string>
+          <string>Beschreibung für Stoppuhr 1</string>
          </property>
          <property name="text">
           <string/>
@@ -262,7 +262,7 @@
           </font>
          </property>
          <property name="toolTip">
-          <string>Rezepttimer 2</string>
+          <string>Stoppuhr 2</string>
          </property>
          <property name="suffix">
           <string/>
@@ -287,7 +287,7 @@
           </font>
          </property>
          <property name="toolTip">
-          <string>Beschreibung für Rezepttimer 2.</string>
+          <string>Beschreibung für Stoppuhr 2</string>
          </property>
          <property name="text">
           <string/>
@@ -336,7 +336,7 @@
      </font>
     </property>
     <property name="toolTip">
-     <string>Anleitung zur Zubereitung.</string>
+     <string>Anleitung zur Zubereitung</string>
     </property>
     <property name="plainText">
      <string/>
@@ -409,7 +409,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Name des Rezeptes.</string>
+        <string>Name des Rezeptes</string>
        </property>
        <property name="text">
         <string/>
@@ -457,7 +457,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Notiz zu dem Rezept.</string>
+        <string>Notiz zu dem Rezept</string>
        </property>
        <property name="text">
         <string/>
@@ -492,7 +492,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Link zu dem Rezept.</string>
+        <string>Link zu dem Rezept</string>
        </property>
        <property name="text">
         <string/>
@@ -527,7 +527,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Portionsgröße des Rezeptes.</string>
+        <string>Portionsgröße des Rezeptes</string>
        </property>
        <property name="minimum">
         <number>1</number>
@@ -556,7 +556,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Kategorie des Rezeptes.</string>
+        <string>Kategorie des Rezeptes</string>
        </property>
       </widget>
      </item>
