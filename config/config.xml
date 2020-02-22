@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>Food Database</Name>
+    <Version>1.1.0</Version>
+    <Title>Food Database Installer</Title>
+    <Publisher>https://www.kampis-elektroecke.de</Publisher>
+    <StartMenuDir>Kampis-Elektroecke</StartMenuDir>
+    <TargetDir>@HomeDir@/Food Database</TargetDir>
+</Installer>

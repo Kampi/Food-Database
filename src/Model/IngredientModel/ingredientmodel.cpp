@@ -1,6 +1,7 @@
 #include "ingredientmodel.h"
 
-IngredientModel::IngredientModel(QList<Ingredient>& Ingredients, QObject* parent) : QAbstractTableModel(parent), _mData(Ingredients)
+IngredientModel::IngredientModel(QList<Ingredient>& Ingredients, QObject* parent) : QAbstractTableModel(parent),
+                                                                                    _mData(Ingredients)
 {
 }
 
@@ -36,7 +37,7 @@ QVariant IngredientModel::data(const QModelIndex& index, int role) const
             }
             case INGREDIENTSMODEL_TABLE_PRICE:
             {
-                return QString("%1").arg(locale.toString(_mData.at(index.row()).Price()));
+                return QString("%1 " + tr("€")).arg(locale.toString(_mData.at(index.row()).Price()));
             }
             case INGREDIENTSMODEL_TABLE_SECTION:
             {
@@ -58,6 +59,8 @@ QVariant IngredientModel::data(const QModelIndex& index, int role) const
 
 bool IngredientModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
+    bool Result = true;
+
     if(role == Qt::EditRole)
     {
         QLocale locale = QLocale().system();
@@ -67,49 +70,50 @@ bool IngredientModel::setData(const QModelIndex& index, const QVariant& value, i
             case INGREDIENTSMODEL_TABLE_NAME:
             {
                 _mData[index.row()].setName(value.toString());
-
-                return true;
+                Result = true;
+                break;
             }
             case INGREDIENTSMODEL_TABLE_AMOUNT:
             {
                 _mData[index.row()].setAmount(locale.toDouble(value.toString()));
-
-                return true;
+                Result = true;
+                break;
             }
             case INGREDIENTSMODEL_TABLE_UNIT:
             {
                 _mData[index.row()].setUnit(value.toString());
-
-                return true;
+                Result = true;
+                break;
             }
             case INGREDIENTSMODEL_TABLE_PRICE:
             {
                 _mData[index.row()].setPrice(locale.toDouble(value.toString()));
-
-                return true;
+                Result = true;
+                break;
             }
             case INGREDIENTSMODEL_TABLE_SECTION:
             {
                 _mData[index.row()].setSection(value.toString());
-
-                return true;
+                Result = true;
+                break;
             }
             case INGREDIENTSMODEL_TABLE_NOTE:
             {
                 _mData[index.row()].setNote(value.toString());
-
-                return true;
+                Result = true;
+                break;
             }
             default:
             {
-                return false;
+                Result = false;
+                break;
             }
         }
     }
 
     emit QAbstractItemModel::dataChanged(index, index);
 
-    return true;
+    return Result;
 }
 
 QVariant IngredientModel::headerData(int section, Qt::Orientation orientation, int role) const

@@ -1,5 +1,5 @@
 VERSION_MAJOR = 1
-VERSION_MINOR = 1
+VERSION_MINOR = 2
 VERSION_BUILD = 0
 
 QT       += core gui sql
@@ -8,7 +8,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11 file_copies
 
-COPIES += languageFiles
+COPIES += languageFiles settingsFile
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -35,40 +35,50 @@ INCLUDEPATH += \
     Model/IngredientModel/ \
     Model/RecipesModel/ \
     Model/ComboBoxDelegate/ \
+    Model/NumbersOnlyDelegate/ \
     Dialog/ \
+    Dialog/AboutDialog \
+    Dialog/RecipeDialog \
+    Dialog/SettingsDialog \
     Database/ \
+    Widget/CategoryList \
 
 SOURCES += \
     Database/database.cpp \
-    Dialog/About/aboutdialog.cpp \
-    Dialog/CreateRecipe/createrecipedialog.cpp \
-    Dialog/EditRecipe/editrecipedialog.cpp \
+    Dialog/AboutDialog/aboutdialog.cpp \
+    Dialog/RecipeDialog/recipedialog.cpp \
+    Dialog/SettingsDialog/settingsdialog.cpp \
     Model/ComboBoxDelegate/comboboxdelegate.cpp \
     Model/IngredientModel/ingredientmodel.cpp \
+    Model/NumbersOnlyDelegate/numbersonlydelegate.cpp \
     Model/RecipesModel/recipesmodel.cpp \
     Recipe/Ingredient/ingredient.cpp \
     Recipe/RecipeExport/recipeexport.cpp \
     Recipe/recipe.cpp \
+    Widget/CategoryList/categorylist.cpp \
     main.cpp \
     mainwindow.cpp \
 
 HEADERS += \
     Database/database.h \
-    Dialog/About/aboutdialog.h \
-    Dialog/CreateRecipe/createrecipedialog.h \
-    Dialog/EditRecipe/editrecipedialog.h \
+    Dialog/AboutDialog/aboutdialog.h \
+    Dialog/RecipeDialog/recipedialog.h \
+    Dialog/SettingsDialog/settingsdialog.h \
     Model/ComboBoxDelegate/comboboxdelegate.h \
     Model/IngredientModel/ingredientmodel.h \
+    Model/NumbersOnlyDelegate/numbersonlydelegate.h \
     Model/RecipesModel/recipesmodel.h \
     Recipe/Ingredient/ingredient.h \
     Recipe/RecipeExport/recipeexport.h \
     Recipe/recipe.h \
+    Widget/CategoryList/categorylist.h \
     mainwindow.h
 
 FORMS += \
-    Dialog/About/aboutdialog.ui \
-    Dialog/CreateRecipe/createrecipedialog.ui \
-    Dialog/EditRecipe/editrecipedialog.ui \
+    Dialog/AboutDialog/aboutdialog.ui \
+    Dialog/RecipeDialog/recipedialog.ui \
+    Dialog/SettingsDialog/settingsdialog.ui \
+    Widget/CategoryList/categorylist.ui \
     mainwindow.ui
 
 TRANSLATIONS += \
@@ -78,22 +88,40 @@ TRANSLATIONS += \
 # Target version
 VERSION = $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_BUILD}
 
+# Set the application icon
+win32:RC_ICONS += Ressources/Icons/fastfood-24px.ico
+
+# Set the build directories
+CONFIG(debug, debug|release) {
+    DESTDIR = debug
+} else {
+    DESTDIR = ../packages/com.kampis-elektroecke.FoodDatabase/data
+}
+
 # Copy language files
 languageFiles.files = $$files($$PWD/Languages/*.qm)
 CONFIG(debug, debug|release) {
     languageFiles.path = $${OUT_PWD}/debug/Languages
 } else {
-    languageFiles.path = $${OUT_PWD}/release/Languages
+    languageFiles.path = $${DESTDIR}/Languages
+}
+
+# Copy Settings files
+settingsFile.files = $$shell_quote(Settings.ini)
+CONFIG(debug, debug|release) {
+    settingsFile.path = $${OUT_PWD}/debug
+} else {
+    settingsFile.path = $${DESTDIR}
 }
 
 # Deployment rules
 DEPLOY_COMMAND = windeployqt
 DEPLOY_OPTIONS = "--no-system-d3d-compiler --no-opengl --no-angle --no-opengl-sw"
 CONFIG(debug, debug|release) {
-    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/debug/$${TARGET}.exe))
+    DEPLOY_TARGET = $$shell_quote($$shell_path($${DESTDIR}/$${TARGET}.exe))
     DEPLOY_OPTIONS += "--debug"
 } else {
-    DEPLOY_TARGET = $$shell_quote($$shell_path($${OUT_PWD}/release/$${TARGET}.exe))
+    DEPLOY_TARGET = $$shell_quote($$shell_path($${DESTDIR}/$${TARGET}.exe))
     DEPLOY_OPTIONS += "--release"
 }
 
