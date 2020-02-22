@@ -256,7 +256,7 @@ void MainWindow::_createRecipe(void)
     // Generate a dummy recipe
     Recipe Template = Recipe(tr("Neues Rezept"), tr("Leere Notiz"), tr("Leerer Link"), tr("Leere Beschreibung"), tr("Stoppuhr 1"), tr("Stoppuhr 2"), "", 1, 10, 20, 30, Ingredients);
 
-    RecipeDialog* Dialog = new RecipeDialog(_mCategories, _mRecipes.at(0), this);
+    RecipeDialog* Dialog = new RecipeDialog(_mCategories, Template, this);
     Dialog->setWindowTitle(tr("Neues Rezept"));
     connect(Dialog, &QDialog::finished, this, &MainWindow::on_dialog_CreateRecipe_finished);
     Dialog->show();
