@@ -2,7 +2,7 @@
     <qresource prefix="/Icon">
         <file>Ressources/Icons/icons8-add-property-64.png</file>
         <file>Ressources/Icons/icons8-remove-property-64.png</file>
-        <file>Ressources/Icons/fastfood-24px.ico</file>
+        <file>Ressources/Icons/ApplicationIcon.ico</file>
     </qresource>
     <qresource prefix="/Icons/Languages">
         <file>Ressources/Icons/Languages/de_DE.png</file>

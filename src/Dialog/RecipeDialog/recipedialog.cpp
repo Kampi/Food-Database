@@ -59,6 +59,7 @@ RecipeDialog::RecipeDialog(QMap<QString, QStringList> Categories, Recipe NewReci
 
     // Initialize the new recipe with the template
     _mRecipe = Recipe(NewRecipe);
+    _mCategories = Categories;
 }
 
 RecipeDialog::~RecipeDialog()
@@ -73,7 +74,7 @@ Recipe RecipeDialog::recipe() const
 
 void RecipeDialog::on_pushButton_AddIngredients_clicked()
 {
-    _mIngredients.push_back(Ingredient(tr("Name"), tr("Notiz"), 0.0, tr("Einheit"), 0.0, tr("Abteilung")));
+    _mIngredients.push_back(Ingredient(tr("Name"), tr("Notiz"), 0.0, _mCategories.value("Units", QStringList("")).at(0), 0.0, _mCategories.value("Ingredients", QStringList("")).at(0)));
     _mIngredientsModel->layoutChanged();
     _mUi->tableView_Ingredients->scrollToBottom();
 }

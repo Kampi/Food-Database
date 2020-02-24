@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../Ressources.qrc">
+    <normaloff>:/Icon/Ressources/Icons/ApplicationIcon.ico</normaloff>:/Icon/Ressources/Icons/ApplicationIcon.ico</iconset>
+  </property>
   <widget class="QGroupBox" name="groupBox_Ingredients">
    <property name="geometry">
     <rect>
@@ -604,6 +608,22 @@
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit_Name</tabstop>
+  <tabstop>comboBox_Category</tabstop>
+  <tabstop>lineEdit_Note</tabstop>
+  <tabstop>lineEdit_Link</tabstop>
+  <tabstop>spinBox_Persons</tabstop>
+  <tabstop>spinBox_CookingTime</tabstop>
+  <tabstop>spinBox_Timer1</tabstop>
+  <tabstop>lineEdit_Timer1</tabstop>
+  <tabstop>spinBox_Timer2</tabstop>
+  <tabstop>lineEdit_Timer2</tabstop>
+  <tabstop>plainTextEdit_Description</tabstop>
+  <tabstop>tableView_Ingredients</tabstop>
+  <tabstop>pushButton_AddIngredients</tabstop>
+  <tabstop>pushButton_RemoveIngredients</tabstop>
+ </tabstops>
  <resources>
   <include location="../../Ressources.qrc"/>
  </resources>
