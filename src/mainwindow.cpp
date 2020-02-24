@@ -404,7 +404,10 @@ void MainWindow::_exportRecipe(void)
             qDebug() << "[Error] Unable to write JSON database!";
             QMessageBox::critical(this, tr("Fehler"), tr("Export fehlgeschlagen!"), QMessageBox::Ok);
         }
-    }    else
+
+        QMessageBox::information(this, tr("Hinweis"), tr("Rezepte erfolgreich exportiert!"), QMessageBox::Ok);
+    }
+    else
     {
         QMessageBox::information(this, tr("Hinweis"), tr("Bitte mindenstens ein Rezept auswählen!"), QMessageBox::Ok);
     }

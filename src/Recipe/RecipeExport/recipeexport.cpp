@@ -23,7 +23,6 @@ bool RecipeExport::Export(QString FileName, QList<Recipe> Recipes)
             {
                 Categories.push_back(recipe.Category());
             }
-
         }
 
         QJsonObject root;
@@ -53,7 +52,7 @@ bool RecipeExport::Export(QString FileName, QList<Recipe> Recipes)
 
                     // Create the ingredients list
                     QJsonArray IngredientsArray;
-                    foreach(Ingredient ingredient, Recipes.at(0).Ingredients())
+                    foreach(Ingredient ingredient, recipe.Ingredients())
                     {
                         QJsonObject Ingredient;
                         this->_writeIngredient(Ingredient, ingredient);

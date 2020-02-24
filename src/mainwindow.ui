@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="Ressources.qrc">
-    <normaloff>:/Icon/Ressources/Icons/fastfood-24px.ico</normaloff>:/Icon/Ressources/Icons/fastfood-24px.ico</iconset>
+    <normaloff>:/Icon/Ressources/Icons/burger.ico</normaloff>:/Icon/Ressources/Icons/burger.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox_Recipes">

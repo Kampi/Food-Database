@@ -49,6 +49,7 @@ class RecipeDialog : public QDialog
         Ui::RecipeDialog* _mUi;
 
         QList<Ingredient> _mIngredients;
+        QMap<QString, QStringList> _mCategories;
 
         Recipe _mRecipe;
         IngredientModel* _mIngredientsModel;
