@@ -2,10 +2,32 @@
     <qresource prefix="/Icon">
         <file>Ressources/Icons/icons8-add-property-64.png</file>
         <file>Ressources/Icons/icons8-remove-property-64.png</file>
-        <file>Ressources/Icons/ApplicationIcon.ico</file>
+        <file>Ressources/Icons/qt.svg</file>
+        <file>Ressources/Icons/icons8-add-to-database-24.png</file>
+        <file>Ressources/Icons/icons8-database-export-24.png</file>
+        <file>Ressources/Icons/icons8-database-restore-24.png</file>
+        <file>Ressources/Icons/icons8-database-backup-24.png</file>
+        <file>Ressources/Icons/icons8-connected-24.png</file>
+        <file>Ressources/Icons/icons8-disconnected-24.png</file>
+        <file>Ressources/Icons/icons8-food-24.png</file>
+        <file>Ressources/Icons/icons8-details-24.png</file>
+        <file>Ressources/Icons/icons8-json-download-24.png</file>
+        <file>Ressources/Icons/icons8-new-property-24.png</file>
+        <file>Ressources/Icons/icons8-delete-view-24.png</file>
+        <file>Ressources/Icons/icons8-add-property-24.png</file>
+        <file>Ressources/Icons/icons8-remove-property-24.png</file>
+        <file>Ressources/Icons/icons8-food-96.png</file>
+        <file>Ressources/Icons/icons8-food-96.ico</file>
     </qresource>
     <qresource prefix="/Icons/Languages">
         <file>Ressources/Icons/Languages/de_DE.png</file>
         <file>Ressources/Icons/Languages/en_US.png</file>
+    </qresource>
+    <qresource prefix="/Styles">
+        <file>Ressources/Styles/recipedialog.qss</file>
+    </qresource>
+    <qresource prefix="/About">
+        <file>Ressources/About/aboutauthor.html</file>
+        <file>Ressources/About/LICENSE</file>
     </qresource>
 </RCC>

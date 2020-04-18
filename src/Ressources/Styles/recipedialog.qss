@@ -1,0 +1,3 @@
+QPushButton[accessibleName="bigred"] {
+   background-color: red;
+}

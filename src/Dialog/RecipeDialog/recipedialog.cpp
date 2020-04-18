@@ -24,9 +24,9 @@ RecipeDialog::RecipeDialog(QMap<QString, QStringList> Categories, Recipe NewReci
     _mUi->spinBox_Persons->setValue(uint(NewRecipe.Persons()));
     _mUi->spinBox_CookingTime->setValue(uint(NewRecipe.CookingTime()));
     _mUi->lineEdit_Timer1->setText(NewRecipe.Timer1Name());
-    _mUi->spinBox_Timer1->setValue(uint(NewRecipe.Timer1Value()));
+    _mUi->timeEdit_Timer1->setTime(QTime(0, 0, 0).addSecs(NewRecipe.Timer1Value()));
     _mUi->lineEdit_Timer2->setText(NewRecipe.Timer2Name());
-    _mUi->spinBox_Timer2->setValue(uint(NewRecipe.Timer2Value()));
+    _mUi->timeEdit_Timer2->setTime(QTime(0, 0, 0).addSecs(NewRecipe.Timer2Value()));
     _mUi->plainTextEdit_Description->setPlainText(NewRecipe.Description());
 
     if(NewRecipe.Timer1Value() == 0)
@@ -50,8 +50,6 @@ RecipeDialog::RecipeDialog(QMap<QString, QStringList> Categories, Recipe NewReci
     _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_PRICE, _mNumbersOnlyDelegate);
 
     // Add spinbox suffix
-    _mUi->spinBox_Timer1->setSuffix(" " + tr("Sekunden"));
-    _mUi->spinBox_Timer2->setSuffix(" " + tr("Sekunden"));
     _mUi->spinBox_CookingTime->setSuffix(" " + tr("Minuten"));
 
     _mUi->buttonBox_Close->button(QDialogButtonBox::Save)->setText(tr("Speichern"));
@@ -127,44 +125,44 @@ void RecipeDialog::on_spinBox_CookingTime_valueChanged(int arg1)
     _mRecipe.setCookingTime(uint(arg1));
 }
 
-void RecipeDialog::on_spinBox_Timer1_valueChanged(int arg1)
+void RecipeDialog::on_lineEdit_Timer1_textEdited(const QString& arg1)
 {
-    _mRecipe.setTimer1Value(uint(arg1));
+    _mRecipe.setTimer1Name(arg1);
+}
 
-    if(arg1 > 0)
+void RecipeDialog::on_timeEdit_Timer1_userTimeChanged(const QTime& time)
+{
+    _mRecipe.setTimer2Value(uint(QTime(0, 0, 0).secsTo(time)));
+
+    if(QTime(0, 0, 0).secsTo(time) > 0)
     {
         _mUi->lineEdit_Timer1->setEnabled(true);
     }
-    else if(arg1 == 0)
+    else if(QTime(0, 0, 0).secsTo(time) == 0)
     {
         _mUi->lineEdit_Timer1->setEnabled(false);
         _mUi->lineEdit_Timer1->clear();
     }
 }
 
-void RecipeDialog::on_lineEdit_Timer1_textEdited(const QString& arg1)
+void RecipeDialog::on_lineEdit_Timer2_textEdited(const QString& arg1)
 {
-    _mRecipe.setTimer1Name(arg1);
+    _mRecipe.setTimer2Name(arg1);
 }
 
-void RecipeDialog::on_spinBox_Timer2_valueChanged(int arg1)
+void RecipeDialog::on_timeEdit_Timer2_userTimeChanged(const QTime& time)
 {
-    _mRecipe.setTimer2Value(uint(arg1));
+    _mRecipe.setTimer2Value(uint(QTime(0, 0, 0).secsTo(time)));
 
-    if(arg1 > 0)
+    if(QTime(0, 0, 0).secsTo(time) > 0)
     {
         _mUi->lineEdit_Timer2->setEnabled(true);
     }
-    else if(arg1 == 0)
+    else if(QTime(0, 0, 0).secsTo(time) == 0)
     {
         _mUi->lineEdit_Timer2->setEnabled(false);
         _mUi->lineEdit_Timer2->clear();
     }
-}
-
-void RecipeDialog::on_lineEdit_Timer2_textEdited(const QString& arg1)
-{
-    _mRecipe.setTimer2Name(arg1);
 }
 
 void RecipeDialog::on_plainTextEdit_Description_textChanged()

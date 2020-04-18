@@ -22,7 +22,6 @@ class CategoryList : public QWidget
         explicit CategoryList(QWidget* parent = nullptr);
         ~CategoryList();
 
-
         void addItems(const QStringList &labels);
 
     private slots:

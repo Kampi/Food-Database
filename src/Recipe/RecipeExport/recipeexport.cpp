@@ -25,7 +25,7 @@ bool RecipeExport::Export(QString FileName, QList<Recipe> Recipes)
             }
         }
 
-        QJsonObject root;
+        QJsonObject Root;
         QJsonArray RecipeCategories;
 
         foreach(QString category, Categories)
@@ -68,16 +68,18 @@ bool RecipeExport::Export(QString FileName, QList<Recipe> Recipes)
             RecipeCategoryArray.insert("recipes", RecipesArray);
             RecipeCategories.push_back(RecipeCategoryArray);
         }
-        root.insert("recipeCategories", RecipeCategories);
+        Root.insert("recipeCategories", RecipeCategories);
 
-        QJsonDocument RecipeExport(root);
+        QJsonDocument RecipeExport(Root);
         SaveFile.write(RecipeExport.toJson());
+
+        return true;
     }
 
-    return true;
+    return false;
 }
 
-void RecipeExport::_writeIngredient(QJsonObject &JSON, Ingredient Ingredient) const
+void RecipeExport::_writeIngredient(QJsonObject& JSON, Ingredient Ingredient) const
 {
     JSON.insert("name", Ingredient.Name());
     JSON.insert("note", Ingredient.Note());

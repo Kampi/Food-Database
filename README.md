@@ -25,7 +25,8 @@ The Food Database support file formats for the following Android or iOS apps:
 ## Image sources
 
 - [Language Icons](https://www.iconfinder.com/iconsets/flags_gosquared)
-- [Button and Menu Icons](https://material.io/)
+- [Icons8](https://icons8.com/icon/set/database/material)
+- [Qt project](https://www.qt.io/blog/2016/06/20/introducing-new-built-with-qt-logo)
 
 ## History
 
@@ -34,6 +35,7 @@ The Food Database support file formats for the following Android or iOS apps:
 | 1.0          | Initial release                            | 10.02.2020 |
 | 1.1          | Add multi language support                 | 12.02.2020 |
 | 1.2          | Add installer, add category editing        | 22.02.2020 |
+| 1.3          |        |  |
 
 ## Maintainer
 

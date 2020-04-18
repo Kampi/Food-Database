@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget* parent) :   QMainWindow(parent),
     _mUi->setupUi(this);
 
     this->setWindowFlags(this->windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
+    this->statusBar()->setSizeGripEnabled(false);
     if(this->_loadSettings())
     {
         this->_updateStatusbar();
@@ -19,8 +20,10 @@ MainWindow::MainWindow(QWidget* parent) :   QMainWindow(parent),
         _mUi->tableView_Recipes->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
         _mUi->tableView_Recipes->horizontalHeader()->setSectionsClickable(false);
 
-        _mUi->statusbar->addWidget(&_mStatusLabel);
+        _mUi->statusbar->addPermanentWidget(&_mStatusLabel);
+        _mUi->statusbar->layout()->setContentsMargins(10,0,0,0);
         _mUi->statusbar->addPermanentWidget(&_mDatabaseState);
+        _mUi->statusbar->setStyleSheet("margin-right: 10px;");
 
         // Create some dummy recipes
         QList<Ingredient> Ingredients({Ingredient(tr("Erste"), tr("Notiz"), 1, "kg", 1.55, _mCategories.value("Ingredients", QStringList("")).at(0)), Ingredient(tr("Zweite"), tr("Mehr"), 1, "l", 1.0, _mCategories.value("Ingredients", QStringList("")).at(1))});
@@ -41,7 +44,7 @@ MainWindow::~MainWindow()
     delete _mUi;
 }
 
-void MainWindow::on_dialog_CreateRecipe_finished(int result)
+void MainWindow::CreateRecipe_finished(int result)
 {
     if(result == 1)
     {
@@ -54,7 +57,7 @@ void MainWindow::on_dialog_CreateRecipe_finished(int result)
     }
 }
 
-void MainWindow::on_dialog_EditRecipe_finished(int result)
+void MainWindow::EditRecipe_finished(int result)
 {
     if(result == 1)
     {
@@ -64,7 +67,7 @@ void MainWindow::on_dialog_EditRecipe_finished(int result)
     }
 }
 
-void MainWindow::on_dialog_Settings_finished(int result)
+void MainWindow::Settings_finished(int result)
 {
     if(result == 1)
     {
@@ -99,12 +102,17 @@ void MainWindow::on_action_WriteDatabase_triggered()
     this->_writeRecipesToDatabase();
 }
 
-void MainWindow::on_action_New_triggered()
+void MainWindow::on_action_NewRecipe_triggered()
 {
     this->_createRecipe();
 }
 
-void MainWindow::on_action_Export_triggered()
+void MainWindow::on_action_RemoveRecipe_triggered()
+{
+    this->_removeRecipe();
+}
+
+void MainWindow::on_action_ExportRecipe_triggered()
 {
     this->_exportRecipe();
 }
@@ -112,7 +120,7 @@ void MainWindow::on_action_Export_triggered()
 void MainWindow::on_action_Settings_triggered()
 {
     SettingsDialog* Dialog = new SettingsDialog(_mCategories, this);
-    connect(Dialog, &QDialog::finished, this, &MainWindow::on_dialog_Settings_finished);
+    connect(Dialog, &QDialog::finished, this, &MainWindow::Settings_finished);
     Dialog->show();
 }
 
@@ -127,24 +135,19 @@ void MainWindow::on_action_AboutQt_triggered()
     QMessageBox::aboutQt(this, tr("Über Qt"));
 }
 
-void MainWindow::on_pushButton_New_clicked()
+void MainWindow::on_pushButton_NewRecipe_clicked()
 {
     this->_createRecipe();
 }
 
-void MainWindow::on_pushButton_Export_clicked()
+void MainWindow::on_pushButton_ExportRecipe_clicked()
 {
     this->_exportRecipe();
 }
 
 void MainWindow::on_pushButton_RemoveRecipe_clicked()
 {
-    QItemSelectionModel* select = _mUi->tableView_Recipes->selectionModel();
-
-    if(select->hasSelection() & !select->selectedRows().empty())
-    {
-        _mRecipesModel->removeRows(select->currentIndex().row(), 1);
-    }
+    this->_removeRecipe();
 }
 
 void MainWindow::languageChange(bool)
@@ -197,7 +200,6 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 
 void MainWindow::_saveSettings(void)
 {
-    qDebug() << _mCategories;
     QSettings Settings(QApplication::applicationDirPath() + "/Settings.ini", QSettings::IniFormat);
     Settings.setIniCodec(QTextCodec::codecForName("System"));
     Settings.setValue("Recipes/Categories", _mCategories.value("Recipes", QStringList("")));
@@ -220,9 +222,9 @@ bool MainWindow::_loadSettings(void)
             return false;
         }
 
-        _mCategories.insert("Recipes", Settings.value("Recipes/Categories").toStringList());
-        _mCategories.insert("Ingredients", Settings.value("Ingredients/Categories").toStringList());
-        _mCategories.insert("Units", Settings.value("Units/Categories").toStringList());
+        this->_addCategory(Settings.value("Ingredients/Categories").toStringList(), "Ingredients");
+        this->_addCategory(Settings.value("Recipes/Categories").toStringList(), "Recipes");
+        this->_addCategory(Settings.value("Units/Categories").toStringList(), "Units");
 
         foreach(auto Key, _mCategories.keys())
         {
@@ -254,19 +256,33 @@ void MainWindow::_createRecipe(void)
     }
 
     // Generate a dummy recipe
-    Recipe Template = Recipe(tr("Neues Rezept"), tr("Leere Notiz"), tr("Leerer Link"), tr("Leere Beschreibung"), tr("Stoppuhr 1"), tr("Stoppuhr 2"), "", 1, 10, 20, 30, Ingredients);
+    Recipe Template = Recipe(tr("Neues Rezept"), tr("Leere Notiz"), tr("Leerer Link"), tr("Leere Beschreibung"), tr("Stoppuhr 1"), tr("Stoppuhr 2"), _mCategories.value("Recipes", QStringList("")).at(0), 1, 10, 20, 30, Ingredients);
 
     RecipeDialog* Dialog = new RecipeDialog(_mCategories, Template, this);
     Dialog->setWindowTitle(tr("Neues Rezept"));
-    connect(Dialog, &QDialog::finished, this, &MainWindow::on_dialog_CreateRecipe_finished);
+    connect(Dialog, &QDialog::finished, this, &MainWindow::CreateRecipe_finished);
     Dialog->show();
+}
+
+void MainWindow::_removeRecipe(void)
+{
+    QItemSelectionModel* select = _mUi->tableView_Recipes->selectionModel();
+
+    if(select->hasSelection() & !select->selectedRows().empty())
+    {
+        _mRecipesModel->removeRows(select->currentIndex().row(), 1);
+    }
+    else
+    {
+        QMessageBox::information(this, tr("Hinweis"), tr("Bitte mindenstens ein Rezept auswählen!"), QMessageBox::Ok);
+    }
 }
 
 void MainWindow::_editRecipe(int Index)
 {
     RecipeDialog* Dialog = new RecipeDialog(_mCategories, _mRecipes.at(Index), this);
     Dialog->setWindowTitle(tr("Rezept bearbeiten"));
-    connect(Dialog, &QDialog::finished, this, &MainWindow::on_dialog_EditRecipe_finished);
+    connect(Dialog, &QDialog::finished, this, &MainWindow::EditRecipe_finished);
     Dialog->show();
 }
 
@@ -375,37 +391,43 @@ void MainWindow::_writeRecipesToDatabase(void)
 
 void MainWindow::_updateStatusbar(void)
 {
-    QPixmap PixMap(16, 16);
+    QString FileName;
 
     if(_mDatabase.IsOpen())
     {
-        PixMap.fill(Qt::green);
+        FileName = ":/Icon/Ressources/Icons/icons8-connected-24.png";
     }
     else
     {
-        PixMap.fill(Qt::red);
+        FileName = ":/Icon/Ressources/Icons/icons8-disconnected-24.png";
     }
 
+    QPixmap Pixmap;
     _mStatusLabel.setText(_mStatus);
-    _mDatabaseState.setPixmap(PixMap);
+    Pixmap.load(FileName);
+    _mDatabaseState.setPixmap(Pixmap);
 }
 
 void MainWindow::_exportRecipe(void)
 {
-    QItemSelectionModel* select = _mUi->tableView_Recipes->selectionModel();
+    QItemSelectionModel* Selection = _mUi->tableView_Recipes->selectionModel();
 
-    if(select->hasSelection() & !select->selectedRows().empty())
+    if(Selection->hasSelection() & !Selection->selectedRows().empty())
     {
-        int First = select->selectedRows().first().row();
-        int Last = First + select->selectedRows().size();
-        QList<Recipe> SelectionList(_mRecipes.mid(First, Last));
-        if(!_mRecipeExport.Export(QFileDialog::getSaveFileName(this, tr("Speicherort wählen"), tr("Rezepte"), ("JSON (*.json)")),  SelectionList))
+        QString File = QFileDialog::getSaveFileName(this, tr("Speicherort wählen"), tr("Rezepte"), ("JSON (*.json)"));
+        if(File.length() > 0)
         {
-            qDebug() << "[Error] Unable to write JSON database!";
-            QMessageBox::critical(this, tr("Fehler"), tr("Export fehlgeschlagen!"), QMessageBox::Ok);
-        }
+            int First = Selection->selectedRows().first().row();
+            int Last = First + Selection->selectedRows().size();
+            QList<Recipe> SelectionList(_mRecipes.mid(First, Last));
+            if(!_mRecipeExport.Export(File, SelectionList))
+            {
+                qDebug() << "[Error] Unable to write JSON database!";
+                QMessageBox::critical(this, tr("Fehler"), tr("Export fehlgeschlagen!"), QMessageBox::Ok);
+            }
 
-        QMessageBox::information(this, tr("Hinweis"), tr("Rezepte erfolgreich exportiert!"), QMessageBox::Ok);
+            QMessageBox::information(this, tr("Hinweis"), tr("Rezepte erfolgreich exportiert!"), QMessageBox::Ok);
+        }
     }
     else
     {
@@ -437,4 +459,10 @@ void MainWindow::_switchLanguage(QString Language)
     {
         qApp->installTranslator(&_mTranslator);
     }
+}
+
+void MainWindow::_addCategory(QStringList Settings, QString Name)
+{
+    Settings.sort();
+    _mCategories.insert(Name, Settings);
 }

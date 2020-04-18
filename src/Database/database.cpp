@@ -12,30 +12,35 @@ bool Database::Create(QString FileName)
         QSqlQuery Query;
 
         _mDatabase.setDatabaseName(FileName);
-        Result = _mDatabase.open() & Query.exec("CREATE TABLE Recipes ("
-                                                "ID INTEGER primary key, "
-                                                "Name VARCHAR(50), "
-                                                "Note VARCHAR(50), "
-                                                "Link MEDIUMTEXT, "
-                                                "Persons INTEGER, "
-                                                "Cooking_Description MEDIUMTEXT, "
-                                                "Category VARCHAR(50), "
-                                                "Cooking_Time INTEGER, "
-                                                "Timer1_Name VARCHAR(50), "
-                                                "Timer2_Name VARCHAR(50), "
-                                                "Timer1_Value INTEGER, "
-                                                "Timer2_Value INTEGER, "
-                                                "IngredientsStart INTEGER, "
-                                                "IngredientsCount INTEGER)");
+        if(!_mDatabase.open())
+        {
+            return false;
+        }
 
-        Result &= Query.exec("CREATE TABLE Ingredients "
-                             "(ID INTEGER primary key, "
-                             "Name VARCHAR(50), "
-                             "Note VARCHAR(50), "
-                             "Amount INTEGER, "
-                             "Unit VARCHAR(50), "
-                             "Price REAL, "
-                             "Section VARCHAR(50))");
+        Result = Query.exec("CREATE TABLE Recipes (ID INTEGER primary key, "
+                                                  "Name VARCHAR(50), "
+                                                  "Note VARCHAR(50), "
+                                                  "Link MEDIUMTEXT, "
+                                                  "Persons INTEGER, "
+                                                  "Cooking_Description MEDIUMTEXT, "
+                                                  "Category VARCHAR(50), "
+                                                  "Cooking_Time INTEGER, "
+                                                  "Timer1_Name VARCHAR(50), "
+                                                  "Timer2_Name VARCHAR(50), "
+                                                  "Timer1_Value INTEGER, "
+                                                  "Timer2_Value INTEGER, "
+                                                  "IngredientsStart INTEGER, "
+                                                  "IngredientsCount INTEGER)"
+                            );
+
+        Result &= Query.exec("CREATE TABLE Ingredients (ID INTEGER primary key, "
+                                                       "Name VARCHAR(50), "
+                                                       "Note VARCHAR(50), "
+                                                       "Amount INTEGER, "
+                                                       "Unit VARCHAR(50), "
+                                                       "Price REAL, "
+                                                       "Section VARCHAR(50))"
+                             );
 
         return Result;
     }
@@ -100,7 +105,8 @@ bool Database::Read(QList<Recipe>& Recipes)
                                          Query.value(10).toUInt(),
                                          Query.value(11).toUInt(),
                                          RecipeIngredients
-                                      ));
+                                      )
+                                  );
             }
 
             return true;

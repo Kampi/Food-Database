@@ -1,6 +1,6 @@
 VERSION_MAJOR = 1
-VERSION_MINOR = 2
-VERSION_BUILD = 1
+VERSION_MINOR = 3
+VERSION_BUILD = 0
 
 QT       += core gui sql
 
@@ -89,7 +89,7 @@ TRANSLATIONS += \
 VERSION = $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_BUILD}
 
 # Set the application icon
-win32:RC_ICONS += Ressources/Icons/ApplicationIcon.ico
+win32:RC_ICONS += Ressources/Icons/icons8-food-96.ico
 
 # Set the build directories
 CONFIG(debug, debug|release) {

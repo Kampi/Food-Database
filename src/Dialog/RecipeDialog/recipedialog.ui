@@ -11,11 +11,39 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string/>
   </property>
   <property name="windowIcon">
    <iconset resource="../../Ressources.qrc">
-    <normaloff>:/Icon/Ressources/Icons/ApplicationIcon.ico</normaloff>:/Icon/Ressources/Icons/ApplicationIcon.ico</iconset>
+    <normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</iconset>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color: #FFFFFF;
+}
+
+QComboBox {
+	background-color: #FFFFFF;
+    border: 1px solid gray;
+}
+
+QGroupBox {
+	font-weight: bold;
+	color: #0489B1;
+	background: #FFFFFF;
+	border: 1px solid #0489B1;
+	border-radius: 5px;
+	margin-top: 2ex;
+}
+
+QGroupBox::title {
+	top: -7px;
+	left: 5px;
+	padding: 0 3px;
+}</string>
   </property>
   <widget class="QGroupBox" name="groupBox_Ingredients">
    <property name="geometry">
@@ -57,7 +85,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Zutatenliste</string>
+        <string>Zutatenliste für das Rezept.</string>
        </property>
        <property name="sizeAdjustPolicy">
         <enum>QAbstractScrollArea::AdjustIgnored</enum>
@@ -81,7 +109,7 @@
           </font>
          </property>
          <property name="toolTip">
-          <string>Zutat hinzufügen</string>
+          <string>Eine neue Zutat hinzufügen.</string>
          </property>
          <property name="text">
           <string/>
@@ -110,7 +138,7 @@
           </font>
          </property>
          <property name="toolTip">
-          <string>Zutat entfernen</string>
+          <string>Alle markierten Zutaten entfernen.</string>
          </property>
          <property name="text">
           <string/>
@@ -151,7 +179,7 @@
     </font>
    </property>
    <property name="title">
-    <string>Stoppuhr</string>
+    <string>Stopuhren</string>
    </property>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
@@ -179,19 +207,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBox_Timer1">
-         <property name="minimumSize">
-          <size>
-           <width>75</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="baseSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
+        <widget class="QTimeEdit" name="timeEdit_Timer1">
          <property name="font">
           <font>
            <weight>50</weight>
@@ -199,19 +215,10 @@
           </font>
          </property>
          <property name="toolTip">
-          <string>Stoppuhr 1</string>
+          <string>Zeit für Stopuhr 1.</string>
          </property>
-         <property name="suffix">
-          <string/>
-         </property>
-         <property name="minimum">
-          <number>0</number>
-         </property>
-         <property name="maximum">
-          <number>99999</number>
-         </property>
-         <property name="value">
-          <number>1</number>
+         <property name="displayFormat">
+          <string>HH:mm:ss</string>
          </property>
         </widget>
        </item>
@@ -224,7 +231,7 @@
           </font>
          </property>
          <property name="toolTip">
-          <string>Beschreibung für Stoppuhr 1</string>
+          <string>Beschreibung für Stoppuhr 1.</string>
          </property>
          <property name="text">
           <string/>
@@ -252,13 +259,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBox_Timer2">
-         <property name="minimumSize">
-          <size>
-           <width>75</width>
-           <height>0</height>
-          </size>
-         </property>
+        <widget class="QTimeEdit" name="timeEdit_Timer2">
          <property name="font">
           <font>
            <weight>50</weight>
@@ -266,19 +267,10 @@
           </font>
          </property>
          <property name="toolTip">
-          <string>Stoppuhr 2</string>
+          <string>Zeit für Stopuhr 2.</string>
          </property>
-         <property name="suffix">
-          <string/>
-         </property>
-         <property name="minimum">
-          <number>0</number>
-         </property>
-         <property name="maximum">
-          <number>99999</number>
-         </property>
-         <property name="value">
-          <number>1</number>
+         <property name="displayFormat">
+          <string>HH:mm:ss</string>
          </property>
         </widget>
        </item>
@@ -291,7 +283,7 @@
           </font>
          </property>
          <property name="toolTip">
-          <string>Beschreibung für Stoppuhr 2</string>
+          <string>Beschreibung für Stoppuhr 2.</string>
          </property>
          <property name="text">
           <string/>
@@ -356,6 +348,9 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="toolTip">
+    <string>Fenster schließen.</string>
+   </property>
    <property name="standardButtons">
     <set>QDialogButtonBox::Discard|QDialogButtonBox::Save</set>
    </property>
@@ -413,7 +408,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Name des Rezeptes</string>
+        <string>Name des Rezeptes.</string>
        </property>
        <property name="text">
         <string/>
@@ -461,7 +456,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Notiz zu dem Rezept</string>
+        <string>Notiz zu dem Rezept.</string>
        </property>
        <property name="text">
         <string/>
@@ -496,7 +491,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Link zu dem Rezept</string>
+        <string>Link zu dem Rezept.</string>
        </property>
        <property name="text">
         <string/>
@@ -531,7 +526,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Portionsgröße des Rezeptes</string>
+        <string>Portionsgröße des Rezeptes.</string>
        </property>
        <property name="minimum">
         <number>1</number>
@@ -560,7 +555,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Kategorie des Rezeptes</string>
+        <string>Kategorie des Rezeptes.</string>
        </property>
       </widget>
      </item>
@@ -573,7 +568,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string>Zubereitungszeit</string>
+        <string>Zubereitungszeit des Rezeptes.</string>
        </property>
        <property name="suffix">
         <string/>
@@ -615,9 +610,7 @@
   <tabstop>lineEdit_Link</tabstop>
   <tabstop>spinBox_Persons</tabstop>
   <tabstop>spinBox_CookingTime</tabstop>
-  <tabstop>spinBox_Timer1</tabstop>
   <tabstop>lineEdit_Timer1</tabstop>
-  <tabstop>spinBox_Timer2</tabstop>
   <tabstop>lineEdit_Timer2</tabstop>
   <tabstop>plainTextEdit_Description</tabstop>
   <tabstop>tableView_Ingredients</tabstop>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>280</height>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,16 +15,43 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../Ressources.qrc">
-    <normaloff>:/Icon/Ressources/Icons/ApplicationIcon.ico</normaloff>:/Icon/Ressources/Icons/ApplicationIcon.ico</iconset>
+    <normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+	background-color: #FFFFFF;
+}
+
+QGroupBox {
+	font-weight: bold;
+	color: #0489B1;
+	background: #FFFFFF;
+	border: 1px solid #0489B1;
+	border-radius: 5px;
+	margin-top: 2ex;
+}
+
+QGroupBox::title {
+	top: -7px;
+	left: 5px;
+	padding: 0 3px;
+}
+
+QTextBrowser {
+	border: 0px;
+}</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>240</y>
+     <y>360</y>
      <width>380</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="toolTip">
+    <string>Fenster schließen.</string>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -36,25 +63,72 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_About">
+  <widget class="QGroupBox" name="groupBox_Author">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
-     <width>380</width>
-     <height>220</height>
+     <y>0</y>
+     <width>381</width>
+     <height>111</height>
     </rect>
    </property>
-   <property name="readOnly">
-    <bool>true</bool>
+   <property name="toolTip">
+    <string>Über den Autor.</string>
    </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   <property name="title">
+    <string>Autor</string>
    </property>
+   <widget class="QTextBrowser" name="textBrowser_AboutAuthor">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>361</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="statusTip">
+     <string/>
+    </property>
+    <property name="openExternalLinks">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_License">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>120</y>
+     <width>381</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Über den Autor.</string>
+   </property>
+   <property name="title">
+    <string>Lizenz</string>
+   </property>
+   <widget class="QTextBrowser" name="textBrowser_License">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>361</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="statusTip">
+     <string/>
+    </property>
+    <property name="openExternalLinks">
+     <bool>false</bool>
+    </property>
+    <property name="openLinks">
+     <bool>false</bool>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources>
