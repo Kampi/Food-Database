@@ -3,3 +3,31 @@
 1.2				Add recipe, unit and ingredients categories
 				Improve category selection
 				Change default language to german
+1.3				mainwindow:
+					- Disable resize from statusbar
+					- Update layout for database state
+					- Add missing default category for new recipe
+					- Add sorting for settings category
+					- Rename dialog signals
+					- Rename actions
+					- Fix wrong 'Export successful' message when recipe export was aborted
+
+				recipeexport:
+				- Fix wrong return value in 'Export' function when the filename has length 0	
+
+				recipedialog:
+				- Replace 'QSpinBox' for cooking time with 'QTime'
+
+				aboutdialog:
+				- Replace 'QTextEdit' with 'QTextBrowser'
+				- Update content
+
+				Misc:
+				- Add more ingredient categories to settings file
+				- Update style
+				- Add more icons
+				- Update 'Settings.ini'
+				- Update and StatusTips Tooltips
+				- Update translations
+				- Update README and Changelog
+				- Create a new release
