@@ -38,10 +38,10 @@ class RecipeDialog : public QDialog
         void on_lineEdit_Link_textEdited(const QString& arg1);
         void on_spinBox_Persons_valueChanged(int arg1);
         void on_spinBox_CookingTime_valueChanged(int arg1);
-        void on_spinBox_Timer1_valueChanged(int arg1);
         void on_lineEdit_Timer1_textEdited(const QString& arg1);
-        void on_spinBox_Timer2_valueChanged(int arg1);
+        void on_timeEdit_Timer1_userTimeChanged(const QTime& time);
         void on_lineEdit_Timer2_textEdited(const QString& arg1);
+        void on_timeEdit_Timer2_userTimeChanged(const QTime& time);
         void on_plainTextEdit_Description_textChanged();
         void on_buttonBox_Close_clicked(QAbstractButton* button);
 

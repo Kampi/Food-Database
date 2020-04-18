@@ -18,8 +18,8 @@ SettingsDialog::SettingsDialog(QMap<QString, QStringList> Categories, QWidget* p
         CategoryList* TabWidget = new CategoryList(this);
         TabWidget->addItems(Categories.value(Category, QStringList("")));
 
-        connect(TabWidget, &CategoryList::itemAdded, this, &SettingsDialog::on_tab_ItemAdded);
-        connect(TabWidget, &CategoryList::itemRemoved, this, &SettingsDialog::on_tab_ItemRemoved);
+        connect(TabWidget, &CategoryList::itemAdded, this, &SettingsDialog::ItemAdded);
+        connect(TabWidget, &CategoryList::itemRemoved, this, &SettingsDialog::ItemRemoved);
 
         _mUi->tabWidget_Settings->addTab(TabWidget, _mMapping.value(Category));
     }
@@ -50,7 +50,7 @@ void SettingsDialog::on_buttonBox_Close_clicked(QAbstractButton* button)
     }
 }
 
-void SettingsDialog::on_tab_ItemAdded(QString item)
+void SettingsDialog::ItemAdded(QString item)
 {
     QString CurrentTab = _mMapping.key(_mUi->tabWidget_Settings->tabText(_mUi->tabWidget_Settings->currentIndex()));
     QStringList List = _mNewCategories.value(CurrentTab, QStringList(""));
@@ -58,7 +58,7 @@ void SettingsDialog::on_tab_ItemAdded(QString item)
     _mNewCategories.insert(CurrentTab, List);
 }
 
-void SettingsDialog::on_tab_ItemRemoved(int index)
+void SettingsDialog::ItemRemoved(int index)
 {
     QString CurrentTab = _mMapping.key(_mUi->tabWidget_Settings->tabText(_mUi->tabWidget_Settings->currentIndex()));
     QStringList List = _mNewCategories.value(CurrentTab, QStringList(""));

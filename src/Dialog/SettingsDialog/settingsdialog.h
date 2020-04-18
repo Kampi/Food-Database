@@ -26,8 +26,8 @@ class SettingsDialog : public QDialog
 
     private slots:
         void on_buttonBox_Close_clicked(QAbstractButton* button);
-        void on_tab_ItemAdded(QString item);
-        void on_tab_ItemRemoved(int index);
+        void ItemAdded(QString item);
+        void ItemRemoved(int index);
 
     private:
         Ui::SettingsDialog* _mUi;

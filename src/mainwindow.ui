@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>669</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,27 @@
   </property>
   <property name="windowIcon">
    <iconset resource="Ressources.qrc">
-    <normaloff>:/Icon/Ressources/Icons/burger.ico</normaloff>:/Icon/Ressources/Icons/burger.ico</iconset>
+    <normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+	background-color: #FFFFFF;
+}
+
+QGroupBox {
+	font-weight: bold;
+	color: #0489B1;
+	background: #FFFFFF;
+	border: 1px solid #0489B1;
+	border-radius: 5px;
+	margin-top: 2ex;
+}
+
+QGroupBox::title {
+	top: -7px;
+	left: 5px;
+	padding: 0 3px;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox_Recipes">
@@ -74,15 +94,28 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QPushButton" name="pushButton_New">
+         <widget class="QPushButton" name="pushButton_NewRecipe">
           <property name="font">
            <font>
             <weight>50</weight>
             <bold>false</bold>
            </font>
           </property>
+          <property name="toolTip">
+           <string>Ein neues Rezept hinzufügen.</string>
+          </property>
           <property name="text">
            <string>Neu</string>
+          </property>
+          <property name="icon">
+           <iconset resource="Ressources.qrc">
+            <normaloff>:/Icon/Ressources/Icons/icons8-new-property-24.png</normaloff>:/Icon/Ressources/Icons/icons8-new-property-24.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
           <property name="shortcut">
            <string/>
@@ -97,21 +130,47 @@
             <bold>false</bold>
            </font>
           </property>
+          <property name="toolTip">
+           <string>Alle markierten Rezepte entfernen.</string>
+          </property>
           <property name="text">
            <string>Löschen</string>
+          </property>
+          <property name="icon">
+           <iconset resource="Ressources.qrc">
+            <normaloff>:/Icon/Ressources/Icons/icons8-delete-view-24.png</normaloff>:/Icon/Ressources/Icons/icons8-delete-view-24.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_Export">
+         <widget class="QPushButton" name="pushButton_ExportRecipe">
           <property name="font">
            <font>
             <weight>50</weight>
             <bold>false</bold>
            </font>
           </property>
+          <property name="toolTip">
+           <string>Alle markierten Rezepte in ein Rezept-JSON exportieren.</string>
+          </property>
           <property name="text">
            <string>Export</string>
+          </property>
+          <property name="icon">
+           <iconset resource="Ressources.qrc">
+            <normaloff>:/Icon/Ressources/Icons/icons8-json-download-24.png</normaloff>:/Icon/Ressources/Icons/icons8-json-download-24.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -139,15 +198,16 @@
     <addaction name="action_WriteDatabase"/>
     <addaction name="action_CloseDatabase"/>
    </widget>
-   <widget class="QMenu" name="menu_Edit">
+   <widget class="QMenu" name="menu_Recipe">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="title">
-     <string comment="menu_Recipe">Bearbeiten</string>
+     <string comment="menu_Recipe">Rezept</string>
     </property>
-    <addaction name="action_New"/>
-    <addaction name="action_Export"/>
+    <addaction name="action_NewRecipe"/>
+    <addaction name="action_RemoveRecipe"/>
+    <addaction name="action_ExportRecipe"/>
     <addaction name="separator"/>
     <addaction name="action_Settings"/>
    </widget>
@@ -169,19 +229,39 @@
     <addaction name="action_EnglishUS"/>
    </widget>
    <addaction name="menu_Database"/>
-   <addaction name="menu_Edit"/>
+   <addaction name="menu_Recipe"/>
    <addaction name="menu_Language"/>
    <addaction name="menu_About"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_AboutQt">
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/Icon/Ressources/Icons/qt.svg</normaloff>:/Icon/Ressources/Icons/qt.svg</iconset>
+   </property>
    <property name="text">
     <string>Über Qt...</string>
    </property>
+   <property name="toolTip">
+    <string>Über das Qt Projekt.</string>
+   </property>
+   <property name="statusTip">
+    <string>Über das Qt Projekt.</string>
+   </property>
   </action>
   <action name="action_OpenDatabase">
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/Icon/Ressources/Icons/icons8-database-restore-24.png</normaloff>:/Icon/Ressources/Icons/icons8-database-restore-24.png</iconset>
+   </property>
    <property name="text">
     <string comment="action_OpenDatabase">Öffnen...</string>
+   </property>
+   <property name="toolTip">
+    <string>Eine vorhandene Datenbank öffnen.</string>
+   </property>
+   <property name="statusTip">
+    <string>Eine vorhandene Datenbank öffnen.</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -191,29 +271,72 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/Icon/Ressources/Icons/icons8-database-backup-24.png</normaloff>:/Icon/Ressources/Icons/icons8-database-backup-24.png</iconset>
+   </property>
    <property name="text">
     <string comment="action_CloseDatabase">Schließen...</string>
+   </property>
+   <property name="toolTip">
+    <string>Die aktuelle Datenbank schließen.</string>
+   </property>
+   <property name="statusTip">
+    <string>Die aktuelle Datenbank schließen.</string>
+   </property>
+   <property name="whatsThis">
+    <string/>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
   </action>
   <action name="action_About">
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</iconset>
+   </property>
    <property name="text">
     <string>Über Food Database...</string>
    </property>
+   <property name="toolTip">
+    <string>Über Food Database.</string>
+   </property>
+   <property name="statusTip">
+    <string>Über Food Database.</string>
+   </property>
   </action>
   <action name="action_CreateDatabase">
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/Icon/Ressources/Icons/icons8-add-to-database-24.png</normaloff>:/Icon/Ressources/Icons/icons8-add-to-database-24.png</iconset>
+   </property>
    <property name="text">
     <string comment="action_CreateDatabase">Neu...</string>
+   </property>
+   <property name="toolTip">
+    <string>Eine neue Datenbank anlegen.</string>
+   </property>
+   <property name="statusTip">
+    <string>Eine neue Datenbank anlegen.</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="action_New">
+  <action name="action_NewRecipe">
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/Icon/Ressources/Icons/icons8-new-property-24.png</normaloff>:/Icon/Ressources/Icons/icons8-new-property-24.png</iconset>
+   </property>
    <property name="text">
     <string comment="action_New">Neu...</string>
+   </property>
+   <property name="toolTip">
+    <string>Ein neues Rezept hinzufügen.</string>
+   </property>
+   <property name="statusTip">
+    <string>Ein neues Rezept hinzufügen.</string>
    </property>
   </action>
   <action name="action_German">
@@ -233,6 +356,12 @@
    <property name="iconText">
     <string>de_DE</string>
    </property>
+   <property name="toolTip">
+    <string>Deutsch auswählen.</string>
+   </property>
+   <property name="statusTip">
+    <string>Deutsch auswählen.</string>
+   </property>
   </action>
   <action name="action_EnglishUS">
    <property name="checkable">
@@ -248,26 +377,77 @@
    <property name="iconText">
     <string>en_US</string>
    </property>
+   <property name="toolTip">
+    <string>Englisch (US) auswählen.</string>
+   </property>
+   <property name="statusTip">
+    <string>Englisch (US) auswählen.</string>
+   </property>
   </action>
-  <action name="action_Export">
+  <action name="action_ExportRecipe">
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/Icon/Ressources/Icons/icons8-json-download-24.png</normaloff>:/Icon/Ressources/Icons/icons8-json-download-24.png</iconset>
+   </property>
    <property name="text">
-    <string comment="action_Export">Export...</string>
+    <string comment="action_Export">Export JSON...</string>
    </property>
    <property name="toolTip">
-    <string>Export the selected recipe.</string>
+    <string>Alle markierten Rezepte in ein Rezept-JSON exportieren.</string>
+   </property>
+   <property name="statusTip">
+    <string>Alle markierten Rezepte in ein Rezept-JSON exportieren.</string>
    </property>
   </action>
   <action name="action_WriteDatabase">
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/Icon/Ressources/Icons/icons8-database-export-24.png</normaloff>:/Icon/Ressources/Icons/icons8-database-export-24.png</iconset>
+   </property>
    <property name="text">
     <string comment="action_WriteDatabase">Speichern...</string>
+   </property>
+   <property name="toolTip">
+    <string>Die aktuelle Datenbank speichern.</string>
+   </property>
+   <property name="statusTip">
+    <string>Die aktuelle Datenbank speichern.</string>
+   </property>
+   <property name="whatsThis">
+    <string/>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
    </property>
   </action>
   <action name="action_Settings">
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/Icon/Ressources/Icons/icons8-details-24.png</normaloff>:/Icon/Ressources/Icons/icons8-details-24.png</iconset>
+   </property>
    <property name="text">
     <string>Einstellungen</string>
+   </property>
+   <property name="toolTip">
+    <string>Einstellungen für die Rezepte.</string>
+   </property>
+   <property name="statusTip">
+    <string>Einstellungen für die Rezepte.</string>
+   </property>
+  </action>
+  <action name="action_RemoveRecipe">
+   <property name="icon">
+    <iconset resource="Ressources.qrc">
+     <normaloff>:/Icon/Ressources/Icons/icons8-delete-view-24.png</normaloff>:/Icon/Ressources/Icons/icons8-delete-view-24.png</iconset>
+   </property>
+   <property name="text">
+    <string>Löschen...</string>
+   </property>
+   <property name="toolTip">
+    <string>Alle markierten Rezepte entfernen.</string>
+   </property>
+   <property name="statusTip">
+    <string>Alle markierten Rezepte entfernen.</string>
    </property>
   </action>
  </widget>

@@ -19,10 +19,9 @@ void CategoryList::addItems(const QStringList &labels)
 
 void CategoryList::on_pushButton_AddRecipeCategory_clicked()
 {
-
-    QInputDialog* Dialog = new QInputDialog(this, Qt::MSWindowsFixedSizeDialogHint | Qt::WindowTitleHint);
-    Dialog->setOkButtonText(tr("OK"));
-    Dialog->setCancelButtonText(tr("Abbrechen"));
+    QInputDialog* Dialog = new QInputDialog(this, Qt::MSWindowsFixedSizeDialogHint | Qt::CustomizeWindowHint);
+    Dialog->setOkButtonText(tr("Speichern"));
+    Dialog->setCancelButtonText(tr("Verwerfen"));
     Dialog->setLabelText(tr("Kategorie hinzufügen:"));
     Dialog->setTextEchoMode(QLineEdit::Normal);
     int Status = Dialog->exec();

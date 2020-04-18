@@ -3,7 +3,6 @@
 NumbersOnlyDelegate::NumbersOnlyDelegate(QValidator* Validator, QObject* parent) : QStyledItemDelegate(parent),
                                                                                    _mValidator(Validator)
 {
-
 }
 
 QWidget* NumbersOnlyDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const

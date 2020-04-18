@@ -40,15 +40,41 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QPushButton" name="pushButton_AddRecipeCategory">
+        <property name="toolTip">
+         <string>Eine neue Kategorie hinzufügen.</string>
+        </property>
         <property name="text">
-         <string>Hinzufügen</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../Ressources.qrc">
+          <normaloff>:/Icon/Ressources/Icons/icons8-add-property-24.png</normaloff>:/Icon/Ressources/Icons/icons8-add-property-24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>36</width>
+          <height>36</height>
+         </size>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_RemoveRecipeCategory">
+        <property name="toolTip">
+         <string>Die ausgewählte Kategorie entfernen.</string>
+        </property>
         <property name="text">
-         <string>Entfernen</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../Ressources.qrc">
+          <normaloff>:/Icon/Ressources/Icons/icons8-remove-property-24.png</normaloff>:/Icon/Ressources/Icons/icons8-remove-property-24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>36</width>
+          <height>36</height>
+         </size>
         </property>
        </widget>
       </item>
@@ -57,6 +83,8 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../Ressources.qrc"/>
+ </resources>
  <connections/>
 </ui>

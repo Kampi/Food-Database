@@ -1,8 +1,9 @@
 #ifndef RECIPE_H
 #define RECIPE_H
 
-#include <QDebug>
 #include <QList>
+#include <QDebug>
+#include <QTextStream>
 
 #include "ingredient.h"
 

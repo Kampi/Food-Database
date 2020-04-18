@@ -3,7 +3,6 @@
 
 #include <QMap>
 #include <QLabel>
-#include <QDebug>
 #include <QKeyEvent>
 #include <QMainWindow>
 #include <QFileDialog>
@@ -23,8 +22,10 @@
  *      - Change column width in ingredient model
  *      - Implement column resize after editing for create recipe window
  *      - Implement sorting for recipes?
- *      - Sort categories
- *      - Add hour/minutes/seconds format to time spinboxes
+ *      - Tab flow for recipe table
+ *      - Set value for ingredient cost to 0 after deleting
+ *      - Validator for amount field in ingredient table
+ *		- Add search function
  */
 
 QT_BEGIN_NAMESPACE
@@ -47,9 +48,9 @@ class MainWindow : public QMainWindow
         void keyPressEvent(QKeyEvent* event) override;
 
     public slots:
-        void on_dialog_CreateRecipe_finished(int result);
-        void on_dialog_EditRecipe_finished(int result);
-        void on_dialog_Settings_finished(int result);
+        void CreateRecipe_finished(int result);
+        void EditRecipe_finished(int result);
+        void Settings_finished(int result);
         void on_tableView_Recipes_doubleClicked(const QModelIndex& index);
 
     public:
@@ -61,13 +62,14 @@ class MainWindow : public QMainWindow
         void on_action_OpenDatabase_triggered();
         void on_action_CloseDatabase_triggered();
         void on_action_WriteDatabase_triggered();
-        void on_action_New_triggered();
-        void on_action_Export_triggered();
+        void on_action_NewRecipe_triggered();
+        void on_action_RemoveRecipe_triggered();
+        void on_action_ExportRecipe_triggered();
         void on_action_Settings_triggered();
         void on_action_About_triggered();
         void on_action_AboutQt_triggered();
-        void on_pushButton_New_clicked();
-        void on_pushButton_Export_clicked();
+        void on_pushButton_NewRecipe_clicked();
+        void on_pushButton_ExportRecipe_clicked();
         void on_pushButton_RemoveRecipe_clicked();
 
     private:
@@ -90,6 +92,7 @@ class MainWindow : public QMainWindow
         void _saveSettings(void);
         bool _loadSettings(void);
         void _createRecipe(void);
+        void _removeRecipe(void);
         void _editRecipe(int Index);
         void _createDatabase(void);
         void _openDatabase(void);
@@ -100,5 +103,6 @@ class MainWindow : public QMainWindow
         void _exportRecipe(void);
         void _setLanguageMenu(void);
         void _switchLanguage(QString Language);
+        void _addCategory(QStringList Settings, QString Name);
 };
 #endif // MAINWINDOW_H

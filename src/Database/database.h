@@ -8,8 +8,10 @@
 #include "recipe.h"
 #include "ingredient.h"
 
-class Database
+class Database : public QObject
 {
+    Q_OBJECT
+
     public:
         Database();
 

@@ -2,7 +2,6 @@
 #define INGREDIENTMODEL_H
 
 #include <QSize>
-#include <QDebug>
 #include <QAbstractTableModel>
 
 #include "ingredient.h"
