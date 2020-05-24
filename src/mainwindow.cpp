@@ -20,10 +20,7 @@ MainWindow::MainWindow(QWidget* parent) :   QMainWindow(parent),
         _mUi->tableView_Recipes->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
         _mUi->tableView_Recipes->horizontalHeader()->setSectionsClickable(false);
 
-        _mUi->statusbar->addPermanentWidget(&_mStatusLabel);
-        _mUi->statusbar->layout()->setContentsMargins(10,0,0,0);
-        _mUi->statusbar->addPermanentWidget(&_mDatabaseState);
-        _mUi->statusbar->setStyleSheet("margin-right: 10px;");
+        _mUi->statusbar->addPermanentWidget(_mDatabaseState);
 
         // Create some dummy recipes
         QList<Ingredient> Ingredients({Ingredient(tr("Erste"), tr("Notiz"), 1, "kg", 1.55, _mCategories.value("Ingredients", QStringList("")).at(0)), Ingredient(tr("Zweite"), tr("Mehr"), 1, "l", 1.0, _mCategories.value("Ingredients", QStringList("")).at(1))});
@@ -289,14 +286,14 @@ void MainWindow::_editRecipe(int Index)
 void MainWindow::_createDatabase(void)
 {
     QString Path = QFileDialog::getSaveFileName(this, tr("Datenbank anlegen"), tr("Rezepte"), ("SQLite (*.sqlite3)"));
-    if(Path.length() > 0)
+    if(!Path.isEmpty())
     {
         if(_mDatabase.Create(Path))
         {
             _mIsEdited = true;
             _mUi->action_CloseDatabase->setEnabled(true);
             _mUi->action_OpenDatabase->setEnabled(false);
-            _mStatus = Path;
+            _mUi->statusbar->showMessage(Path);
         }
         else
         {
@@ -317,7 +314,7 @@ void MainWindow::_openDatabase(void)
         {
             _mUi->action_CloseDatabase->setEnabled(true);
             _mUi->action_OpenDatabase->setEnabled(false);
-            _mStatus = Path;
+            _mUi->statusbar->showMessage(Path);
             _readRecipesFromDatabase();
         }
         else
@@ -345,7 +342,6 @@ void MainWindow::_closeDatabase(void)
             }
         }
 
-        _mStatus = "";
         _mDatabase.Close();
 
         _mUi->action_CloseDatabase->setEnabled(false);
@@ -403,9 +399,8 @@ void MainWindow::_updateStatusbar(void)
     }
 
     QPixmap Pixmap;
-    _mStatusLabel.setText(_mStatus);
     Pixmap.load(FileName);
-    _mDatabaseState.setPixmap(Pixmap);
+    _mDatabaseState->setPixmap(Pixmap);
 }
 
 void MainWindow::_exportRecipe(void)

@@ -1,6 +1,6 @@
 VERSION_MAJOR = 1
 VERSION_MINOR = 3
-VERSION_BUILD = 0
+VERSION_BUILD = 1
 
 QT       += core gui sql
 
@@ -115,13 +115,12 @@ CONFIG(debug, debug|release) {
 }
 
 # Deployment rules
-DEPLOY_COMMAND = windeployqt
+DEPLOY_COMMAND = $$(QTDIR)/bin/windeployqt
 DEPLOY_OPTIONS = "--no-system-d3d-compiler --no-opengl --no-angle --no-opengl-sw"
+DEPLOY_TARGET = $$shell_quote($$shell_path($${DESTDIR}/$${TARGET}.exe))
 CONFIG(debug, debug|release) {
-    DEPLOY_TARGET = $$shell_quote($$shell_path($${DESTDIR}/$${TARGET}.exe))
     DEPLOY_OPTIONS += "--debug"
 } else {
-    DEPLOY_TARGET = $$shell_quote($$shell_path($${DESTDIR}/$${TARGET}.exe))
     DEPLOY_OPTIONS += "--release"
 }
 
