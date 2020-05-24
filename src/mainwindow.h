@@ -74,13 +74,11 @@ class MainWindow : public QMainWindow
 
     private:
         Ui::MainWindow* _mUi;
+        QLabel* _mDatabaseState;
 
         QList<Recipe> _mRecipes;
-        QLabel _mDatabaseState;
-        QLabel _mStatusLabel;
         QTranslator _mTranslator;
         QMap<QString, QStringList> _mCategories;
-        QString _mStatus;
 
         RecipesModel* _mRecipesModel;
 
