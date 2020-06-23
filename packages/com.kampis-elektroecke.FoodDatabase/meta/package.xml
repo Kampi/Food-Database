@@ -7,4 +7,6 @@
     <Licenses>
         <License name="License Agreement" file="LICENSE" />
     </Licenses>
+	<Script>installscript.qs</Script>
+	<Default>true</Default>
 </Package>

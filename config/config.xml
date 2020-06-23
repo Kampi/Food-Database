@@ -2,8 +2,10 @@
 <Installer>
     <Name>Food Database</Name>
     <Version>1.1.0</Version>
-    <Title>Food Database Installer</Title>
+    <Title>Food Database</Title>
     <Publisher>https://www.kampis-elektroecke.de</Publisher>
     <StartMenuDir>Kampis-Elektroecke</StartMenuDir>
     <TargetDir>@HomeDir@/Food Database</TargetDir>
+	<InstallerApplicationIcon>icons8-food-96</InstallerApplicationIcon>
+	<WizardStyle>Modern</WizardStyle>
 </Installer>
