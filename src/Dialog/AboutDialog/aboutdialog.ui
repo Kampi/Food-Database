@@ -41,7 +41,7 @@ QTextBrowser {
 	border: 0px;
 }</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="buttonBox_Close">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -68,8 +68,8 @@ QTextBrowser {
     <rect>
      <x>10</x>
      <y>0</y>
-     <width>381</width>
-     <height>111</height>
+     <width>380</width>
+     <height>110</height>
     </rect>
    </property>
    <property name="toolTip">
@@ -83,8 +83,8 @@ QTextBrowser {
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>361</width>
-      <height>81</height>
+      <width>360</width>
+      <height>80</height>
      </rect>
     </property>
     <property name="statusTip">
@@ -100,8 +100,8 @@ QTextBrowser {
     <rect>
      <x>10</x>
      <y>120</y>
-     <width>381</width>
-     <height>221</height>
+     <width>380</width>
+     <height>220</height>
     </rect>
    </property>
    <property name="toolTip">
@@ -115,8 +115,8 @@ QTextBrowser {
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>361</width>
-      <height>191</height>
+      <width>360</width>
+      <height>190</height>
      </rect>
     </property>
     <property name="statusTip">
@@ -136,7 +136,7 @@ QTextBrowser {
  </resources>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>buttonBox_Close</sender>
    <signal>rejected()</signal>
    <receiver>AboutDialog</receiver>
    <slot>reject()</slot>

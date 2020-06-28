@@ -24,10 +24,9 @@ void CategoryList::on_pushButton_AddRecipeCategory_clicked()
     Dialog->setCancelButtonText(tr("Verwerfen"));
     Dialog->setLabelText(tr("Kategorie hinzufügen:"));
     Dialog->setTextEchoMode(QLineEdit::Normal);
-    int Status = Dialog->exec();
 
     QString Text = Dialog->textValue();
-    if(Status && !Text.isEmpty())
+    if(Dialog->exec() && !Text.isEmpty())
     {
         _mUi->listWidget_RecipeCategories->addItem(Text);
         emit itemAdded(Text);

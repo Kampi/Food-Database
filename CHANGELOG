@@ -13,21 +13,24 @@
 					- Fix wrong 'Export successful' message when recipe export was aborted
 
 				recipeexport:
-				- Fix wrong return value in 'Export' function when the filename has length 0	
+					- Fix wrong return value in 'Export' function when the filename has length 0
 
 				recipedialog:
-				- Replace 'QSpinBox' for cooking time with 'QTime'
+					- Replace 'QSpinBox' for cooking time with 'QTime'
+					- Disable double click for ingredients table in add and edit recipe dialog
 
 				aboutdialog:
-				- Replace 'QTextEdit' with 'QTextBrowser'
-				- Update content
+					- Replace 'QTextEdit' with 'QTextBrowser'
+					- Update content
 
 				Misc:
-				- Add more ingredient categories to settings file
-				- Update style
-				- Add more icons
-				- Update 'Settings.ini'
-				- Update and StatusTips Tooltips
-				- Update translations
-				- Update README and Changelog
-				- Create a new release
+					- Add more ingredient categories to settings file
+					- Update style
+					- Add more icons
+					- Update 'Settings.ini'
+					- Update statustips and tooltips
+					- Update translations
+					- Update README and Changelog
+					- Create a new release
+					- Update installer
+					- Update Qt project file

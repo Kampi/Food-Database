@@ -33,15 +33,10 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent),
     License.open(QFile::ReadOnly);
     _mUi->textBrowser_License->setPlainText(QTextStream(&License).readAll());
 
-    _mUi->buttonBox->button(QDialogButtonBox::Close)->setText(tr("Schließen"));
+    _mUi->buttonBox_Close->button(QDialogButtonBox::Close)->setText(tr("Schließen"));
 }
 
 AboutDialog::~AboutDialog()
 {
     delete _mUi;
-}
-
-void AboutDialog::on_textBrowser_About_anchorClicked(const QUrl &arg1)
-{
-    QDesktopServices::openUrl(arg1);
 }

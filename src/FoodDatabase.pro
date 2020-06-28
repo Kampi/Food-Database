@@ -1,6 +1,6 @@
 VERSION_MAJOR = 1
 VERSION_MINOR = 3
-VERSION_BUILD = 1
+VERSION_BUILD = 2
 
 QT       += core gui sql
 
@@ -8,7 +8,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11 file_copies
 
-COPIES += languageFiles settingsFile
+COPIES += languageFiles settingsFile packageSetup configSetup
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -17,7 +17,7 @@ COPIES += languageFiles settingsFile
 DEFINES += QT_DEPRECATED_WARNINGS \
            "VERSION_MAJOR=$$VERSION_MAJOR" \
            "VERSION_MINOR=$$VERSION_MINOR" \
-           "VERSION_BUILD=$$VERSION_BUILD"
+           "VERSION_BUILD=$$VERSION_BUILD" \
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -106,13 +106,29 @@ CONFIG(debug, debug|release) {
     languageFiles.path = $${DESTDIR}/Languages
 }
 
-# Copy Settings files
+# Copy settings files
 settingsFile.files = $$shell_quote(Settings.ini)
 CONFIG(debug, debug|release) {
     settingsFile.path = $${OUT_PWD}/debug
 } else {
     settingsFile.path = $${DESTDIR}
 }
+
+# Copy package and configuration files
+CONFIG(debug, debug|release) {
+    packageSetup.path = $${OUT_PWD}/debug
+    configSetup.path = $${OUT_PWD}/debug
+} else {
+    packageSetup.path = $${DESTDIR}
+    configSetup.path = ../config
+}
+
+packageSetup.files += $$shell_quote(Ressources/Icons/icons8-food-96.ico) \
+                      $$shell_quote(Ressources/Icons/icons8-food-96.png)
+
+configSetup.files += $$shell_quote(Ressources/Icons/icons8-food-96.ico) \
+                     $$shell_quote(Ressources/Icons/icons8-food-96.png)
+
 
 # Deployment rules
 DEPLOY_COMMAND = $$(QTDIR)/bin/windeployqt
