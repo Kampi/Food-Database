@@ -1,6 +1,6 @@
 VERSION_MAJOR = 1
 VERSION_MINOR = 3
-VERSION_BUILD = 1
+VERSION_BUILD = 2
 
 QT       += core gui sql
 

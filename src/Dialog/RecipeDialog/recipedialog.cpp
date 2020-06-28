@@ -48,6 +48,7 @@ RecipeDialog::RecipeDialog(QMap<QString, QStringList> Categories, Recipe NewReci
     _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_UNIT, _mUnitComboBox);
     _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_AMOUNT, _mNumbersOnlyDelegate);
     _mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_PRICE, _mNumbersOnlyDelegate);
+    _mUi->tableView_Ingredients->setEditTriggers(QAbstractItemView::AllEditTriggers);
 
     // Add spinbox suffix
     _mUi->spinBox_CookingTime->setSuffix(" " + tr("Minuten"));
