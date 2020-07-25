@@ -25,11 +25,10 @@ void CategoryList::on_pushButton_AddRecipeCategory_clicked()
     Dialog->setLabelText(tr("Kategorie hinzufügen:"));
     Dialog->setTextEchoMode(QLineEdit::Normal);
 
-    QString Text = Dialog->textValue();
-    if(Dialog->exec() && !Text.isEmpty())
+    if(Dialog->exec() && !Dialog->textValue().isEmpty())
     {
-        _mUi->listWidget_RecipeCategories->addItem(Text);
-        emit itemAdded(Text);
+        _mUi->listWidget_RecipeCategories->addItem(Dialog->textValue());
+        emit itemAdded(Dialog->textValue());
     }
 }
 

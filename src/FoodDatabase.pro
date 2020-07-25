@@ -1,6 +1,6 @@
 VERSION_MAJOR = 1
 VERSION_MINOR = 3
-VERSION_BUILD = 2
+VERSION_BUILD = 3
 
 QT       += core gui sql
 
@@ -83,7 +83,7 @@ FORMS += \
 
 TRANSLATIONS += \
     Languages/FoodDatabase_de_DE.ts \
-    Languages/FoodDatabase_en_US.ts
+    Languages/FoodDatabase_en_US.ts \
 
 # Target version
 VERSION = $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_BUILD}
@@ -99,7 +99,7 @@ CONFIG(debug, debug|release) {
 }
 
 # Copy language files
-languageFiles.files = $$files($$PWD/Languages/*.qm)
+languageFiles.files = $$files($${PWD}/Languages/*.qm)
 CONFIG(debug, debug|release) {
     languageFiles.path = $${OUT_PWD}/debug/Languages
 } else {
@@ -124,11 +124,10 @@ CONFIG(debug, debug|release) {
 }
 
 packageSetup.files += $$shell_quote(Ressources/Icons/icons8-food-96.ico) \
-                      $$shell_quote(Ressources/Icons/icons8-food-96.png)
+                      $$shell_quote(Ressources/Icons/icons8-food-96.png) \
 
 configSetup.files += $$shell_quote(Ressources/Icons/icons8-food-96.ico) \
-                     $$shell_quote(Ressources/Icons/icons8-food-96.png)
-
+                     $$shell_quote(Ressources/Icons/icons8-food-96.png) \
 
 # Deployment rules
 DEPLOY_COMMAND = $$(QTDIR)/bin/windeployqt
