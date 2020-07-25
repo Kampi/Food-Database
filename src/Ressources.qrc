@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/Icon">
+    <qresource prefix="/Icons">
         <file>Ressources/Icons/icons8-add-property-64.png</file>
         <file>Ressources/Icons/icons8-remove-property-64.png</file>
         <file>Ressources/Icons/qt.svg</file>

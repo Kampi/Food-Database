@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../Ressources.qrc">
-    <normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</iconset>
+    <normaloff>:/Icons/Ressources/Icons/icons8-food-24.png</normaloff>:/Icons/Ressources/Icons/icons8-food-24.png</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -116,7 +116,7 @@ QGroupBox::title {
          </property>
          <property name="icon">
           <iconset resource="../../Ressources.qrc">
-           <normaloff>:/Icon/Ressources/Icons/icons8-add-property-64.png</normaloff>:/Icon/Ressources/Icons/icons8-add-property-64.png</iconset>
+           <normaloff>:/Icons/Ressources/Icons/icons8-add-property-64.png</normaloff>:/Icons/Ressources/Icons/icons8-add-property-64.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -145,7 +145,7 @@ QGroupBox::title {
          </property>
          <property name="icon">
           <iconset resource="../../Ressources.qrc">
-           <normaloff>:/Icon/Ressources/Icons/icons8-remove-property-64.png</normaloff>:/Icon/Ressources/Icons/icons8-remove-property-64.png</iconset>
+           <normaloff>:/Icons/Ressources/Icons/icons8-remove-property-64.png</normaloff>:/Icons/Ressources/Icons/icons8-remove-property-64.png</iconset>
          </property>
          <property name="iconSize">
           <size>

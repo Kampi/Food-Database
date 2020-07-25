@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget* parent) :   QMainWindow(parent),
         _mUi->tableView_Recipes->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
         _mUi->tableView_Recipes->horizontalHeader()->setSectionsClickable(false);
 
-        _mUi->statusbar->addPermanentWidget(_mDatabaseState);
+        _mUi->statusBar->addPermanentWidget(_mDatabaseState);
 
         // Create some dummy recipes
         QList<Ingredient> Ingredients({Ingredient(tr("Erste"), tr("Notiz"), 1, "kg", 1.55, _mCategories.value("Ingredients", QStringList("")).at(0)), Ingredient(tr("Zweite"), tr("Mehr"), 1, "l", 1.0, _mCategories.value("Ingredients", QStringList("")).at(1))});
@@ -293,7 +293,7 @@ void MainWindow::_createDatabase(void)
             _mIsEdited = true;
             _mUi->action_CloseDatabase->setEnabled(true);
             _mUi->action_OpenDatabase->setEnabled(false);
-            _mUi->statusbar->showMessage(Path);
+            _mUi->statusBar->showMessage(Path);
         }
         else
         {
@@ -314,7 +314,7 @@ void MainWindow::_openDatabase(void)
         {
             _mUi->action_CloseDatabase->setEnabled(true);
             _mUi->action_OpenDatabase->setEnabled(false);
-            _mUi->statusbar->showMessage(Path);
+            _mUi->statusBar->showMessage(Path);
             _readRecipesFromDatabase();
         }
         else
@@ -391,11 +391,11 @@ void MainWindow::_updateStatusbar(void)
 
     if(_mDatabase.IsOpen())
     {
-        FileName = ":/Icon/Ressources/Icons/icons8-connected-24.png";
+        FileName = ":/Icons/Ressources/Icons/icons8-connected-24.png";
     }
     else
     {
-        FileName = ":/Icon/Ressources/Icons/icons8-disconnected-24.png";
+        FileName = ":/Icons/Ressources/Icons/icons8-disconnected-24.png";
     }
 
     QPixmap Pixmap;

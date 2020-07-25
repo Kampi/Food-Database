@@ -48,7 +48,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../Ressources.qrc">
-          <normaloff>:/Icon/Ressources/Icons/icons8-add-property-24.png</normaloff>:/Icon/Ressources/Icons/icons8-add-property-24.png</iconset>
+          <normaloff>:/Icons/Ressources/Icons/icons8-add-property-24.png</normaloff>:/Icons/Ressources/Icons/icons8-add-property-24.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -68,7 +68,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../Ressources.qrc">
-          <normaloff>:/Icon/Ressources/Icons/icons8-remove-property-24.png</normaloff>:/Icon/Ressources/Icons/icons8-remove-property-24.png</iconset>
+          <normaloff>:/Icons/Ressources/Icons/icons8-remove-property-24.png</normaloff>:/Icons/Ressources/Icons/icons8-remove-property-24.png</iconset>
         </property>
         <property name="iconSize">
          <size>

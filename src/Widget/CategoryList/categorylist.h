@@ -5,6 +5,10 @@
 #include <QWidget>
 #include <QInputDialog>
 
+#ifdef QT_DEBUG
+    #include <QDebug>
+#endif
+
 namespace Ui
 {
     class CategoryList;

@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="Ressources.qrc">
-    <normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</iconset>
+    <normaloff>:/Icons/Ressources/Icons/icons8-food-24.png</normaloff>:/Icons/Ressources/Icons/icons8-food-24.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
@@ -109,7 +109,7 @@ QGroupBox::title {
           </property>
           <property name="icon">
            <iconset resource="Ressources.qrc">
-            <normaloff>:/Icon/Ressources/Icons/icons8-new-property-24.png</normaloff>:/Icon/Ressources/Icons/icons8-new-property-24.png</iconset>
+            <normaloff>:/Icons/Ressources/Icons/icons8-new-property-24.png</normaloff>:/Icons/Ressources/Icons/icons8-new-property-24.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -138,7 +138,7 @@ QGroupBox::title {
           </property>
           <property name="icon">
            <iconset resource="Ressources.qrc">
-            <normaloff>:/Icon/Ressources/Icons/icons8-delete-view-24.png</normaloff>:/Icon/Ressources/Icons/icons8-delete-view-24.png</iconset>
+            <normaloff>:/Icons/Ressources/Icons/icons8-delete-view-24.png</normaloff>:/Icons/Ressources/Icons/icons8-delete-view-24.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -164,7 +164,7 @@ QGroupBox::title {
           </property>
           <property name="icon">
            <iconset resource="Ressources.qrc">
-            <normaloff>:/Icon/Ressources/Icons/icons8-json-download-24.png</normaloff>:/Icon/Ressources/Icons/icons8-json-download-24.png</iconset>
+            <normaloff>:/Icons/Ressources/Icons/icons8-json-download-24.png</normaloff>:/Icons/Ressources/Icons/icons8-json-download-24.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -233,11 +233,11 @@ QGroupBox::title {
    <addaction name="menu_Language"/>
    <addaction name="menu_About"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="action_AboutQt">
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/Icon/Ressources/Icons/qt.svg</normaloff>:/Icon/Ressources/Icons/qt.svg</iconset>
+     <normaloff>:/Icons/Ressources/Icons/qt.svg</normaloff>:/Icons/Ressources/Icons/qt.svg</iconset>
    </property>
    <property name="text">
     <string>Über Qt...</string>
@@ -252,7 +252,7 @@ QGroupBox::title {
   <action name="action_OpenDatabase">
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/Icon/Ressources/Icons/icons8-database-restore-24.png</normaloff>:/Icon/Ressources/Icons/icons8-database-restore-24.png</iconset>
+     <normaloff>:/Icons/Ressources/Icons/icons8-database-restore-24.png</normaloff>:/Icons/Ressources/Icons/icons8-database-restore-24.png</iconset>
    </property>
    <property name="text">
     <string comment="action_OpenDatabase">Öffnen...</string>
@@ -273,7 +273,7 @@ QGroupBox::title {
    </property>
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/Icon/Ressources/Icons/icons8-database-backup-24.png</normaloff>:/Icon/Ressources/Icons/icons8-database-backup-24.png</iconset>
+     <normaloff>:/Icons/Ressources/Icons/icons8-database-backup-24.png</normaloff>:/Icons/Ressources/Icons/icons8-database-backup-24.png</iconset>
    </property>
    <property name="text">
     <string comment="action_CloseDatabase">Schließen...</string>
@@ -294,7 +294,7 @@ QGroupBox::title {
   <action name="action_About">
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</normaloff>:/Icon/Ressources/Icons/icons8-food-24.png</iconset>
+     <normaloff>:/Icons/Ressources/Icons/icons8-food-24.png</normaloff>:/Icons/Ressources/Icons/icons8-food-24.png</iconset>
    </property>
    <property name="text">
     <string>Über Food Database...</string>
@@ -309,7 +309,7 @@ QGroupBox::title {
   <action name="action_CreateDatabase">
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/Icon/Ressources/Icons/icons8-add-to-database-24.png</normaloff>:/Icon/Ressources/Icons/icons8-add-to-database-24.png</iconset>
+     <normaloff>:/Icons/Ressources/Icons/icons8-add-to-database-24.png</normaloff>:/Icons/Ressources/Icons/icons8-add-to-database-24.png</iconset>
    </property>
    <property name="text">
     <string comment="action_CreateDatabase">Neu...</string>
@@ -327,7 +327,7 @@ QGroupBox::title {
   <action name="action_NewRecipe">
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/Icon/Ressources/Icons/icons8-new-property-24.png</normaloff>:/Icon/Ressources/Icons/icons8-new-property-24.png</iconset>
+     <normaloff>:/Icons/Ressources/Icons/icons8-new-property-24.png</normaloff>:/Icons/Ressources/Icons/icons8-new-property-24.png</iconset>
    </property>
    <property name="text">
     <string comment="action_New">Neu...</string>
@@ -387,7 +387,7 @@ QGroupBox::title {
   <action name="action_ExportRecipe">
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/Icon/Ressources/Icons/icons8-json-download-24.png</normaloff>:/Icon/Ressources/Icons/icons8-json-download-24.png</iconset>
+     <normaloff>:/Icons/Ressources/Icons/icons8-json-download-24.png</normaloff>:/Icons/Ressources/Icons/icons8-json-download-24.png</iconset>
    </property>
    <property name="text">
     <string comment="action_Export">Export JSON...</string>
@@ -402,7 +402,7 @@ QGroupBox::title {
   <action name="action_WriteDatabase">
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/Icon/Ressources/Icons/icons8-database-export-24.png</normaloff>:/Icon/Ressources/Icons/icons8-database-export-24.png</iconset>
+     <normaloff>:/Icons/Ressources/Icons/icons8-database-export-24.png</normaloff>:/Icons/Ressources/Icons/icons8-database-export-24.png</iconset>
    </property>
    <property name="text">
     <string comment="action_WriteDatabase">Speichern...</string>
@@ -423,7 +423,7 @@ QGroupBox::title {
   <action name="action_Settings">
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/Icon/Ressources/Icons/icons8-details-24.png</normaloff>:/Icon/Ressources/Icons/icons8-details-24.png</iconset>
+     <normaloff>:/Icons/Ressources/Icons/icons8-details-24.png</normaloff>:/Icons/Ressources/Icons/icons8-details-24.png</iconset>
    </property>
    <property name="text">
     <string>Einstellungen</string>
@@ -438,7 +438,7 @@ QGroupBox::title {
   <action name="action_RemoveRecipe">
    <property name="icon">
     <iconset resource="Ressources.qrc">
-     <normaloff>:/Icon/Ressources/Icons/icons8-delete-view-24.png</normaloff>:/Icon/Ressources/Icons/icons8-delete-view-24.png</iconset>
+     <normaloff>:/Icons/Ressources/Icons/icons8-delete-view-24.png</normaloff>:/Icons/Ressources/Icons/icons8-delete-view-24.png</iconset>
    </property>
    <property name="text">
     <string>Löschen...</string>
