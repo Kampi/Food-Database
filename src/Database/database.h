@@ -3,7 +3,6 @@
 
 #include <QtSql>
 #include <QString>
-#include <QFileDialog>
 
 #include "recipe.h"
 #include "ingredient.h"

@@ -182,9 +182,11 @@ void MainWindow::changeEvent(QEvent* event)
     QMainWindow::changeEvent(event);
 }
 
-void MainWindow::closeEvent(QCloseEvent*)
+void MainWindow::closeEvent(QCloseEvent* event)
 {
     this->_closeDatabase();
+
+    QMainWindow::closeEvent(event);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
@@ -193,6 +195,8 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
     {
         this->close();
     }
+
+    QMainWindow::keyPressEvent(event);
 }
 
 void MainWindow::_saveSettings(void)
@@ -285,7 +289,7 @@ void MainWindow::_editRecipe(int Index)
 
 void MainWindow::_createDatabase(void)
 {
-    QString Path = QFileDialog::getSaveFileName(this, tr("Datenbank anlegen"), tr("Rezepte"), ("SQLite (*.sqlite3)"));
+    QString Path = QFileDialog::getSaveFileName(this, tr("Datenbank anlegen"), QDir::homePath(), ("SQLite (*.sqlite3)"));
     if(!Path.isEmpty())
     {
         if(_mDatabase.Create(Path))
@@ -307,7 +311,7 @@ void MainWindow::_createDatabase(void)
 
 void MainWindow::_openDatabase(void)
 {
-    QString Path = QFileDialog::getOpenFileName(this, tr("Datenbank öffnen"), tr("Rezepte"), ("SQLite (*.sqlite3)"));
+    QString Path = QFileDialog::getOpenFileName(this, tr("Datenbank öffnen"), QDir::homePath(), ("SQLite (*.sqlite3)"));
     if(Path.length() > 0)
     {
         if(_mDatabase.Open(Path))
@@ -409,7 +413,7 @@ void MainWindow::_exportRecipe(void)
 
     if(Selection->hasSelection() & !Selection->selectedRows().empty())
     {
-        QString File = QFileDialog::getSaveFileName(this, tr("Speicherort wählen"), tr("Rezepte"), ("JSON (*.json)"));
+        QString File = QFileDialog::getSaveFileName(this, tr("Speicherort wählen"), QDir::homePath(), ("JSON (*.json)"));
         if(File.length() > 0)
         {
             int First = Selection->selectedRows().first().row();

@@ -19,8 +19,6 @@ QVariant IngredientModel::data(const QModelIndex& index, int role) const
 {
     if((role == Qt::DisplayRole) || (role == Qt::EditRole))
     {
-        QLocale locale = QLocale().system();
-
         switch(index.column())
         {
             case INGREDIENTSMODEL_TABLE_NAME:
@@ -29,7 +27,7 @@ QVariant IngredientModel::data(const QModelIndex& index, int role) const
             }
             case INGREDIENTSMODEL_TABLE_AMOUNT:
             {
-                return QString("%1").arg(locale.toString(_mData.at(index.row()).Amount()));
+                return QString("%1").arg(QLocale().system().toString(_mData.at(index.row()).Amount()));
             }
             case INGREDIENTSMODEL_TABLE_UNIT:
             {
@@ -37,7 +35,7 @@ QVariant IngredientModel::data(const QModelIndex& index, int role) const
             }
             case INGREDIENTSMODEL_TABLE_PRICE:
             {
-                return QString("%1 " + tr("€")).arg(locale.toString(_mData.at(index.row()).Price()));
+                return QString("%1 " + tr("€")).arg(QLocale().system().toString(_mData.at(index.row()).Price()));
             }
             case INGREDIENTSMODEL_TABLE_SECTION:
             {

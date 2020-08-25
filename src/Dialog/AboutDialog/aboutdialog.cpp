@@ -4,7 +4,7 @@
 AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent),
                                             _mUi(new Ui::AboutDialog)
 {
-    _mUi->setupUi(this);
+    this->_mUi->setupUi(this);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     this->setWindowFlags(this->windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
 
@@ -26,17 +26,17 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent),
         Text.replace("%%" + QString("%1").arg(i), Args.at(i));
     }
 
-    _mUi->textBrowser_AboutAuthor->setToolTip(QString(tr("Über") + " " + Application));
-    _mUi->textBrowser_AboutAuthor->setHtml(Text);
+    this->_mUi->textBrowser_AboutAuthor->setToolTip(QString(tr("Über") + " " + Application));
+    this->_mUi->textBrowser_AboutAuthor->setHtml(Text);
 
     QFile License(":/About/Ressources/About/LICENSE");
     License.open(QFile::ReadOnly);
-    _mUi->textBrowser_License->setPlainText(QTextStream(&License).readAll());
+    this->_mUi->textBrowser_License->setPlainText(QTextStream(&License).readAll());
 
-    _mUi->buttonBox_Close->button(QDialogButtonBox::Close)->setText(tr("Schließen"));
+    this->_mUi->buttonBox_Close->button(QDialogButtonBox::Close)->setText(tr("Schließen"));
 }
 
 AboutDialog::~AboutDialog()
 {
-    delete _mUi;
+    delete this->_mUi;
 }
