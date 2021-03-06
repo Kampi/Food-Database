@@ -228,9 +228,15 @@ QGroupBox::title {
     <addaction name="action_German"/>
     <addaction name="action_EnglishUS"/>
    </widget>
+   <widget class="QMenu" name="menu_Search">
+    <property name="title">
+     <string>Suchen</string>
+    </property>
+   </widget>
    <addaction name="menu_Database"/>
    <addaction name="menu_Recipe"/>
    <addaction name="menu_Language"/>
+   <addaction name="menu_Search"/>
    <addaction name="menu_About"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>

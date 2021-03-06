@@ -9,6 +9,10 @@
 
 #include "recipe.h"
 
+#ifdef QT_DEBUG
+    #include <QtDebug>
+#endif
+
 class RecipeExport
 {
     public:

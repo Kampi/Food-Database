@@ -1,6 +1,11 @@
 #include "ingredient.h"
 
-Ingredient::Ingredient(void)
+Ingredient::Ingredient(void) :  _mName(""),
+                                _mNote(""),
+                                _mUnit(""),
+                                _mSection(""),
+                                _mAmount(0),
+                                _mPrice(0.0)
 {
 }
 
@@ -73,17 +78,19 @@ void Ingredient::setName(const QString& Name)
     _mName = Name;
 }
 
-QDebug operator<<(QDebug Stream, const Ingredient& Ingredient)
-{
-    Stream << "Name: " << Ingredient._mName << endl;
-    Stream << "Note: " << Ingredient._mNote << endl;
-    Stream << "Amount: " << Ingredient._mAmount << endl;
-    Stream << "Unit: " << Ingredient._mUnit << endl;
-    Stream << "Price: " << Ingredient._mPrice << endl;
-    Stream << "Section: " << Ingredient._mSection << endl;
+#ifdef QT_DEBUG
+    QDebug operator<<(QDebug Stream, const Ingredient& Ingredient)
+    {
+        Stream << "Name: " << Ingredient._mName << endl;
+        Stream << "Note: " << Ingredient._mNote << endl;
+        Stream << "Amount: " << Ingredient._mAmount << endl;
+        Stream << "Unit: " << Ingredient._mUnit << endl;
+        Stream << "Price: " << Ingredient._mPrice << endl;
+        Stream << "Section: " << Ingredient._mSection << endl;
 
-    return Stream;
-}
+        return Stream;
+    }
+#endif
 
 QTextStream& operator<<(QTextStream& Stream, const Ingredient& Ingredient)
 {

@@ -137,16 +137,13 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="57"/>
-        <location filename="../mainwindow.cpp" line="291"/>
-        <location filename="../mainwindow.cpp" line="313"/>
-        <location filename="../mainwindow.cpp" line="417"/>
         <source>Rezepte</source>
         <translation>Recipes</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="105"/>
-        <location filename="../mainwindow.ui" line="336"/>
-        <location filename="../mainwindow.ui" line="339"/>
+        <location filename="../mainwindow.ui" line="342"/>
+        <location filename="../mainwindow.ui" line="345"/>
         <source>Ein neues Rezept hinzufügen.</source>
         <translation>Add a new recipe.</translation>
     </message>
@@ -157,8 +154,8 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="134"/>
-        <location filename="../mainwindow.ui" line="447"/>
-        <location filename="../mainwindow.ui" line="450"/>
+        <location filename="../mainwindow.ui" line="453"/>
+        <location filename="../mainwindow.ui" line="456"/>
         <source>Alle markierten Rezepte entfernen.</source>
         <translation>Remove the selected recipes.</translation>
     </message>
@@ -169,8 +166,8 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="160"/>
-        <location filename="../mainwindow.ui" line="396"/>
-        <location filename="../mainwindow.ui" line="399"/>
+        <location filename="../mainwindow.ui" line="402"/>
+        <location filename="../mainwindow.ui" line="405"/>
         <source>Alle markierten Rezepte in ein Rezept-JSON exportieren.</source>
         <translation>Export all selected recipes into a recipe JSON.</translation>
     </message>
@@ -196,63 +193,63 @@
         <translation>Language</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="243"/>
+        <location filename="../mainwindow.ui" line="249"/>
         <source>Über Qt...</source>
         <translation>About Qt...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="246"/>
-        <location filename="../mainwindow.ui" line="249"/>
+        <location filename="../mainwindow.ui" line="252"/>
+        <location filename="../mainwindow.ui" line="255"/>
         <source>Über das Qt Projekt.</source>
         <translation>About the Qt project.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="261"/>
-        <location filename="../mainwindow.ui" line="264"/>
+        <location filename="../mainwindow.ui" line="267"/>
+        <location filename="../mainwindow.ui" line="270"/>
         <source>Eine vorhandene Datenbank öffnen.</source>
         <translation>Open an existing database.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="267"/>
+        <location filename="../mainwindow.ui" line="273"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="282"/>
-        <location filename="../mainwindow.ui" line="285"/>
+        <location filename="../mainwindow.ui" line="288"/>
+        <location filename="../mainwindow.ui" line="291"/>
         <source>Die aktuelle Datenbank schließen.</source>
         <translation>Close the current database.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="291"/>
+        <location filename="../mainwindow.ui" line="297"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="300"/>
+        <location filename="../mainwindow.ui" line="306"/>
         <source>Über Food Database...</source>
         <translation>About Food Database...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="303"/>
-        <location filename="../mainwindow.ui" line="306"/>
+        <location filename="../mainwindow.ui" line="309"/>
+        <location filename="../mainwindow.ui" line="312"/>
         <source>Über Food Database.</source>
         <translation>About Food Database.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="318"/>
-        <location filename="../mainwindow.ui" line="321"/>
+        <location filename="../mainwindow.ui" line="324"/>
+        <location filename="../mainwindow.ui" line="327"/>
         <source>Eine neue Datenbank anlegen.</source>
         <translation>Create a new database.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="324"/>
+        <location filename="../mainwindow.ui" line="330"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="381"/>
-        <location filename="../mainwindow.ui" line="384"/>
+        <location filename="../mainwindow.ui" line="387"/>
+        <location filename="../mainwindow.ui" line="390"/>
         <source>Englisch (US) auswählen.</source>
         <translation>Select Englisch (US).</translation>
     </message>
@@ -261,19 +258,19 @@
         <translation type="obsolete">Select English (US).</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="393"/>
+        <location filename="../mainwindow.ui" line="399"/>
         <source>Export JSON...</source>
         <comment>action_Export</comment>
         <translation>Export JSON...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="432"/>
-        <location filename="../mainwindow.ui" line="435"/>
+        <location filename="../mainwindow.ui" line="438"/>
+        <location filename="../mainwindow.ui" line="441"/>
         <source>Einstellungen für die Rezepte.</source>
         <translation>Recipe settings.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="444"/>
+        <location filename="../mainwindow.ui" line="450"/>
         <source>Löschen...</source>
         <translation>Remove...</translation>
     </message>
@@ -289,53 +286,53 @@
         <translation type="vanished">Edit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="258"/>
+        <location filename="../mainwindow.ui" line="264"/>
         <source>Öffnen...</source>
         <comment>action_OpenDatabase</comment>
         <translation>Open...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="279"/>
+        <location filename="../mainwindow.ui" line="285"/>
         <source>Schließen...</source>
         <comment>action_CloseDatabase</comment>
         <translation>Close...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="315"/>
+        <location filename="../mainwindow.ui" line="321"/>
         <source>Neu...</source>
         <comment>action_CreateDatabase</comment>
         <translation>New...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="333"/>
+        <location filename="../mainwindow.ui" line="339"/>
         <source>Neu...</source>
         <comment>action_New</comment>
         <translation>New...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="354"/>
+        <location filename="../mainwindow.ui" line="360"/>
         <source>Deutsch</source>
         <translation>German</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="357"/>
+        <location filename="../mainwindow.ui" line="363"/>
         <source>de_DE</source>
         <translatorcomment>Is used by the translator. So don´t rename!</translatorcomment>
         <translation>de_DE</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="360"/>
-        <location filename="../mainwindow.ui" line="363"/>
+        <location filename="../mainwindow.ui" line="366"/>
+        <location filename="../mainwindow.ui" line="369"/>
         <source>Deutsch auswählen.</source>
         <translation>Select German.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="375"/>
+        <location filename="../mainwindow.ui" line="381"/>
         <source>English (US)</source>
         <translation>English (US)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="378"/>
+        <location filename="../mainwindow.ui" line="384"/>
         <source>en_US</source>
         <translatorcomment>Is used by the translator. So don´t rename!</translatorcomment>
         <translation>en_US</translation>
@@ -346,7 +343,7 @@
         <translation type="vanished">Export...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="429"/>
+        <location filename="../mainwindow.ui" line="435"/>
         <source>Einstellungen</source>
         <translation>Settings</translation>
     </message>
@@ -355,31 +352,31 @@
         <translation type="vanished">Export the selected recipe.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="408"/>
+        <location filename="../mainwindow.ui" line="414"/>
         <source>Speichern...</source>
         <comment>action_WriteDatabase</comment>
         <translation>Save...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="411"/>
-        <location filename="../mainwindow.ui" line="414"/>
+        <location filename="../mainwindow.ui" line="417"/>
+        <location filename="../mainwindow.ui" line="420"/>
         <source>Die aktuelle Datenbank speichern.</source>
         <translation>Save the current database.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="420"/>
+        <location filename="../mainwindow.ui" line="426"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="29"/>
+        <location filename="../mainwindow.cpp" line="31"/>
         <source>Erste</source>
         <translation>First</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="29"/>
-        <location filename="../mainwindow.cpp" line="30"/>
         <location filename="../mainwindow.cpp" line="31"/>
+        <location filename="../mainwindow.cpp" line="34"/>
+        <location filename="../mainwindow.cpp" line="36"/>
         <source>Notiz</source>
         <translation>Note</translation>
     </message>
@@ -388,54 +385,60 @@
         <translation type="vanished">Ingredients</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="29"/>
+        <location filename="../mainwindow.cpp" line="31"/>
         <source>Zweite</source>
         <translation>Second</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="29"/>
+        <location filename="../mainwindow.cpp" line="31"/>
         <source>Mehr</source>
         <translation>More</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="30"/>
+        <location filename="../mainwindow.cpp" line="34"/>
         <source>Erstes Rezept</source>
         <translation>First recipe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="30"/>
+        <location filename="../mainwindow.cpp" line="34"/>
         <source>Link zu Rezept 1</source>
         <translation>Link to the first recipe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="30"/>
+        <location filename="../mainwindow.cpp" line="34"/>
         <source>Kurze Beschreibung für Rezept 1.</source>
         <translation>Short description for recipe 1.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="30"/>
-        <location filename="../mainwindow.cpp" line="31"/>
+        <location filename="../mainwindow.cpp" line="34"/>
+        <location filename="../mainwindow.cpp" line="36"/>
         <source>Beschreibung erste Stoppuhr.</source>
         <translation>Description for the first timer.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="30"/>
-        <location filename="../mainwindow.cpp" line="31"/>
+        <location filename="../mainwindow.cpp" line="34"/>
+        <location filename="../mainwindow.cpp" line="36"/>
         <source>Beschreibung zweite Stoppuhr.</source>
         <translation>Description of the second timer.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="31"/>
+        <location filename="../mainwindow.cpp" line="36"/>
         <source>Zweites Rezept</source>
         <translation>Second recipe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="31"/>
+        <location filename="../mainwindow.cpp" line="36"/>
         <source>Kurze Beschreibung für Rezept 2.</source>
         <translation>Short description for recipe 2.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="135"/>
+        <location filename="../mainwindow.ui" line="233"/>
+        <location filename="../mainwindow.cpp" line="51"/>
+        <source>Suchen</source>
+        <translation>Search</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="172"/>
         <source>Über Qt</source>
         <translation>About Qt</translation>
     </message>
@@ -448,145 +451,149 @@
         <translation type="vanished">Units</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="255"/>
+        <location filename="../mainwindow.cpp" line="294"/>
         <source>Zutat</source>
         <translation>Ingredient</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="255"/>
-        <location filename="../mainwindow.cpp" line="259"/>
+        <location filename="../mainwindow.cpp" line="294"/>
+        <location filename="../mainwindow.cpp" line="298"/>
         <source>Leere Notiz</source>
         <translation>Empty note</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="259"/>
-        <location filename="../mainwindow.cpp" line="262"/>
+        <location filename="../mainwindow.cpp" line="298"/>
+        <location filename="../mainwindow.cpp" line="301"/>
         <source>Neues Rezept</source>
         <translation>New recipe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="259"/>
+        <location filename="../mainwindow.cpp" line="298"/>
         <source>Leerer Link</source>
         <translation>Empty link</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="259"/>
+        <location filename="../mainwindow.cpp" line="298"/>
         <source>Leere Beschreibung</source>
         <translation>Empty description</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="259"/>
+        <location filename="../mainwindow.cpp" line="298"/>
         <source>Stoppuhr 1</source>
         <translation>Timer 1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="259"/>
+        <location filename="../mainwindow.cpp" line="298"/>
         <source>Stoppuhr 2</source>
         <translation>Timer 2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="284"/>
+        <location filename="../mainwindow.cpp" line="327"/>
         <source>Rezept bearbeiten</source>
         <translation>Edit recipe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="291"/>
+        <location filename="../mainwindow.cpp" line="334"/>
         <source>Datenbank anlegen</source>
         <translation>Create database</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="220"/>
-        <location filename="../mainwindow.cpp" line="233"/>
-        <location filename="../mainwindow.cpp" line="243"/>
-        <location filename="../mainwindow.cpp" line="304"/>
-        <location filename="../mainwindow.cpp" line="326"/>
-        <location filename="../mainwindow.cpp" line="372"/>
-        <location filename="../mainwindow.cpp" line="383"/>
+        <location filename="../mainwindow.cpp" line="259"/>
+        <location filename="../mainwindow.cpp" line="272"/>
+        <location filename="../mainwindow.cpp" line="282"/>
+        <location filename="../mainwindow.cpp" line="350"/>
+        <location filename="../mainwindow.cpp" line="375"/>
         <location filename="../mainwindow.cpp" line="426"/>
+        <location filename="../mainwindow.cpp" line="445"/>
+        <location filename="../mainwindow.cpp" line="493"/>
         <source>Fehler</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="220"/>
-        <location filename="../mainwindow.cpp" line="233"/>
+        <source>Suche</source>
+        <translation type="vanished">Search</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="259"/>
+        <location filename="../mainwindow.cpp" line="272"/>
         <source>Ungültige Einstellungen!</source>
         <translation>Invalid settings!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="243"/>
+        <location filename="../mainwindow.cpp" line="282"/>
         <source>Einstellungen nicht gefunden!</source>
         <translation>Settings not found!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="304"/>
+        <location filename="../mainwindow.cpp" line="350"/>
         <source>Datenbank kann nicht erzeugt werden!</source>
         <translation>Can not create database!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="313"/>
+        <location filename="../mainwindow.cpp" line="359"/>
         <source>Datenbank öffnen</source>
         <translation>Open database</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="326"/>
+        <location filename="../mainwindow.cpp" line="375"/>
         <source>Datenbank kann nicht geöffnet werden!</source>
         <translation>Can not open database!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="339"/>
+        <location filename="../mainwindow.cpp" line="388"/>
         <source>Datenbank speichern?</source>
         <translation>Save database?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="339"/>
+        <location filename="../mainwindow.cpp" line="388"/>
         <source>Soll die Datenbank gespeichert werden?</source>
         <translation>Should the database be saved?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="340"/>
+        <location filename="../mainwindow.cpp" line="389"/>
         <source>Ja</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="341"/>
+        <location filename="../mainwindow.cpp" line="390"/>
         <source>Nein</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="372"/>
+        <location filename="../mainwindow.cpp" line="426"/>
         <source>Datenbank kann nicht gelesen werden!</source>
         <translation>Can not read database!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="383"/>
+        <location filename="../mainwindow.cpp" line="445"/>
         <source>Datenbank kann nicht geschrieben werden!</source>
         <translation>Can not write database!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="417"/>
+        <location filename="../mainwindow.cpp" line="476"/>
         <source>Speicherort wählen</source>
         <translation>Select path</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="426"/>
+        <location filename="../mainwindow.cpp" line="493"/>
         <source>Export fehlgeschlagen!</source>
         <translation>Export failed!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="429"/>
+        <location filename="../mainwindow.cpp" line="496"/>
         <source>Rezepte erfolgreich exportiert!</source>
         <translation>Recipe export successful!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="277"/>
-        <location filename="../mainwindow.cpp" line="429"/>
-        <location filename="../mainwindow.cpp" line="434"/>
+        <location filename="../mainwindow.cpp" line="320"/>
+        <location filename="../mainwindow.cpp" line="496"/>
+        <location filename="../mainwindow.cpp" line="501"/>
         <source>Hinweis</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="277"/>
-        <location filename="../mainwindow.cpp" line="434"/>
+        <location filename="../mainwindow.cpp" line="320"/>
+        <location filename="../mainwindow.cpp" line="501"/>
         <source>Bitte mindenstens ein Rezept auswählen!</source>
         <translation>Please select at least one recipe!</translation>
     </message>
@@ -818,27 +825,27 @@
         <translation type="vanished">Seconds</translation>
     </message>
     <message>
-        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="53"/>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="62"/>
         <source>Minuten</source>
         <translation>Minutes</translation>
     </message>
     <message>
-        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="55"/>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="64"/>
         <source>Speichern</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="56"/>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="65"/>
         <source>Verwerfen</source>
         <translation>Discard</translation>
     </message>
     <message>
-        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="75"/>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="84"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="75"/>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="84"/>
         <source>Notiz</source>
         <translation>Note</translation>
     </message>
@@ -851,12 +858,12 @@
         <translation type="vanished">Section</translation>
     </message>
     <message>
-        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="94"/>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="103"/>
         <source>Hinweis</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="94"/>
+        <location filename="../Dialog/RecipeDialog/recipedialog.cpp" line="103"/>
         <source>Bitte mindestens eine Zutat auswählen!</source>
         <translation>Please select at least one ingredient!</translation>
     </message>
@@ -864,27 +871,27 @@
 <context>
     <name>RecipesModel</name>
     <message>
-        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="34"/>
+        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="38"/>
         <source>Minuten</source>
         <translation>Minutes</translation>
     </message>
     <message>
-        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="74"/>
+        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="99"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="78"/>
+        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="103"/>
         <source>Personen</source>
         <translation>Persons</translation>
     </message>
     <message>
-        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="82"/>
+        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="107"/>
         <source>Zubereitungszeit</source>
         <translation>Cooking time</translation>
     </message>
     <message>
-        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="86"/>
+        <location filename="../Model/RecipesModel/recipesmodel.cpp" line="111"/>
         <source>Kategorie</source>
         <translation>Category</translation>
     </message>

@@ -4,6 +4,10 @@
 #include <QComboBox>
 #include <QStyledItemDelegate>
 
+#ifdef QT_DEBUG
+    #include <QtDebug>
+#endif
+
 class ComboBoxDelegate : public QStyledItemDelegate
 {
     Q_OBJECT

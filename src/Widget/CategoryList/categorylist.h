@@ -19,18 +19,18 @@ class CategoryList : public QWidget
     Q_OBJECT
 
     signals:
-        void itemRemoved(const int index);
-        void itemAdded(const QString item);
+        void itemRemoved(const int Index);
+        void itemAdded(const QString Item);
 
     public:
         explicit CategoryList(QWidget* parent = nullptr);
         ~CategoryList();
 
-        void addItems(const QStringList &labels);
+        void addItems(const QStringList& Labels);
 
     private slots:
-        void on_pushButton_AddRecipeCategory_clicked();
-        void on_pushButton_RemoveRecipeCategory_clicked();
+        void on_pushButton_AddRecipeCategory_clicked(void);
+        void on_pushButton_RemoveRecipeCategory_clicked(void);
 
     private:
         Ui::CategoryList* _mUi;
