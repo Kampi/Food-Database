@@ -1,6 +1,6 @@
 VERSION_MAJOR = 1
-VERSION_MINOR = 3
-VERSION_BUILD = 3
+VERSION_MINOR = 4
+VERSION_BUILD = 0
 
 QT       += core gui sql
 
@@ -36,6 +36,7 @@ INCLUDEPATH += \
     Model/RecipesModel/ \
     Model/ComboBoxDelegate/ \
     Model/NumbersOnlyDelegate/ \
+    Model/RecipesProxy/ \
     Dialog/ \
     Dialog/AboutDialog \
     Dialog/RecipeDialog \
@@ -52,6 +53,7 @@ SOURCES += \
     Model/IngredientModel/ingredientmodel.cpp \
     Model/NumbersOnlyDelegate/numbersonlydelegate.cpp \
     Model/RecipesModel/recipesmodel.cpp \
+    Model/RecipesProxy/recipesproxy.cpp \
     Recipe/Ingredient/ingredient.cpp \
     Recipe/RecipeExport/recipeexport.cpp \
     Recipe/recipe.cpp \
@@ -68,6 +70,7 @@ HEADERS += \
     Model/IngredientModel/ingredientmodel.h \
     Model/NumbersOnlyDelegate/numbersonlydelegate.h \
     Model/RecipesModel/recipesmodel.h \
+    Model/RecipesProxy/recipesproxy.h \
     Recipe/Ingredient/ingredient.h \
     Recipe/RecipeExport/recipeexport.h \
     Recipe/recipe.h \
@@ -101,26 +104,26 @@ CONFIG(debug, debug|release) {
 # Copy language files
 languageFiles.files = $$files($${PWD}/Languages/*.qm)
 CONFIG(debug, debug|release) {
-    languageFiles.path = $${OUT_PWD}/debug/Languages
+    languageFiles.path = $$shell_quote($${OUT_PWD}/debug/Languages)
 } else {
-    languageFiles.path = $${DESTDIR}/Languages
+    languageFiles.path = $$shell_quote($${DESTDIR}/Languages)
 }
 
 # Copy settings files
-settingsFile.files = $$shell_quote(Settings.ini)
+settingsFile.files = $$files(Settings.ini)
 CONFIG(debug, debug|release) {
-    settingsFile.path = $${OUT_PWD}/debug
+    settingsFile.path = $$shell_quote($${OUT_PWD}/debug)
 } else {
-    settingsFile.path = $${DESTDIR}
+    settingsFile.path = $$shell_quote($${DESTDIR})
 }
 
 # Copy package and configuration files
 CONFIG(debug, debug|release) {
-    packageSetup.path = $${OUT_PWD}/debug
-    configSetup.path = $${OUT_PWD}/debug
+    packageSetup.path = $$shell_quote($${OUT_PWD}/debug)
+    configSetup.path = $$shell_quote($${OUT_PWD}/debug)
 } else {
-    packageSetup.path = $${DESTDIR}
-    configSetup.path = ../config
+    packageSetup.path = $$shell_quote($${DESTDIR})
+    configSetup.path = $$shell_quote(../config)
 }
 
 packageSetup.files += $$shell_quote(Ressources/Icons/icons8-food-96.ico) \

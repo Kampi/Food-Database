@@ -8,6 +8,10 @@
 #include <QPushButton>
 #include <QDesktopServices>
 
+#ifdef QT_DEBUG
+    #include <QtDebug>
+#endif
+
 namespace Ui
 {
     class AboutDialog;

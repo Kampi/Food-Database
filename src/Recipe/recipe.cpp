@@ -1,6 +1,17 @@
 #include "recipe.h"
 
-Recipe::Recipe()
+Recipe::Recipe(void) :  _mName(""),
+                        _mNote(""),
+                        _mLink(""),
+                        _mDescription(""),
+                        _mTimer1Name(""),
+                        _mTimer2Name(""),
+                        _mCategory(""),
+                        _mPersons(1),
+                        _mCookingTime(0),
+                        _mTimer1Value(0),
+                        _mTimer2Value(0),
+                        _mIngredients(QList<Ingredient>())
 {
 }
 
@@ -34,145 +45,147 @@ Recipe::Recipe(QString Name, QString Note, QString Link, QString Description, QS
 {
 }
 
-QString Recipe::Name() const
+QString Recipe::Name(void) const
 {
-    return _mName;
+    return this->_mName;
 }
 
 void Recipe::setName(const QString& Name)
 {
-    _mName = Name;
+    this->_mName = Name;
 }
 
-QString Recipe::Note() const
+QString Recipe::Note(void) const
 {
-    return _mNote;
+    return this->_mNote;
 }
 
 void Recipe::setNote(const QString& Note)
 {
-    _mNote = Note;
+    this->_mNote = Note;
 }
 
-QString Recipe::Link() const
+QString Recipe::Link(void) const
 {
-    return _mLink;
+    return this->_mLink;
 }
 
 void Recipe::setLink(const QString& Link)
 {
-    _mLink = Link;
+    this->_mLink = Link;
 }
 
-uint Recipe::Persons() const
+uint Recipe::Persons(void) const
 {
-    return _mPersons;
+    return this->_mPersons;
 }
 
 void Recipe::setPersons(const uint& Persons)
 {
-    _mPersons = Persons;
+    this->_mPersons = Persons;
 }
 
-QString Recipe::Description() const
+QString Recipe::Description(void) const
 {
-    return _mDescription;
+    return this->_mDescription;
 }
 
 void Recipe::setDescription(const QString& Description)
 {
-    _mDescription = Description;
+    this->_mDescription = Description;
 }
 
-uint Recipe::CookingTime() const
+uint Recipe::CookingTime(void) const
 {
-    return _mCookingTime;
+    return this->_mCookingTime;
 }
 
 void Recipe::setCookingTime(const uint& CookingTime)
 {
-    _mCookingTime = CookingTime;
+    this->_mCookingTime = CookingTime;
 }
 
-QString Recipe::Timer1Name() const
+QString Recipe::Timer1Name(void) const
 {
-    return _mTimer1Name;
+    return this->_mTimer1Name;
 }
 
 void Recipe::setTimer1Name(const QString& Timer1Name)
 {
-    _mTimer1Name = Timer1Name;
+    this->_mTimer1Name = Timer1Name;
 }
 
-QString Recipe::Timer2Name() const
+QString Recipe::Timer2Name(void) const
 {
-    return _mTimer2Name;
+    return this->_mTimer2Name;
 }
 
 void Recipe::setTimer2Name(const QString& Timer2Name)
 {
-    _mTimer2Name = Timer2Name;
+    this->_mTimer2Name = Timer2Name;
 }
 
-QString Recipe::Category() const
+QString Recipe::Category(void) const
 {
-    return _mCategory;
+    return this->_mCategory;
 }
 
 void Recipe::setCategory(const QString& Category)
 {
-    _mCategory = Category;
+    this->_mCategory = Category;
 }
 
-uint Recipe::Timer1Value() const
+uint Recipe::Timer1Value(void) const
 {
-    return _mTimer1Value;
+    return this->_mTimer1Value;
 }
 
 void Recipe::setTimer1Value(const uint& Timer1Value)
 {
-    _mTimer1Value = Timer1Value;
+    this->_mTimer1Value = Timer1Value;
 }
 
-uint Recipe::Timer2Value() const
+uint Recipe::Timer2Value(void) const
 {
-    return _mTimer2Value;
+    return this->_mTimer2Value;
 }
 
 void Recipe::setTimer2Value(const uint& Timer2Value)
 {
-    _mTimer2Value = Timer2Value;
+    this->_mTimer2Value = Timer2Value;
 }
 
-QList<Ingredient> Recipe::Ingredients() const
+QList<Ingredient> Recipe::Ingredients(void) const
 {
-    return _mIngredients;
+    return this->_mIngredients;
 }
 
 void Recipe::setIngredients(const QList<Ingredient>& Ingredients)
 {
-    _mIngredients = Ingredients;
+    this->_mIngredients = Ingredients;
 }
 
-QDebug operator<<(QDebug Stream, const Recipe& Recipe)
-{
-    Stream << "Name: " << Recipe._mName << endl;
-    Stream << "Note: " << Recipe._mNote << endl;
-    Stream << "Link: " << Recipe._mLink << endl;
-    Stream << "Persons: " << Recipe._mPersons << endl;
-    Stream << "Cooking description: " << Recipe._mDescription << endl;
-    Stream << "Cooking time: " << Recipe._mCookingTime << endl;
-    Stream << "Timer 1: " << Recipe._mTimer1Name << " - " << Recipe._mTimer1Value << "s" << endl;
-    Stream << "Timer 2: " << Recipe._mTimer2Name << " - " << Recipe._mTimer2Value << "s" << endl;
-    Stream << "Ingredients: " << endl;
-
-    foreach(Ingredient ingredient, Recipe.Ingredients())
+#ifdef QT_DEBUG
+    QDebug operator<<(QDebug Stream, const Recipe& Recipe)
     {
-        Stream << ingredient << endl;
-    }
+        Stream << "Name: " << Recipe._mName << endl;
+        Stream << "Note: " << Recipe._mNote << endl;
+        Stream << "Link: " << Recipe._mLink << endl;
+        Stream << "Persons: " << Recipe._mPersons << endl;
+        Stream << "Cooking description: " << Recipe._mDescription << endl;
+        Stream << "Cooking time: " << Recipe._mCookingTime << endl;
+        Stream << "Timer 1: " << Recipe._mTimer1Name << " - " << Recipe._mTimer1Value << "s" << endl;
+        Stream << "Timer 2: " << Recipe._mTimer2Name << " - " << Recipe._mTimer2Value << "s" << endl;
+        Stream << "Ingredients: " << endl;
 
-    return Stream;
-}
+        foreach(Ingredient ingredient, Recipe.Ingredients())
+        {
+            Stream << ingredient << endl;
+        }
+
+        return Stream;
+    }
+#endif
 
 QTextStream& operator<<(QTextStream& Stream, const Recipe& Recipe)
 {
@@ -192,4 +205,9 @@ QTextStream& operator<<(QTextStream& Stream, const Recipe& Recipe)
     }
 
     return Stream;
+}
+
+bool operator==(const Recipe& First, const Recipe& Second)
+{
+    return First._mName == Second._mName;
 }

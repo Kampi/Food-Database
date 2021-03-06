@@ -1,9 +1,12 @@
 #ifndef INGREDIENT_H
 #define INGREDIENT_H
 
-#include <QDebug>
 #include <QString>
 #include <QTextStream>
+
+#ifdef QT_DEBUG
+    #include <QtDebug>
+#endif
 
 class Ingredient
 {
@@ -29,7 +32,9 @@ class Ingredient
         double Price() const;
         void setPrice(double Price);
 
-        friend QDebug operator<<(QDebug Stream, const Ingredient& Ingedient);
+        #ifdef QT_DEBUG
+            friend QDebug operator<<(QDebug Stream, const Ingredient& Ingedient);
+        #endif
         friend QTextStream& operator<<(QTextStream& Stream, const Ingredient& Ingedient);
 
     private:

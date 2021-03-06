@@ -7,53 +7,62 @@
 
 #include "ingredient.h"
 
+#ifdef QT_DEBUG
+    #include <QtDebug>
+#endif
+
 class Recipe
 {
     public:
-        Recipe();
+        Recipe(void);
         Recipe(const Recipe& obj);
         Recipe(QString Name, QString Note, QString Link, QString Description, QString Timer1Name, QString Timer2Name, QString Category, uint Persons, uint CookingTime, uint Timer1Value, uint Timer2Value, QList<Ingredient> Ingredients);
 
         void Export(void);
 
-        QString Name() const;
+        QString Name(void) const;
         void setName(const QString& Name);
 
-        QString Note() const;
+        QString Note(void) const;
         void setNote(const QString& Note);
 
-        QString Link() const;
+        QString Link(void) const;
         void setLink(const QString& Link);
 
-        uint Persons() const;
+        uint Persons(void) const;
         void setPersons(const uint& Persons);
 
-        QString Description() const;
+        QString Description(void) const;
         void setDescription(const QString& Description);
 
-        uint CookingTime() const;
+        uint CookingTime(void) const;
         void setCookingTime(const uint& CookingTime);
 
-        QString Timer1Name() const;
+        QString Timer1Name(void) const;
         void setTimer1Name(const QString& Timer1Name);
 
-        QString Timer2Name() const;
+        QString Timer2Name(void) const;
         void setTimer2Name(const QString& Timer2Name);
 
-        QString Category() const;
+        QString Category(void) const;
         void setCategory(const QString& Category);
 
-        uint Timer1Value() const;
+        uint Timer1Value(void) const;
         void setTimer1Value(const uint& Timer1Value);
 
-        uint Timer2Value() const;
+        uint Timer2Value(void) const;
         void setTimer2Value(const uint& Timer2Value);
 
-        QList<Ingredient> Ingredients() const;
+        QList<Ingredient> Ingredients(void) const;
         void setIngredients(const QList<Ingredient>& Ingredients);
 
-        friend QDebug operator<<(QDebug Stream, const Recipe& Recipe);
+        #ifdef QT_DEBUG
+                friend QDebug operator<<(QDebug Stream, const Recipe& Recipe);
+        #endif
+
         friend QTextStream& operator<<(QTextStream& Stream, const Recipe& Recipe);
+
+        friend bool operator==(const Recipe& First, const Recipe& Second);
 
     private:
         QString _mName;
@@ -71,5 +80,7 @@ class Recipe
 
         QList<Ingredient> _mIngredients;
 };
+
+Q_DECLARE_METATYPE(Recipe)
 
 #endif // RECIPE_H

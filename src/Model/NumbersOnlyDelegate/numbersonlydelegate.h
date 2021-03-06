@@ -4,6 +4,10 @@
 #include <QLineEdit>
 #include <QStyledItemDelegate>
 
+#ifdef QT_DEBUG
+    #include <QtDebug>
+#endif
+
 class NumbersOnlyDelegate  : public QStyledItemDelegate
 {
     Q_OBJECT

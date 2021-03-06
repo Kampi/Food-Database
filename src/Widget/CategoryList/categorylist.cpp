@@ -12,12 +12,12 @@ CategoryList::~CategoryList()
     delete _mUi;
 }
 
-void CategoryList::addItems(const QStringList &labels)
+void CategoryList::addItems(const QStringList& Labels)
 {
-    _mUi->listWidget_RecipeCategories->addItems(labels);
+    _mUi->listWidget_RecipeCategories->addItems(Labels);
 }
 
-void CategoryList::on_pushButton_AddRecipeCategory_clicked()
+void CategoryList::on_pushButton_AddRecipeCategory_clicked(void)
 {
     QInputDialog* Dialog = new QInputDialog(this, Qt::MSWindowsFixedSizeDialogHint | Qt::CustomizeWindowHint);
     Dialog->setOkButtonText(tr("Speichern"));
@@ -32,7 +32,7 @@ void CategoryList::on_pushButton_AddRecipeCategory_clicked()
     }
 }
 
-void CategoryList::on_pushButton_RemoveRecipeCategory_clicked()
+void CategoryList::on_pushButton_RemoveRecipeCategory_clicked(void)
 {
     int Index = _mUi->listWidget_RecipeCategories->currentRow();
     delete _mUi->listWidget_RecipeCategories->takeItem(Index);

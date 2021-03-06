@@ -3,10 +3,13 @@
 
 #include <QtSql>
 #include <QString>
-#include <QFileDialog>
 
 #include "recipe.h"
 #include "ingredient.h"
+
+#ifdef QT_DEBUG
+    #include <QtDebug>
+#endif
 
 class Database : public QObject
 {

@@ -9,6 +9,10 @@
 
 #include "categorylist.h"
 
+#ifdef QT_DEBUG
+    #include <QtDebug>
+#endif
+
 namespace Ui
 {
     class SettingsDialog;

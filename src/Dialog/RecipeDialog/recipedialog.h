@@ -11,6 +11,10 @@
 #include "comboboxdelegate.h"
 #include "numbersonlydelegate.h"
 
+#ifdef QT_DEBUG
+    #include <QtDebug>
+#endif
+
 namespace Ui
 {
     class RecipeDialog;

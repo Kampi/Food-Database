@@ -6,6 +6,10 @@
 
 #include "ingredient.h"
 
+#ifdef QT_DEBUG
+    #include <QtDebug>
+#endif
+
 class IngredientModel : public QAbstractTableModel
 {
     Q_OBJECT

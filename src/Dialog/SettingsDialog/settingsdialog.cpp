@@ -5,13 +5,13 @@ SettingsDialog::SettingsDialog(QMap<QString, QStringList> Categories, QWidget* p
                                                                                          _mUi(new Ui::SettingsDialog),
                                                                                          _mNewCategories(Categories)
 {
-    _mUi->setupUi(this);
+    this->_mUi->setupUi(this);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     this->setWindowFlags(this->windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
 
-    _mMapping.insert("Recipes", "Rezepte");
-    _mMapping.insert("Units", "Einheiten");
-    _mMapping.insert("Ingredients", "Zutaten");
+    this->_mMapping.insert("Recipes", "Rezepte");
+    this->_mMapping.insert("Units", "Einheiten");
+    this->_mMapping.insert("Ingredients", "Zutaten");
 
     for(auto Category: Categories.keys())
     {
@@ -21,30 +21,30 @@ SettingsDialog::SettingsDialog(QMap<QString, QStringList> Categories, QWidget* p
         connect(TabWidget, &CategoryList::itemAdded, this, &SettingsDialog::ItemAdded);
         connect(TabWidget, &CategoryList::itemRemoved, this, &SettingsDialog::ItemRemoved);
 
-        _mUi->tabWidget_Settings->addTab(TabWidget, _mMapping.value(Category));
+        this->_mUi->tabWidget_Settings->addTab(TabWidget, this->_mMapping.value(Category));
     }
 
-    _mUi->buttonBox_Close->button(QDialogButtonBox::Save)->setText(tr("Speichern"));
-    _mUi->buttonBox_Close->button(QDialogButtonBox::Discard)->setText(tr("Verwerfen"));
+    this->_mUi->buttonBox_Close->button(QDialogButtonBox::Save)->setText(tr("Speichern"));
+    this->_mUi->buttonBox_Close->button(QDialogButtonBox::Discard)->setText(tr("Verwerfen"));
 }
 
 SettingsDialog::~SettingsDialog()
 {
-    delete _mUi;
+    delete this->_mUi;
 }
 
 QMap<QString, QStringList> SettingsDialog::categories() const
 {
-    return _mNewCategories;
+    return this->_mNewCategories;
 }
 
 void SettingsDialog::on_buttonBox_Close_clicked(QAbstractButton* button)
 {
-    if(button == _mUi->buttonBox_Close->button(QDialogButtonBox::Save))
+    if(button == this->_mUi->buttonBox_Close->button(QDialogButtonBox::Save))
     {
         this->accept();
     }
-    else if(button == _mUi->buttonBox_Close->button(QDialogButtonBox::Discard))
+    else if(button == this->_mUi->buttonBox_Close->button(QDialogButtonBox::Discard))
     {
         this->reject();
     }
@@ -52,16 +52,16 @@ void SettingsDialog::on_buttonBox_Close_clicked(QAbstractButton* button)
 
 void SettingsDialog::ItemAdded(QString item)
 {
-    QString CurrentTab = _mMapping.key(_mUi->tabWidget_Settings->tabText(_mUi->tabWidget_Settings->currentIndex()));
-    QStringList List = _mNewCategories.value(CurrentTab, QStringList(""));
+    QString CurrentTab = this->_mMapping.key(this->_mUi->tabWidget_Settings->tabText(this->_mUi->tabWidget_Settings->currentIndex()));
+    QStringList List = this->_mNewCategories.value(CurrentTab, QStringList(""));
     List.append(item);
-    _mNewCategories.insert(CurrentTab, List);
+    this->_mNewCategories.insert(CurrentTab, List);
 }
 
 void SettingsDialog::ItemRemoved(int index)
 {
-    QString CurrentTab = _mMapping.key(_mUi->tabWidget_Settings->tabText(_mUi->tabWidget_Settings->currentIndex()));
-    QStringList List = _mNewCategories.value(CurrentTab, QStringList(""));
+    QString CurrentTab = this->_mMapping.key(this->_mUi->tabWidget_Settings->tabText(this->_mUi->tabWidget_Settings->currentIndex()));
+    QStringList List = this->_mNewCategories.value(CurrentTab, QStringList(""));
     List.removeAt(index);
-    _mNewCategories.insert(CurrentTab, List);
+    this->_mNewCategories.insert(CurrentTab, List);
 }

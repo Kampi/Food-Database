@@ -34,3 +34,6 @@
 					- Create a new release
 					- Update installer
 					- Update Qt project file
+1.4				Add search function
+				Several bugfixes
+				Reworking Model-View code
