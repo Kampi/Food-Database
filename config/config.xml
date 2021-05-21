@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Installer>
     <Name>Food Database</Name>
-    <Version>1.4.0</Version>
+    <Version>2.0.0</Version>
     <Title>Food Database</Title>
-    <Publisher>https://www.kampis-elektroecke.de</Publisher>
+    <Publisher>Daniel Kampert</Publisher>
     <StartMenuDir>Kampis-Elektroecke</StartMenuDir>
     <TargetDir>@HomeDir@/FoodDatabase</TargetDir>
 	<InstallerApplicationIcon>icons8-food-96</InstallerApplicationIcon>

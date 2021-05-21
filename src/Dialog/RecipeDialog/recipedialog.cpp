@@ -1,55 +1,56 @@
 #include "recipedialog.h"
 #include "ui_recipedialog.h"
 
-RecipeDialog::RecipeDialog(QMap<QString, QStringList> Categories, Recipe NewRecipe, QWidget* parent) : QDialog(parent),
-                                                                                                       _mUi(new Ui::RecipeDialog),
-                                                                                                       _mIngredientsModel(new IngredientModel(_mIngredients)),
-                                                                                                       _mSectionsComboBox(new ComboBoxDelegate(Categories.value("Ingredients", QStringList("")), this)),
-                                                                                                       _mUnitComboBox(new ComboBoxDelegate(Categories.value("Units", QStringList("")), this)),
-                                                                                                       _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this)))
+RecipeDialog::RecipeDialog(int ID, QMap<QString, QStringList> Categories, Recipe CurRecipe, QWidget* parent) : QDialog(parent),
+                                                                                                               _mUi(new Ui::RecipeDialog),
+                                                                                                               _mID(ID),
+                                                                                                               _mIngredientsModel(new IngredientModel(this)),
+                                                                                                               _mSectionsComboBox(new ComboBoxDelegate(Categories.value("Ingredients", QStringList("")), this)),
+                                                                                                               _mUnitComboBox(new ComboBoxDelegate(Categories.value("Units", QStringList("")), this)),
+                                                                                                               _mNumbersOnlyDelegate(new NumbersOnlyDelegate(new QDoubleValidator(this)))
 {
     this->_mUi->setupUi(this);
 
     // Fill the UI elements
-    this->_mUi->lineEdit_Name->setText(NewRecipe.Name());
+    this->_mUi->lineEdit_Name->setText(CurRecipe.Name());
     this->_mUi->comboBox_Category->addItems(Categories.value("Recipes", QStringList("")));
-    int Index = this->_mUi->comboBox_Category->findText(NewRecipe.Category());
+    int Index = this->_mUi->comboBox_Category->findText(CurRecipe.Category());
     if(Index != -1)
     {
        this->_mUi->comboBox_Category->setCurrentIndex(Index);
     }
 
-    this->_mUi->lineEdit_Note->setText(NewRecipe.Note());
-    this->_mUi->lineEdit_Link->setText(NewRecipe.Link());
-    this->_mUi->spinBox_Persons->setValue(uint(NewRecipe.Persons()));
-    this->_mUi->spinBox_CookingTime->setValue(uint(NewRecipe.CookingTime()));
-    this->_mUi->timeEdit_Timer1->setTime(QTime(0, 0, 0).addSecs(NewRecipe.Timer1Value()));
-    if(!NewRecipe.Timer1Value())
+    this->_mUi->lineEdit_Note->setText(CurRecipe.Note());
+    this->_mUi->lineEdit_Link->setText(CurRecipe.Link());
+    this->_mUi->spinBox_Persons->setValue(uint(CurRecipe.Persons()));
+    this->_mUi->spinBox_CookingTime->setValue(uint(CurRecipe.CookingTime()));
+    this->_mUi->timeEdit_Timer1->setTime(QTime(0, 0, 0).addSecs(CurRecipe.Timer1Value()));
+    if(!CurRecipe.Timer1Value())
     {
         this->_mUi->lineEdit_Timer1->setEnabled(false);
         this->_mUi->lineEdit_Timer1->clear();
     }
     else
     {
-        this->_mUi->lineEdit_Timer1->setText(NewRecipe.Timer1Name());
+        this->_mUi->lineEdit_Timer1->setText(CurRecipe.Timer1Name());
     }
 
-    this->_mUi->timeEdit_Timer2->setTime(QTime(0, 0, 0).addSecs(NewRecipe.Timer2Value()));
-    if(!NewRecipe.Timer2Value())
+    this->_mUi->timeEdit_Timer2->setTime(QTime(0, 0, 0).addSecs(CurRecipe.Timer2Value()));
+    if(!CurRecipe.Timer2Value())
     {
         this->_mUi->lineEdit_Timer2->setEnabled(false);
         this->_mUi->lineEdit_Timer2->clear();
     }
     else
     {
-        this->_mUi->lineEdit_Timer2->setText(NewRecipe.Timer2Name());
+        this->_mUi->lineEdit_Timer2->setText(CurRecipe.Timer2Name());
     }
 
-    this->_mUi->plainTextEdit_Description->setPlainText(NewRecipe.Description());
+    this->_mUi->plainTextEdit_Description->setPlainText(CurRecipe.Description());
 
     // Get the ingredients from the recipe and update the table view
-    this->_mIngredients = NewRecipe.Ingredients();
     this->_mUi->tableView_Ingredients->setModel(this->_mIngredientsModel);
+    this->_mUi->tableView_Ingredients->model()->setData(this->_mUi->tableView_Ingredients->model()->index(0, 0), QVariant::fromValue(CurRecipe.Ingredients()), Qt::UserRole);
     this->_mUi->tableView_Ingredients->horizontalHeader()->setStretchLastSection(true);
     this->_mUi->tableView_Ingredients->horizontalHeader()->setSectionsClickable(false);
     this->_mUi->tableView_Ingredients->setItemDelegateForColumn(IngredientModel::INGREDIENTSMODEL_TABLE_SECTION, this->_mSectionsComboBox);
@@ -65,8 +66,12 @@ RecipeDialog::RecipeDialog(QMap<QString, QStringList> Categories, Recipe NewReci
     this->_mUi->buttonBox_Close->button(QDialogButtonBox::Discard)->setText(tr("Verwerfen"));
 
     // Initialize the new recipe with the template
-    this->_mRecipe = Recipe(NewRecipe);
+    this->_mRecipe = Recipe(CurRecipe);
     this->_mCategories = Categories;
+}
+
+RecipeDialog::RecipeDialog(QMap<QString, QStringList> Categories, Recipe CurRecipe, QWidget* parent) : RecipeDialog(0, Categories, CurRecipe, parent)
+{
 }
 
 RecipeDialog::~RecipeDialog()
@@ -79,10 +84,18 @@ Recipe RecipeDialog::recipe() const
     return this->_mRecipe;
 }
 
+uint RecipeDialog::id() const
+{
+    return this->_mID;
+}
+
 void RecipeDialog::on_pushButton_AddIngredients_clicked()
 {
-    this->_mIngredients.push_back(Ingredient(tr("Name"), tr("Notiz"), 0.0, this->_mCategories.value("Units", QStringList("")).at(0), 0.0, this->_mCategories.value("Ingredients", QStringList("")).at(0)));
-    this->_mIngredientsModel->layoutChanged();
+    QList<Ingredient> List;
+    List.push_back(Ingredient(tr("Name"), tr("Notiz"), 0.0, this->_mCategories.value("Units", QStringList("")).at(0), 0.0, this->_mCategories.value("Ingredients", QStringList("")).at(0)));
+
+    this->_mUi->tableView_Ingredients->model()->setData(this->_mUi->tableView_Ingredients->model()->index(this->_mUi->tableView_Ingredients->model()->rowCount(), 0), QVariant::fromValue(List), Qt::UserRole);
+    this->_mUi->tableView_Ingredients->model()->layoutChanged();
     this->_mUi->tableView_Ingredients->scrollToBottom();
 }
 
@@ -95,12 +108,21 @@ void RecipeDialog::on_pushButton_RemoveIngredients_clicked()
         foreach(auto index, select->selectedRows())
         {
             (void)index;
-            this->_mIngredientsModel->removeRows(select->currentIndex().row(), 1);
+            this->_mUi->tableView_Ingredients->model()->removeRows(select->currentIndex().row(), 1);
         }
     }
     else
     {
         QMessageBox::information(this, tr("Hinweis"), tr("Bitte mindestens eine Zutat auswählen!"), QMessageBox::Ok);
+    }
+
+    if(this->_mUi->tableView_Ingredients->model()->rowCount() == 0)
+    {
+        this->_mUi->pushButton_RemoveIngredients->setEnabled(false);
+    }
+    else
+    {
+        this->_mUi->pushButton_RemoveIngredients->setEnabled(true);
     }
 }
 
@@ -183,7 +205,7 @@ void RecipeDialog::on_buttonBox_Close_clicked(QAbstractButton* button)
 {
     if(button == this->_mUi->buttonBox_Close->button(QDialogButtonBox::Save))
     {
-        this->_mRecipe.setIngredients(this->_mIngredients);
+        this->_mRecipe.setIngredients(qvariant_cast<QList<Ingredient>>(this->_mUi->tableView_Ingredients->model()->data(this->_mUi->tableView_Ingredients->model()->index(0, 0), Qt::UserRole)));
         this->accept();
     }
     else if(button == this->_mUi->buttonBox_Close->button(QDialogButtonBox::Discard))

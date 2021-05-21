@@ -14,7 +14,7 @@ bool RecipesProxy::filterAcceptsRow(int sourceRow, const QModelIndex& sourcePare
         return true;
     }
 
-    Index = this->sourceModel()->index(sourceRow, RecipesModel::RECIPESMODEL_TABLE_NAME, sourceParent);
+    Index = this->sourceModel()->index(sourceRow, 1, sourceParent);
 
     // Check if the name of the recipe contains the substring
     return this->sourceModel()->data(Index).toString().contains(this->_mName, Qt::CaseInsensitive);

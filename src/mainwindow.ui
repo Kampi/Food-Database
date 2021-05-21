@@ -83,23 +83,14 @@ QGroupBox::title {
         <attribute name="horizontalHeaderHighlightSections">
          <bool>false</bool>
         </attribute>
-        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-         <bool>false</bool>
-        </attribute>
-        <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-         <bool>false</bool>
-        </attribute>
        </widget>
       </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QPushButton" name="pushButton_NewRecipe">
-          <property name="font">
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
+          <property name="enabled">
+           <bool>false</bool>
           </property>
           <property name="toolTip">
            <string>Ein neues Rezept hinzufügen.</string>
@@ -124,11 +115,8 @@ QGroupBox::title {
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_RemoveRecipe">
-          <property name="font">
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
+          <property name="enabled">
+           <bool>false</bool>
           </property>
           <property name="toolTip">
            <string>Alle markierten Rezepte entfernen.</string>
@@ -150,11 +138,8 @@ QGroupBox::title {
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_ExportRecipe">
-          <property name="font">
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
+          <property name="enabled">
+           <bool>false</bool>
           </property>
           <property name="toolTip">
            <string>Alle markierten Rezepte in ein Rezept-JSON exportieren.</string>
@@ -195,7 +180,6 @@ QGroupBox::title {
     </property>
     <addaction name="action_CreateDatabase"/>
     <addaction name="action_OpenDatabase"/>
-    <addaction name="action_WriteDatabase"/>
     <addaction name="action_CloseDatabase"/>
    </widget>
    <widget class="QMenu" name="menu_Recipe">
@@ -403,27 +387,6 @@ QGroupBox::title {
    </property>
    <property name="statusTip">
     <string>Alle markierten Rezepte in ein Rezept-JSON exportieren.</string>
-   </property>
-  </action>
-  <action name="action_WriteDatabase">
-   <property name="icon">
-    <iconset resource="Ressources.qrc">
-     <normaloff>:/Icons/Ressources/Icons/icons8-database-export-24.png</normaloff>:/Icons/Ressources/Icons/icons8-database-export-24.png</iconset>
-   </property>
-   <property name="text">
-    <string comment="action_WriteDatabase">Speichern...</string>
-   </property>
-   <property name="toolTip">
-    <string>Die aktuelle Datenbank speichern.</string>
-   </property>
-   <property name="statusTip">
-    <string>Die aktuelle Datenbank speichern.</string>
-   </property>
-   <property name="whatsThis">
-    <string/>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="action_Settings">

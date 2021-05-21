@@ -3,6 +3,7 @@
 
 #include <QList>
 #include <QDebug>
+#include <QSqlRecord>
 #include <QTextStream>
 
 #include "ingredient.h"

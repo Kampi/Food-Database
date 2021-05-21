@@ -2,11 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMap>
+#include <QtSql>
 #include <QLabel>
 #include <QKeyEvent>
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QTranslator>
 #include <QWidgetAction>
 
 #include "aboutdialog.h"
@@ -14,9 +16,8 @@
 #include "settingsdialog.h"
 
 #include "recipe.h"
-#include "database.h"
-#include "recipesmodel.h"
 #include "recipeexport.h"
+#include "recipesmodel.h"
 #include "recipesproxy.h"
 
 #ifdef QT_DEBUG
@@ -27,9 +28,7 @@
  *  ToDo:
  *      - Change column width in ingredient model
  *      - Implement column resize after editing for create recipe window
- *      - Implement sorting for recipes?
  *      - Tab flow for recipe table
- *      - Set value for ingredient cost to 0 after deleting
  *      - Validator for amount field in ingredient table
  */
 
@@ -66,7 +65,6 @@ class MainWindow : public QMainWindow
         void on_action_CreateDatabase_triggered(void);
         void on_action_OpenDatabase_triggered(void);
         void on_action_CloseDatabase_triggered(void);
-        void on_action_WriteDatabase_triggered(void);
         void on_action_NewRecipe_triggered(void);
         void on_action_RemoveRecipe_triggered(void);
         void on_action_ExportRecipe_triggered(void);
@@ -83,15 +81,15 @@ class MainWindow : public QMainWindow
 
         QTranslator _mTranslator;
         QMap<QString, QStringList> _mCategories;
-
-        RecipesModel* _mRecipesModel;
+        QSqlDatabase _mDatabase;
 
         RecipesProxy* _mRecipesProxy;
+        RecipesModel* _mRecipesModel;
 
-        Database _mDatabase;
         RecipeExport _mRecipeExport;
 
-        bool _mIsEdited;
+        QSqlRecord _RecipeToRecord(Recipe Recipe);
+        Recipe _RecordToRecipe(QSqlRecord Record);
 
         void _saveSettings(void);
         bool _loadSettings(void);
@@ -99,13 +97,11 @@ class MainWindow : public QMainWindow
         void _removeRecipe(void);
         void _editRecipe(QModelIndex Index);
         void _createDatabase(void);
-        void _openDatabase(void);
         void _closeDatabase(void);
-        void _readRecipesFromDatabase(void);
-        void _writeRecipesToDatabase(void);
-        void _updateStatusbar(void);
         void _exportRecipe(void);
         void _setLanguageMenu(void);
+        void _updateDatabaseStatus(void);
+        void _openDatabase(QString Path);
         void _switchLanguage(QString Language);
         void _addCategory(QStringList Settings, QString Name);
 };

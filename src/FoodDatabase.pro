@@ -1,5 +1,5 @@
-VERSION_MAJOR = 1
-VERSION_MINOR = 4
+VERSION_MAJOR = 2
+VERSION_MINOR = 0
 VERSION_BUILD = 0
 
 QT       += core gui sql
@@ -33,27 +33,25 @@ INCLUDEPATH += \
     Recipe/RecipeExport/ \
     Model/ \
     Model/IngredientModel/ \
-    Model/RecipesModel/ \
     Model/ComboBoxDelegate/ \
     Model/NumbersOnlyDelegate/ \
     Model/RecipesProxy/ \
+    Model/RecipesModel/ \
     Dialog/ \
     Dialog/AboutDialog \
     Dialog/RecipeDialog \
     Dialog/SettingsDialog \
-    Database/ \
     Widget/CategoryList \
 
 SOURCES += \
-    Database/database.cpp \
     Dialog/AboutDialog/aboutdialog.cpp \
     Dialog/RecipeDialog/recipedialog.cpp \
     Dialog/SettingsDialog/settingsdialog.cpp \
     Model/ComboBoxDelegate/comboboxdelegate.cpp \
     Model/IngredientModel/ingredientmodel.cpp \
     Model/NumbersOnlyDelegate/numbersonlydelegate.cpp \
-    Model/RecipesModel/recipesmodel.cpp \
     Model/RecipesProxy/recipesproxy.cpp \
+    Model/RecipesModel/recipesmodel.cpp \
     Recipe/Ingredient/ingredient.cpp \
     Recipe/RecipeExport/recipeexport.cpp \
     Recipe/recipe.cpp \
@@ -62,15 +60,14 @@ SOURCES += \
     mainwindow.cpp \
 
 HEADERS += \
-    Database/database.h \
     Dialog/AboutDialog/aboutdialog.h \
     Dialog/RecipeDialog/recipedialog.h \
     Dialog/SettingsDialog/settingsdialog.h \
     Model/ComboBoxDelegate/comboboxdelegate.h \
     Model/IngredientModel/ingredientmodel.h \
     Model/NumbersOnlyDelegate/numbersonlydelegate.h \
-    Model/RecipesModel/recipesmodel.h \
     Model/RecipesProxy/recipesproxy.h \
+    Model/RecipesModel/recipesmodel.h \
     Recipe/Ingredient/ingredient.h \
     Recipe/RecipeExport/recipeexport.h \
     Recipe/recipe.h \
