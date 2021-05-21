@@ -36,4 +36,13 @@
 					- Update Qt project file
 1.4				Add search function
 				Several bugfixes
-				Reworking Model-View code
+2.0				mainwindow:
+					- Reworking database code with `QSqlTableModel`
+
+				ingredientmodel:
+					- Rework the datahandling inside of the model
+
+				Misc:
+					- Optimize GUI
+					- Several bugfixes
+					- Add converter script to convert the old database format into the new database format

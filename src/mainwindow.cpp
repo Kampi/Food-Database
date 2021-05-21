@@ -4,36 +4,20 @@
 MainWindow::MainWindow(QWidget* parent) :   QMainWindow(parent),
                                             _mUi(new Ui::MainWindow),
                                             _mDatabaseState(new QLabel(this)),
-                                            _mRecipesModel(new RecipesModel(this)),
                                             _mRecipesProxy(new RecipesProxy(this)),
-                                            _mIsEdited(false)
+                                            _mRecipesModel(new RecipesModel(this))
 {
     this->_mUi->setupUi(this);
+    this->_mUi->statusBar->addPermanentWidget(this->_mDatabaseState);
 
-    this->setWindowFlags(this->windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
-    this->statusBar()->setSizeGripEnabled(false);
     if(this->_loadSettings())
     {
-        this->_updateStatusbar();
+        this->_mDatabase = QSqlDatabase::addDatabase("QSQLITE");
+
+        this->statusBar()->setSizeGripEnabled(false);
+        this->setWindowFlags(this->windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
+        this->_updateDatabaseStatus();
         this->_setLanguageMenu();
-
-        this->_mRecipesProxy->setSourceModel(this->_mRecipesModel);
-
-        this->_mUi->tableView_Recipes->setModel(this->_mRecipesProxy);
-        this->_mUi->tableView_Recipes->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-        this->_mUi->tableView_Recipes->setAlternatingRowColors(true);
-        this->_mUi->tableView_Recipes->setSortingEnabled(true);
-        this->_mUi->tableView_Recipes->sortByColumn(RecipesModel::RECIPESMODEL_TABLE_NAME, Qt::AscendingOrder);
-
-        this->_mUi->statusBar->addPermanentWidget(this->_mDatabaseState);
-
-        // Create some dummy recipes
-        QList<Ingredient> Ingredients({Ingredient(tr("Erste"), tr("Notiz"), 1, "kg", 1.55, this->_mCategories.value("Ingredients", QStringList("")).at(0)), Ingredient(tr("Zweite"), tr("Mehr"), 1, "l", 1.0, this->_mCategories.value("Ingredients", QStringList("")).at(1))});
-        this->_mUi->tableView_Recipes->model()->insertRows(0, 2);
-        this->_mUi->tableView_Recipes->model()->setData(this->_mUi->tableView_Recipes->model()->index(0, 0),
-                                                        QVariant::fromValue<>(Recipe(tr("Erstes Rezept"), tr("Notiz"), tr("Link zu Rezept 1"), tr("Kurze Beschreibung für Rezept 1."), tr("Beschreibung erste Stoppuhr."), tr("Beschreibung zweite Stoppuhr."), this->_mCategories.value("Recipes", QStringList("")).at(0), 1, 30, 10, 20, Ingredients)));
-        this->_mUi->tableView_Recipes->model()->setData(this->_mUi->tableView_Recipes->model()->index(1, 0),
-                                                        QVariant::fromValue<>(Recipe(tr("Zweites Rezept"), tr("Notiz"), ("Link zu Rezept 2"), tr("Kurze Beschreibung für Rezept 2."), tr("Beschreibung erste Stoppuhr."), tr("Beschreibung zweite Stoppuhr."), this->_mCategories.value("Recipes", QStringList("")).at(1), 1, 10, 30, 40, Ingredients)));
 
         // Create the search window
         QLineEdit* SearchField = new QLineEdit(this);
@@ -77,17 +61,24 @@ void MainWindow::CreateRecipe_finished(int result)
     if(result == 1)
     {
         RecipeDialog* Dialog = qobject_cast<RecipeDialog*>(sender());
+        RecipesProxy* Proxy = dynamic_cast<RecipesProxy*>(this->_mUi->tableView_Recipes->model());
+        QSqlTableModel* SqlModel = dynamic_cast<QSqlTableModel*>(Proxy->sourceModel());
+        QSqlRecord Record = this->_RecipeToRecord(Dialog->recipe());
 
-        // Save the new recipe
-        int Rows = this->_mUi->tableView_Recipes->model()->rowCount();
-        this->_mUi->tableView_Recipes->model()->insertRows(Rows, 1);
-        this->_mUi->tableView_Recipes->model()->setData(this->_mUi->tableView_Recipes->model()->index(Rows, 0), QVariant::fromValue<Recipe>(Dialog->recipe()));
+        if(SqlModel->insertRecord(-1, Record))
+        {
+            #ifdef QT_DEBUG
+                qDebug() << "[INFO] Writing database!";
+            #endif
 
-        // Scroll the table view to the button
-        this->_mUi->tableView_Recipes->scrollToBottom();
+            SqlModel->submitAll();
+        }
+        else
+        {
+            QMessageBox::information(this, tr("Fehler"), tr("Datenbank konnte nicht beschrieben werden werden!"), QMessageBox::Ok);
 
-        // Data has changed
-        this->_mIsEdited = true;
+            this->_mDatabase.rollback();
+        }
     }
 }
 
@@ -96,12 +87,37 @@ void MainWindow::EditRecipe_finished(int result)
     if(result == 1)
     {
         RecipeDialog* Dialog = qobject_cast<RecipeDialog*>(sender());
+        Recipe NewRecipe = Dialog->recipe();
+        QSqlRecord Record = this->_RecipeToRecord(Dialog->recipe());
+        RecipesProxy* Proxy = dynamic_cast<RecipesProxy*>(this->_mUi->tableView_Recipes->model());
+        QSqlTableModel* SqlModel = dynamic_cast<QSqlTableModel*>(Proxy->sourceModel());
 
-        // Save the modified recipe
-        this->_mUi->tableView_Recipes->model()->setData(this->_mUi->tableView_Recipes->currentIndex(), QVariant::fromValue<Recipe>(Dialog->recipe()));
+        // Get the index of the old recipe
+        int Index = 0;
+        for(int i = 0; i < SqlModel->rowCount(); i++)
+        {
+            QSqlRecord Record = SqlModel->record(i);
+            if(Record.value("ID").toUInt() == Dialog->id())
+            {
+                Index = i;
+                break;
+            }
+        }
 
-        // Data has changed
-        this->_mIsEdited = true;
+        if(SqlModel->setRecord(Index, Record))
+        {
+            #ifdef QT_DEBUG
+                qDebug() << "[INFO] Writing database!";
+            #endif
+
+            SqlModel->submitAll();
+        }
+        else
+        {
+            QMessageBox::information(this, tr("Fehler"), tr("Datenbank konnte nicht beschrieben werden werden!"), QMessageBox::Ok);
+
+            this->_mDatabase.rollback();
+        }
     }
 }
 
@@ -127,17 +143,13 @@ void MainWindow::on_action_CreateDatabase_triggered(void)
 
 void MainWindow::on_action_OpenDatabase_triggered(void)
 {
-    this->_openDatabase();
+    QString Path = QFileDialog::getOpenFileName(this, tr("Datenbank öffnen"), QDir::homePath(), ("SQLite (*.sqlite3)"));
+    this->_openDatabase(Path);
 }
 
 void MainWindow::on_action_CloseDatabase_triggered(void)
 {
     this->_closeDatabase();
-}
-
-void MainWindow::on_action_WriteDatabase_triggered(void)
-{
-    this->_writeRecipesToDatabase();
 }
 
 void MainWindow::on_action_NewRecipe_triggered(void)
@@ -238,6 +250,78 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
     }
 }
 
+QSqlRecord MainWindow::_RecipeToRecord(Recipe Recipe)
+{
+    QSqlRecord Record;
+    QJsonObject IngredientsRecord;
+    QJsonObject IngredientsObject;
+
+    foreach(auto Ingredient, Recipe.Ingredients())
+    {
+        IngredientsObject.insert("Note", Ingredient.Note());
+        IngredientsObject.insert("Amount", Ingredient.Amount());
+        IngredientsObject.insert("Unit", Ingredient.Unit());
+        IngredientsObject.insert("Price", Ingredient.Price());
+        IngredientsObject.insert("Section", Ingredient.Section());
+        IngredientsRecord.insert(Ingredient.Name(), IngredientsObject);
+    }
+    QJsonDocument doc(IngredientsRecord);
+
+    this->_mDatabase.transaction();
+
+    RecipesProxy* Proxy = dynamic_cast<RecipesProxy*>(this->_mUi->tableView_Recipes->model());
+    QSqlTableModel* SqlModel = dynamic_cast<QSqlTableModel*>(Proxy->sourceModel());
+
+    Record = SqlModel->record();
+    Record.remove(Record.indexOf("ID"));
+    Record.setValue("Name", Recipe.Name());
+    Record.setValue("Note", Recipe.Note());
+    Record.setValue("Link", Recipe.Link());
+    Record.setValue("Cooking_Description", Recipe.Description());
+    Record.setValue("Persons", Recipe.Persons());
+    Record.setValue("Cooking_Time", Recipe.CookingTime());
+    Record.setValue("Category", Recipe.Category());
+    Record.setValue("Timer1_Name", Recipe.Timer1Name());
+    Record.setValue("Timer2_Name", Recipe.Timer2Name());
+    Record.setValue("Timer1_Value", Recipe.Timer1Value());
+    Record.setValue("Timer2_Value", Recipe.Timer2Value());
+    Record.setValue("Ingredients", doc.toJson(QJsonDocument::Compact));
+
+    return Record;
+}
+
+Recipe MainWindow::_RecordToRecipe(QSqlRecord Record)
+{
+    QList<Ingredient> Ingredients;
+
+    QJsonObject IngredientsObject = QJsonDocument::fromJson(Record.field("Ingredients").value().toString().toUtf8()).object();
+    for(auto it = IngredientsObject.begin(), end = IngredientsObject.end(); it != end; ++it)
+    {
+        QJsonObject Element = it.value().toObject();
+        Ingredients.push_back(Ingredient(it.key(),
+                                         Element.value("Note").toString(),
+                                         Element.value("Amount").toDouble(),
+                                         Element.value("Unit").toString(),
+                                         Element.value("Price").toDouble(),
+                                         Element.value("Section").toString()
+                                         ));
+    }
+
+    return Recipe(Record.field("Name").value().toString(),
+                  Record.field("Note").value().toString(),
+                  Record.field("Link").value().toString(),
+                  Record.field("Cooking_Description").value().toString(),
+                  Record.field("Timer1_Name").value().toString(),
+                  Record.field("Timer2_Name").value().toString(),
+                  Record.field("Category").value().toString(),
+                  Record.field("Persons").value().toInt(),
+                  Record.field("Cooking_Time").value().toInt(),
+                  Record.field("Timer1_Value").value().toInt(),
+                  Record.field("Timer2_Value").value().toInt(),
+                  Ingredients
+                  );
+}
+
 void MainWindow::_saveSettings(void)
 {
     QSettings Settings(QApplication::applicationDirPath() + "/Settings.ini", QSettings::IniFormat);
@@ -311,10 +395,10 @@ void MainWindow::_removeRecipe(void)
     if(select->hasSelection() & !select->selectedRows().empty())
     {
         // Remove the selected rows from the model
-        this->_mUi->tableView_Recipes->model()->removeRows(select->selectedRows().first().row(), select->selectedRows().count());
-
-        // Data has changed
-        this->_mIsEdited = true;
+        RecipesProxy* Proxy = dynamic_cast<RecipesProxy*>(this->_mUi->tableView_Recipes->model());
+        QSqlTableModel* SqlModel = dynamic_cast<QSqlTableModel*>(Proxy->sourceModel());
+        SqlModel->removeRows(select->selectedRows().first().row(), select->selectedRows().count());
+        SqlModel->select();
     }
     else
     {
@@ -324,7 +408,9 @@ void MainWindow::_removeRecipe(void)
 
 void MainWindow::_editRecipe(QModelIndex Index)
 {
-    RecipeDialog* Dialog = new RecipeDialog(this->_mCategories, qvariant_cast<Recipe>(this->_mUi->tableView_Recipes->model()->data(Index, Qt::UserRole)), this);
+    QSqlRecord RecipeRecord = qvariant_cast<QSqlRecord>(this->_mUi->tableView_Recipes->model()->data(Index, Qt::UserRole));
+
+    RecipeDialog* Dialog = new RecipeDialog(RecipeRecord.value("ID").toUInt(), this->_mCategories, this->_RecordToRecipe(RecipeRecord), this);
     Dialog->setWindowTitle(tr("Rezept bearbeiten"));
     connect(Dialog, &QDialog::finished, this, &MainWindow::EditRecipe_finished);
     Dialog->show();
@@ -335,139 +421,62 @@ void MainWindow::_createDatabase(void)
     QString Path = QFileDialog::getSaveFileName(this, tr("Datenbank anlegen"), QDir::homePath(), ("SQLite (*.sqlite3)"));
     if(!Path.isEmpty())
     {
-        if(this->_mDatabase.Create(Path))
+        #ifdef QT_DEBUG
+            qDebug() << "[INFO] Create database at: " << Path << "!";
+        #endif
+
+        this->_mDatabase.setDatabaseName(Path);
+        if(this->_mDatabase.open())
         {
-            this->_mIsEdited = true;
-            this->_mUi->action_CloseDatabase->setEnabled(true);
-            this->_mUi->action_OpenDatabase->setEnabled(false);
-            this->_mUi->statusBar->showMessage(Path);
-        }
-        else
+            bool Result;
+            QSqlQuery Query;
+
+            Result = Query.exec("CREATE TABLE Recipes (ID INTEGER primary key, "
+                                                      "Name VARCHAR(50), "
+                                                      "Note VARCHAR(50), "
+                                                      "Link MEDIUMTEXT, "
+                                                      "Persons INTEGER, "
+                                                      "Cooking_Description MEDIUMTEXT, "
+                                                      "Category VARCHAR(50), "
+                                                      "Cooking_Time INTEGER, "
+                                                      "Timer1_Name VARCHAR(50), "
+                                                      "Timer2_Name VARCHAR(50), "
+                                                      "Timer1_Value INTEGER, "
+                                                      "Timer2_Value INTEGER, "
+                                                      "Ingredients MEDIUMTEXT)"
+                                );
+
+            if(!Result)
             {
-            #ifdef QT_DEBUG
-                qDebug() << "[ERROR] Unable to create database: " << this->_mDatabase.GetLastError();
-            #endif
+                QMessageBox::information(this, tr("Fehler"), tr("Fehler beim Anlegen der Datenbank!"), QMessageBox::Ok);
 
-            QMessageBox::critical(this, tr("Fehler"), tr("Datenbank kann nicht erzeugt werden!"), QMessageBox::Ok);
-        }
+                #ifdef QT_DEBUG
+                    qDebug() << "[ERROR] Database error: " << this->_mDatabase.lastError() << "!";
+                #endif
+            }
 
-        this->_updateStatusbar();
-    }
-}
-
-void MainWindow::_openDatabase(void)
-{
-    QString Path = QFileDialog::getOpenFileName(this, tr("Datenbank öffnen"), QDir::homePath(), ("SQLite (*.sqlite3)"));
-    if(Path.length() > 0)
-    {
-        if(this->_mDatabase.Open(Path))
-        {
-            this->_mUi->action_CloseDatabase->setEnabled(true);
-            this->_mUi->action_OpenDatabase->setEnabled(false);
-            this->_mUi->statusBar->showMessage(Path);
-            this->_readRecipesFromDatabase();
+            this->_openDatabase(Path);
         }
         else
         {
+            QMessageBox::information(this, tr("Fehler"), tr("Datenbank konnte nicht angelegt werden!"), QMessageBox::Ok);
+
             #ifdef QT_DEBUG
-                qDebug() << "[ERROR] Unable to open database: " << this->_mDatabase.GetLastError();
+                qDebug() << "[ERROR] Database error: " << this->_mDatabase.lastError() << "!";
             #endif
-
-            QMessageBox::critical(this, tr("Fehler"), tr("Datenbank kann nicht geöffnet werden!"), QMessageBox::Ok);
         }
-
-        this->_updateStatusbar();
     }
 }
 
 void MainWindow::_closeDatabase(void)
 {
-    if(this->_mDatabase.IsOpen())
+    if(this->_mDatabase.isOpen())
     {
-        if(this->_mIsEdited)
-        {
-            QMessageBox MessageBox(QMessageBox::Question, tr("Datenbank speichern?"), tr("Soll die Datenbank gespeichert werden?"), QMessageBox::Yes | QMessageBox::No, this);
-            MessageBox.setButtonText(QMessageBox::Yes, tr("Ja"));
-            MessageBox.setButtonText(QMessageBox::No, tr("Nein"));
-            if(MessageBox.exec() == QMessageBox::Yes)
-            {
-                this->_writeRecipesToDatabase();
-            }
-        }
-
-        this->_mDatabase.Close();
-
-        this->_mUi->action_CloseDatabase->setEnabled(false);
-        this->_mUi->action_OpenDatabase->setEnabled(true);
+        this->_mDatabase.commit();
+        this->_mDatabase.close();
     }
 
-    this->_updateStatusbar();
-}
-
-void MainWindow::_readRecipesFromDatabase(void)
-{
-    if(this->_mDatabase.IsOpen())
-    {
-        // Clear the table view
-        this->_mUi->tableView_Recipes->model()->removeRows(0, this->_mUi->tableView_Recipes->model()->rowCount());
-
-        // Get the data from the database
-        QList<Recipe> Recipes;
-        if(this->_mDatabase.Read(Recipes))
-        {
-            // Add the recipes to the model
-            this->_mUi->tableView_Recipes->model()->insertRows(0, Recipes.size());
-            for(int i = 0x00; i < Recipes.size(); i++)
-            {
-                this->_mUi->tableView_Recipes->model()->setData(this->_mUi->tableView_Recipes->model()->index(i, 0), QVariant::fromValue<Recipe>(Recipes.at(i)));
-            }
-        }
-        else
-        {
-            QMessageBox::critical(this, tr("Fehler"), tr("Datenbank kann nicht gelesen werden!"), QMessageBox::Ok);
-        }
-    }
-}
-
-void MainWindow::_writeRecipesToDatabase(void)
-{
-    if(this->_mDatabase.IsOpen())
-    {
-        // Get the data from the model
-        QList<Recipe> Recipes;
-        for(int i = 0x00; i < this->_mUi->tableView_Recipes->model()->rowCount(); i++)
-        {
-            Recipes.push_back(qvariant_cast<Recipe>(this->_mUi->tableView_Recipes->model()->data(this->_mUi->tableView_Recipes->model()->index(i, 0), Qt::UserRole)));
-        }
-
-        // Write the recipes into the database
-        if(!this->_mDatabase.Write(Recipes))
-        {
-            QMessageBox::critical(this, tr("Fehler"), tr("Datenbank kann nicht geschrieben werden!"), QMessageBox::Ok);
-        }
-        else
-        {
-            this->_mIsEdited = false;
-        }
-    }
-}
-
-void MainWindow::_updateStatusbar(void)
-{
-    QString FileName;
-
-    if(this->_mDatabase.IsOpen())
-    {
-        FileName = ":/Icons/Ressources/Icons/icons8-connected-24.png";
-    }
-    else
-    {
-        FileName = ":/Icons/Ressources/Icons/icons8-disconnected-24.png";
-    }
-
-    QPixmap Pixmap;
-    Pixmap.load(FileName);
-    this->_mDatabaseState->setPixmap(Pixmap);
+    this->_updateDatabaseStatus();
 }
 
 void MainWindow::_exportRecipe(void)
@@ -477,18 +486,18 @@ void MainWindow::_exportRecipe(void)
         QString File = QFileDialog::getSaveFileName(this, tr("Speicherort wählen"), QDir::homePath(), ("JSON (*.json)"));
         if(File.length() > 0)
         {
-            QList<Recipe> SelectedRecipes;
+            QList<QSqlRecord> SelectedRecipes;
 
             QModelIndexList Selection = this->_mUi->tableView_Recipes->selectionModel()->selectedRows();
             for(int i = 0x00; i < Selection.count(); i++)
             {
-                SelectedRecipes.push_back(qvariant_cast<Recipe>(this->_mUi->tableView_Recipes->model()->data(Selection.at(i), Qt::UserRole)));
+                SelectedRecipes.push_back(qvariant_cast<QSqlRecord>(this->_mUi->tableView_Recipes->model()->data(Selection.at(i), Qt::UserRole)));
             }
 
             if(!this->_mRecipeExport.Export(File, SelectedRecipes))
             {
                 #ifdef QT_DEBUG
-                    qDebug() << "[ERROR] Unable to write JSON database!";
+                    qDebug() << "[ERROR] Unable to write JSON!";
                 #endif
 
                 QMessageBox::critical(this, tr("Fehler"), tr("Export fehlgeschlagen!"), QMessageBox::Ok);
@@ -515,6 +524,92 @@ void MainWindow::_setLanguageMenu(void)
 
     // Use german as default language
     emit this->_mUi->action_German->triggered(true);
+}
+
+void MainWindow::_updateDatabaseStatus(void)
+{
+    QString FileName;
+
+    if(this->_mDatabase.isOpen())
+    {
+        this->_mUi->action_CreateDatabase->setEnabled(false);
+        this->_mUi->action_OpenDatabase->setEnabled(false);
+        this->_mUi->action_CloseDatabase->setEnabled(true);
+        this->_mUi->pushButton_NewRecipe->setEnabled(true);
+        this->_mUi->pushButton_RemoveRecipe->setEnabled(true);
+        this->_mUi->pushButton_ExportRecipe->setEnabled(true);
+
+        #ifdef QT_DEBUG
+            qDebug() << "[INFO] Database open!";
+        #endif
+
+        FileName = ":/Icons/Ressources/Icons/icons8-connected-24.png";
+    }
+    else
+    {
+        this->_mUi->action_CreateDatabase->setEnabled(true);
+        this->_mUi->action_OpenDatabase->setEnabled(true);
+        this->_mUi->action_CloseDatabase->setEnabled(false);
+        this->_mUi->pushButton_NewRecipe->setEnabled(false);
+        this->_mUi->pushButton_RemoveRecipe->setEnabled(false);
+        this->_mUi->pushButton_ExportRecipe->setEnabled(false);
+
+        #ifdef QT_DEBUG
+            qDebug() << "[INFO] Database closed!";
+        #endif
+
+        FileName = ":/Icons/Ressources/Icons/icons8-disconnected-24.png";
+    }
+
+    QPixmap Pixmap;
+    Pixmap.load(FileName);
+    this->_mDatabaseState->setPixmap(Pixmap);
+}
+
+void MainWindow::_openDatabase(QString Path)
+{
+    if(!Path.isEmpty())
+    {
+        #ifdef QT_DEBUG
+            qDebug() << "[INFO] Open database at: " << Path;
+        #endif
+
+        this->_mDatabase.setDatabaseName(Path);
+
+        if(this->_mDatabase.open())
+        {
+            // Read the recipes from the database
+            this->_mRecipesModel = new RecipesModel(this, this->_mDatabase);
+            this->_mRecipesModel->setTable("Recipes");
+            this->_mRecipesModel->select();
+
+            this->_mRecipesProxy->setSourceModel(this->_mRecipesModel);
+
+            this->_mUi->tableView_Recipes->setModel(this->_mRecipesProxy);
+            this->_mUi->tableView_Recipes->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+            this->_mUi->tableView_Recipes->setAlternatingRowColors(true);
+            this->_mUi->tableView_Recipes->setSortingEnabled(true);
+            this->_mUi->tableView_Recipes->sortByColumn(1, Qt::AscendingOrder);
+            this->_mUi->tableView_Recipes->hideColumn(0);
+            this->_mUi->tableView_Recipes->hideColumn(2);
+            this->_mUi->tableView_Recipes->hideColumn(3);
+            this->_mUi->tableView_Recipes->hideColumn(5);
+            for(int i = 8; i < this->_mRecipesProxy->columnCount(); i++)
+            {
+                this->_mUi->tableView_Recipes->hideColumn(i);
+            }
+        }
+        else
+        {
+            QMessageBox::information(this, tr("Fehler"), tr("Datenbank konnte nicht geöffnet werden!"), QMessageBox::Ok);
+
+            #ifdef QT_DEBUG
+                qDebug() << "[ERROR] Database error: " << this->_mDatabase.lastError() << "!";
+            #endif
+        }
+
+        this->_updateDatabaseStatus();
+    }
 }
 
 void MainWindow::_switchLanguage(QString Language)

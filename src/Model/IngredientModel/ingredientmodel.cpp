@@ -1,13 +1,12 @@
 #include "ingredientmodel.h"
 
-IngredientModel::IngredientModel(QList<Ingredient>& Ingredients, QObject* parent) : QAbstractTableModel(parent),
-                                                                                    _mData(Ingredients)
+IngredientModel::IngredientModel(QObject* parent) : QAbstractTableModel(parent)
 {
 }
 
 int IngredientModel::rowCount(const QModelIndex&) const
 {
-    return _mData.size();
+    return this->_mData.size();
 }
 
 int IngredientModel::columnCount(const QModelIndex&) const
@@ -25,33 +24,37 @@ QVariant IngredientModel::data(const QModelIndex& index, int role) const
         {
             case INGREDIENTSMODEL_TABLE_NAME:
             {
-                return QString("%1").arg(_mData.at(index.row()).Name());
+                return QString("%1").arg(this->_mData.at(index.row()).Name());
             }
             case INGREDIENTSMODEL_TABLE_AMOUNT:
             {
-                return QString("%1").arg(locale.toString(_mData.at(index.row()).Amount()));
+                return QString("%1").arg(locale.toString(this->_mData.at(index.row()).Amount()));
             }
             case INGREDIENTSMODEL_TABLE_UNIT:
             {
-                return QString("%1").arg(_mData.at(index.row()).Unit());
+                return QString("%1").arg(this->_mData.at(index.row()).Unit());
             }
             case INGREDIENTSMODEL_TABLE_PRICE:
             {
-                return QString("%1 " + tr("€")).arg(locale.toString(_mData.at(index.row()).Price()));
+                return QString("%1 " + tr("€")).arg(locale.toString(this->_mData.at(index.row()).Price()));
             }
             case INGREDIENTSMODEL_TABLE_SECTION:
             {
-                return QString("%1").arg(_mData.at(index.row()).Section());
+                return QString("%1").arg(this->_mData.at(index.row()).Section());
             }
             case INGREDIENTSMODEL_TABLE_NOTE:
             {
-                return QString("%1").arg(_mData.at(index.row()).Note());
+                return QString("%1").arg(this->_mData.at(index.row()).Note());
             }
             default:
             {
                 return QString("");
             }
         }
+    }
+    else if(role == Qt::UserRole)
+    {
+        return QVariant::fromValue<QList<Ingredient>>(this->_mData);
     }
 
     return QVariant();
@@ -69,37 +72,37 @@ bool IngredientModel::setData(const QModelIndex& index, const QVariant& value, i
         {
             case INGREDIENTSMODEL_TABLE_NAME:
             {
-                _mData[index.row()].setName(value.toString());
+                this->_mData[index.row()].setName(value.toString());
                 Result = true;
                 break;
             }
             case INGREDIENTSMODEL_TABLE_AMOUNT:
             {
-                _mData[index.row()].setAmount(locale.toDouble(value.toString()));
+                this->_mData[index.row()].setAmount(locale.toDouble(value.toString()));
                 Result = true;
                 break;
             }
             case INGREDIENTSMODEL_TABLE_UNIT:
             {
-                _mData[index.row()].setUnit(value.toString());
+                this->_mData[index.row()].setUnit(value.toString());
                 Result = true;
                 break;
             }
             case INGREDIENTSMODEL_TABLE_PRICE:
             {
-                _mData[index.row()].setPrice(locale.toDouble(value.toString()));
+                this->_mData[index.row()].setPrice(locale.toDouble(value.toString()));
                 Result = true;
                 break;
             }
             case INGREDIENTSMODEL_TABLE_SECTION:
             {
-                _mData[index.row()].setSection(value.toString());
+                this->_mData[index.row()].setSection(value.toString());
                 Result = true;
                 break;
             }
             case INGREDIENTSMODEL_TABLE_NOTE:
             {
-                _mData[index.row()].setNote(value.toString());
+                this->_mData[index.row()].setNote(value.toString());
                 Result = true;
                 break;
             }
@@ -109,6 +112,10 @@ bool IngredientModel::setData(const QModelIndex& index, const QVariant& value, i
                 break;
             }
         }
+    }
+    else if(role == Qt::UserRole)
+    {
+        this->_mData.append(qvariant_cast<QList<Ingredient>>(value));
     }
 
     emit QAbstractItemModel::dataChanged(index, index);
@@ -192,7 +199,7 @@ bool IngredientModel::removeRows(int position, int rows, const QModelIndex& pare
 
     for(int row = 0; row < rows; ++row)
     {
-        _mData.removeAt(position);
+        this->_mData.removeAt(position);
     }
 
     endRemoveRows();

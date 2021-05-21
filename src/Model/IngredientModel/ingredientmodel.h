@@ -26,7 +26,7 @@ class IngredientModel : public QAbstractTableModel
         };
 
     public:
-        IngredientModel(QList<Ingredient>& Ingredients, QObject* parent = nullptr);
+        IngredientModel(QObject* parent = nullptr);
 
         int rowCount(const QModelIndex& parent = QModelIndex()) const override;
         int columnCount(const QModelIndex& parent = QModelIndex()) const override;
@@ -41,7 +41,7 @@ class IngredientModel : public QAbstractTableModel
         bool removeRows(int position, int rows, const QModelIndex& index = QModelIndex()) override;
 
     private:
-        QList<Ingredient>& _mData;
+        QList<Ingredient> _mData;
 };
 
 #endif // INGREDIENTMODEL_H

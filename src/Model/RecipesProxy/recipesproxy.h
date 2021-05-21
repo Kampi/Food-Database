@@ -7,8 +7,6 @@
     #include <QtDebug>
 #endif
 
-#include "recipesmodel.h"
-
 class RecipesProxy : public QSortFilterProxyModel
 {
     Q_OBJECT

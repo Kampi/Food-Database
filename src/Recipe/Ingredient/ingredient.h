@@ -47,4 +47,6 @@ class Ingredient
         double _mPrice;
 };
 
+Q_DECLARE_METATYPE(Ingredient)
+
 #endif // INGREDIENT_H

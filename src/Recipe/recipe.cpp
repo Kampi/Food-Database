@@ -169,6 +169,7 @@ void Recipe::setIngredients(const QList<Ingredient>& Ingredients)
     QDebug operator<<(QDebug Stream, const Recipe& Recipe)
     {
         Stream << "Name: " << Recipe._mName << endl;
+        Stream << "Category: " << Recipe._mCategory << endl;
         Stream << "Note: " << Recipe._mNote << endl;
         Stream << "Link: " << Recipe._mLink << endl;
         Stream << "Persons: " << Recipe._mPersons << endl;
@@ -190,6 +191,7 @@ void Recipe::setIngredients(const QList<Ingredient>& Ingredients)
 QTextStream& operator<<(QTextStream& Stream, const Recipe& Recipe)
 {
     Stream << "Name: " << Recipe._mName << endl;
+    Stream << "Category: " << Recipe._mCategory << endl;
     Stream << "Note: " << Recipe._mNote << endl;
     Stream << "Link: " << Recipe._mLink << endl;
     Stream << "Persons: " << Recipe._mPersons << endl;

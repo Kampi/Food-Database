@@ -28,10 +28,12 @@ class RecipeDialog : public QDialog
         void RecipeChanged(int Result);
 
     public:
-        explicit RecipeDialog(QMap<QString, QStringList> Categories, Recipe NewRecipe, QWidget* parent = nullptr);
+        explicit RecipeDialog(int ID, QMap<QString, QStringList> Categories, Recipe CurRecipe, QWidget* parent = nullptr);
+        explicit RecipeDialog(QMap<QString, QStringList> Categories, Recipe CurRecipe, QWidget* parent = nullptr);
         ~RecipeDialog();
 
         Recipe recipe() const;
+        uint id() const;
 
     private slots:
         void on_pushButton_AddIngredients_clicked();
@@ -52,7 +54,8 @@ class RecipeDialog : public QDialog
     private:
         Ui::RecipeDialog* _mUi;
 
-        QList<Ingredient> _mIngredients;
+        uint _mID;
+
         QMap<QString, QStringList> _mCategories;
 
         Recipe _mRecipe;
